@@ -9,8 +9,13 @@
 - Abrir Git Bash
    - mkdir -p /d/develop/db
    - code /d/develop/db
-- Agregar scripts
-- Correr scripts
+- Add scripts
+- Run scripts
+  - sqlplus / AS sysdba
+  - run usuarios.sql
+  - exit
+  - run tablas.sql
+  - set line 100;
 
 ## 📚 Tecnologías principales 📚
 | Tecnología                      | Versión | Descripción                                                    |
