@@ -6,16 +6,19 @@
 💻 Aprende a manipular bases de datos usando SQL, 📊 diseña modelos de datos, y domina las funciones avanzadas para la gestión eficiente de la información. ✅
 
 ## 💻 Instalación 💻
-- Abrir Git Bash
+- Git Bash
    - mkdir -p /d/develop/db
    - code /d/develop/db
-- Add scripts
-- Run scripts
-  - sqlplus / AS sysdba
-  - run usuarios.sql
-  - exit
-  - run tablas.sql
-  - set line 100;
+- VSC
+  - Create ./scripts
+  - Add [scripts](https://github.com/elliotgaramendi/tecsup/tree/develop/01/database/scripts) in ./scripts
+  - New Terminal
+    - sqlplus / AS sysdba
+    - @./scripts/usuario.sql
+    - exit
+    - sqlplus user01/tecsup
+    - @./scripts/tablas.sql
+    - set line 100;
 
 ## 📚 Tecnologías principales 📚
 | Tecnología                      | Versión | Descripción                                                    |
