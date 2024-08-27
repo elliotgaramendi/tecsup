@@ -25,6 +25,11 @@
 | ------------------------------- | ------- | -------------------------------------------------------------- |
 | Oracle Database Express Edition | 11      | Base de datos ligera ideal para desarrollo y gestión de datos. |
 
+## 🛠️ Plugins Recomendados 🛠️
+
+- [vscode-icons](https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons): Una extensión para personalizar los íconos de tus archivos y carpetas, mejorando la visualización y organización de tu proyecto.
+- [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode): Formateador de código que asegura consistencia en el estilo del código, ayudándote a mantener un código limpio y bien estructurado.
+
 ## 🤗 Redes sociales 🤗
 - 🐭 YouTube: https://www.youtube.com/@elliotgaramendi 🐭
 - 🐭 GitHub: https://github.com/elliotgaramendi 🐭
