@@ -25,8 +25,9 @@
 | ------------------------------- | ------- | -------------------------------------------------------------- |
 | Oracle Database Express Edition | 11      | Base de datos ligera ideal para desarrollo y gestión de datos. |
 
-## 🛠️ Plugins Recomendados 🛠️
+## 🛠️ Extensiones recomendados 🛠️
 
+- [Oracle SQL Developer Extension for VSCode](https://marketplace.visualstudio.com/items?itemName=Oracle.sql-developer): Extensión para ejecutar y desarrollar consultas SQL con Oracle directamente desde VSCode, optimizando tu flujo de trabajo.
 - [vscode-icons](https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons): Una extensión para personalizar los íconos de tus archivos y carpetas, mejorando la visualización y organización de tu proyecto.
 - [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode): Formateador de código que asegura consistencia en el estilo del código, ayudándote a mantener un código limpio y bien estructurado.
 
