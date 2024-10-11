@@ -1,10 +1,11 @@
 -- 1. Crear una tabla ALUMNO con la estructura especificada
 -- COLUMNA  TIPO          RESTRICCION
--- idalumno Char(4)       Primary Key pk_alumno
--- paterno  (20)          Not Null nn_paterno
--- materno  (20)
--- Nombre   Varchar2(20)
+-- idalumno char(4)       Primary Key pk_alumno
+-- paterno  varchar2(20)  Not Null nn_paterno
+-- materno  varchar2(20)
+-- Nombre   varchar2(20)
 -- Fec_nac  Date          default sysdate
+drop table alumno;
 create table alumno (
    idalumno char(4) primary key,
    paterno  varchar2(20) not null,
@@ -19,6 +20,7 @@ create table alumno (
 -- Nombre     Varchar2(30)  Not Null nn_nom_curso
 -- ciclo      Number        Check ch_ciclo
 -- Ciclo únicamente podrá aceptar valores enteros comprendidos entre 1 y 6.
+drop table curso2;
 create table curso2 (
    idcurso char(2) primary key,
    nombre  varchar2(30) not null,
@@ -31,6 +33,7 @@ create table curso2 (
 -- idalumno   Char(4)     Primary Key, references ALUMNO(idalumno)
 -- seccion    Char        Check ch_seccion, Not Null nn_seccion
 -- Sección únicamente podrá aceptar como valores A o B.
+drop table matricula;
 create table matricula (
    idcurso  char(2)
       references curso2 ( idcurso ),
@@ -48,7 +51,7 @@ select constraint_name,
   from user_constraints
  where table_name = 'MATRICULA';
 
--- 5. Añadir la columna DNI a la tabla ALUMNO
+-- 5. Añadir la columna DNI varchar2(8) a la tabla ALUMNO
 alter table alumno add dni varchar2(8);
 
 -- 6. Crear un constraint de tipo UNIQUE al campo DNI
