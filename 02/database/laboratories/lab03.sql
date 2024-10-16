@@ -12,8 +12,8 @@ select nombre_emp,
        salario,
        comision,
        ( salario + nvl(
-	       comision,
-	       0
+          comision,
+          0
        ) ) as sueldo_real
   from empleados
  order by sueldo_real;
@@ -21,16 +21,16 @@ select nombre_emp,
 -- 3. Mostrar los salarios en formato monetario para todos los empleados.
 select nombre_emp,
        to_char(
-	       salario,
-	       'L999G999D99'
+          salario,
+          'L999G999D99'
        ) as salario_formateado
   from empleados;
 
 -- 4. Mostrar la fecha actual bajo el siguiente formato:
 -- Martes, 10 de MAYO del 2013 - 10:10:00
 select to_char(
-	sysdate,
-	'Day, DD "de" MONTH "del" YYYY - HH24:MI:SS'
+   sysdate,
+   'Day, DD "de" MONTH "del" YYYY - HH24:MI:SS'
 ) as fecha_actual
   from dual;
 
@@ -47,16 +47,16 @@ select nombre_emp
 -- [NOMBRE EMPLEADO] [HIRE_DATE] [DIA] [MES] [AÑO]
 select nombre_emp,
        to_char(
-	       fecha_ing,
-	       'DD'
+          fecha_ing,
+          'DD'
        ) as dia,
        to_char(
-	       fecha_ing,
-	       'MM'
+          fecha_ing,
+          'MM'
        ) as mes,
        to_char(
-	       fecha_ing,
-	       'YYYY'
+          fecha_ing,
+          'YYYY'
        ) as año
   from empleados;
 
@@ -65,8 +65,8 @@ select nombre_emp,
 -- Si tiene comisión debe mostrarla, en caso de que no tenga comisión mostrar el mensaje “SIN COMISION”.
 select nombre_emp,
        nvl(
-	       to_char(comision),
-	       'SIN COMISION'
+          to_char(comision),
+          'SIN COMISION'
        ) as comision
   from empleados;
 
@@ -80,13 +80,13 @@ select nombre_emp,
 select nombre_emp,
        salario,
        case
-         when salario > 4000                then
-           'Nivel 1'
-         when salario between 3000 and 4000 then
-           'Nivel 2'
-         when salario between 2000 and 3000 then
-           'Nivel 3'
-         else
-           'Nivel 4'
+          when salario > 4000                then
+             'Nivel 1'
+          when salario between 3000 and 4000 then
+             'Nivel 2'
+          when salario between 2000 and 3000 then
+             'Nivel 3'
+          else
+             'Nivel 4'
        end as rango_salario
   from empleados;

@@ -13,10 +13,10 @@ select nombre_emp,
 select nombre_emp
   from empleados
  where substr(
-	  nombre_emp,
-	  3,
-	  1
-  ) = 'R'
+      nombre_emp,
+      3,
+      1
+   ) = 'R'
    and ( nombre_emp like '%Z'
     or nombre_emp like '%S' );
 

@@ -5,9 +5,9 @@ select nombre_emp,
        fecha_ing
   from empleados
  where cod_dept = (
-  select cod_dept
-    from empleados
-   where nombre_emp = '&nombre'
+   select cod_dept
+     from empleados
+    where nombre_emp = '&nombre'
 );
 
 -- 2. Mostrar el código de empleado, nombres y salario de todos los empleados que ganan más que el promedio de salario.
@@ -17,8 +17,8 @@ select cod_emp,
        salario
   from empleados
  where salario > (
-  select avg(salario)
-    from empleados
+   select avg(salario)
+     from empleados
 )
  order by salario asc;
 
@@ -28,9 +28,9 @@ select cod_emp,
        nombre_emp
   from empleados
  where cod_dept in (
-  select cod_dept
-    from empleados
-   where nombre_emp like '%L%'
+   select cod_dept
+     from empleados
+    where nombre_emp like '%L%'
 );
 
 -- 4. Mostrar los nombres, cod_dept y puesto de todos los empleados cuya ubicación sea 'SAN MIGUEL'.
@@ -39,9 +39,9 @@ select nombre_emp,
        puesto
   from empleados
  where cod_dept = (
-  select cod_dept
-    from depart
-   where ubicacion = 'SAN MIGUEL'
+   select cod_dept
+     from depart
+    where ubicacion = 'SAN MIGUEL'
 );
 
 -- 5. Mostrar los nombres y salario de cada empleado que reporte a “PRESIDENTE”.
@@ -49,9 +49,9 @@ select nombre_emp,
        salario
   from empleados
  where jefe in (
-  select cod_emp
-    from empleados
-   where puesto = 'PRESIDENTE'
+   select cod_emp
+     from empleados
+    where puesto = 'PRESIDENTE'
 );
 
 -- 6. Mostrar el número de departamento, nombres y puesto para cada empleado que pertenezca al departamento: “VENTAS”.
@@ -60,7 +60,7 @@ select cod_dept,
        puesto
   from empleados
  where cod_dept = (
-  select cod_dept
-    from depart
-   where nombre_dept = 'VENTAS'
+   select cod_dept
+     from depart
+    where nombre_dept = 'VENTAS'
 );

@@ -5,20 +5,20 @@ select nombre_emp,
        salario,
        salario / 30 as salario_diario,
        round(
-	       salario / 30,
-	       1
+          salario / 30,
+          1
        ) as salario_redondeado_1_decimal,
        round(
-	       salario / 30,
-	       2
+          salario / 30,
+          2
        ) as salario_redondeado_2_decimales,
        trunc(
-	       salario / 30,
-	       1
+          salario / 30,
+          1
        ) as salario_truncado_1_decimal,
        trunc(
-	       salario / 30,
-	       2
+          salario / 30,
+          2
        ) as salario_truncado_2_decimales
   from empleados;
 
@@ -36,8 +36,8 @@ select ubicacion,
        lower(ubicacion) as ubicacion_minusculas,
        length(ubicacion) as longitud_cadena,
        instr(
-	       ubicacion,
-	       'S'
+          ubicacion,
+          'S'
        ) as posicion_primer_s
   from depart;
 
@@ -45,14 +45,14 @@ select ubicacion,
 --    así como las 2 primeras letras y las 2 últimas.
 select upper(nation) as nacion_mayuscula,
        substr(
-	       nation,
-	       1,
-	       2
+          nation,
+          1,
+          2
        ) as primeras_2_letras,
        substr(
-	       nation,
-	       - 2,
-	       2
+          nation,
+          -2,
+          2
        ) as ultimas_2_letras
   from nation;
 

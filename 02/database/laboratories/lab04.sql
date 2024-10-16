@@ -13,8 +13,8 @@ select max(salario) as salario_maximo,
 -- 3. Modificar la consulta anterior y mostrar los resultados por cada puesto.
 select puesto,
        to_char(
-	       max(salario),
-	       'L999,999.00'
+          max(salario),
+          'L999,999.00'
        ) as salario_maximo,
        min(salario) as salario_minimo,
        sum(salario) as suma_salarios,
