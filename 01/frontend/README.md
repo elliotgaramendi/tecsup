@@ -1,6 +1,6 @@
-# 🌐 [View](https://github.com/elliotgaramendi/tecsup/tree/develop/01/view)
+# 🌐 [Frontend](https://github.com/elliotgaramendi/tecsup/tree/develop/01/frontend)
 
-[![View](https://midu.dev/images/wallpapers/web-technologies-4k-wallpaper.png)](https://github.com/elliotgaramendi/tecsup/tree/develop/01/view)
+[![Frontend](https://midu.dev/images/wallpapers/web-technologies-4k-wallpaper.png)](https://github.com/elliotgaramendi/tecsup/tree/develop/01/frontend)
 
 ## 📜 Descripción 📜
 🎨 Diseña y desarrolla interfaces impactantes con Figma, HTML, CSS y JS. 💻 Domina el frontend aplicando buenas prácticas para crear vistas modernas y funcionales. 🚀✨
