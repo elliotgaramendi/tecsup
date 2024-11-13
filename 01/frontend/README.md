@@ -50,11 +50,11 @@ Si aún no lo has hecho, te recomiendo crear una cuenta en [GitHub](https://gith
 - Subir y compartir tus proyectos.
 - Colaborar con otros desarrolladores.
 - Mantener un portafolio profesional de tu trabajo.
-- 
+
 ¡Es una excelente forma de crecer como desarrollador y mostrar tu trabajo al mundo! 🌍🚀
 
 ## 🤗 Redes sociales 🤗
-- 📺 [YouTube](https://www.youtube.com/@elliotgaramendi)  
-- 🐙 [GitHub](https://github.com/elliotgaramendi)  
-- 💼 [LinkedIn](https://www.linkedin.com/in/elliotgaramendi/)  
-- 📸 [Instagram](https://www.instagram.com/elliotgaramendi/)  
+- 📺 [YouTube](https://www.youtube.com/@elliotgaramendi)
+- 🐙 [GitHub](https://github.com/elliotgaramendi)
+- 💼 [LinkedIn](https://www.linkedin.com/in/elliotgaramendi/)
+- 📸 [Instagram](https://www.instagram.com/elliotgaramendi/)
