@@ -1,6 +1,6 @@
-# [Database](https://github.com/elliotgaramendi/tecsup/tree/develop/01/database)
+# [Database](https://github.com/elliotgaramendi/tecsup/tree/develop/o2/database)
 
-[![Database](https://assets.datamation.com/uploads/2023/06/dm-top-database-challenges.png)](https://github.com/elliotgaramendi/tecsup/tree/develop/01/database)
+[![Database](https://assets.datamation.com/uploads/2023/06/dm-top-database-challenges.png)](https://github.com/elliotgaramendi/tecsup/tree/develop/o2/database)
 
 ## 📜 Descripción 📜
 💻 Aprende a manipular bases de datos usando SQL, 📊 diseña modelos de datos, y domina las funciones avanzadas para la gestión eficiente de la información. ✅
@@ -11,7 +11,7 @@
    - code /d/develop/db
 - VSC
   - Create ./scripts
-  - Add [scripts](https://github.com/elliotgaramendi/tecsup/tree/develop/01/database/scripts) in ./scripts
+  - Add [scripts](https://github.com/elliotgaramendi/tecsup/tree/develop/o2/database/scripts) in ./scripts
   - New Terminal
     - sqlplus / AS sysdba
     - @./scripts/usuario.sql
