@@ -3,7 +3,7 @@
 [![Algorithms and Data Structures](https://4kwallpapers.com/images/walls/thumbs_3t/16102.jpg)](https://github.com/elliotgaramendi/tecsup/tree/develop/o3/algorithms)
 
 ## 📜 Descripción 📜
-🧠 Aprende a estructurar y optimizar datos con listas, pilas, colas, árboles y grafos. 🚀 Domina algoritmos eficientes para resolver problemas reales. ⚡
+🧠 Aprende a estructurar y optimizar datos con listas, pilas, colas, árboles, grafos y más. 🚀 Domina algoritmos eficientes para resolver problemas reales. ⚡
 
 ## 💻 Instalación 💻
 
@@ -15,13 +15,13 @@
 
 ## 🧩 Extensiones Recomendadas 🧩
 
-| 🔌 Extensión                                                                                | 📄 Descripción                                                                                        |
-| ------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------- |
-| [🐍 Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)           | Soporte completo para Python en VS Code, incluyendo IntelliSense, depuración y ejecución de scripts. |
-| [⚡ Autopep8](https://marketplace.visualstudio.com/items?itemName=ms-python.autopep8)       | Formatea automáticamente el código Python para que cumpla con la guía de estilo PEP 8.               |
-| [🔮 Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance)  | Análisis rápido e inteligente de código con sugerencias detalladas y errores en tiempo real.         |
-| [🧹 Pylint](https://marketplace.visualstudio.com/items?itemName=ms-python.pylint)           | Linter para analizar y mejorar la calidad del código Python.                                         |
-| [🐞 Python Debugger](https://marketplace.visualstudio.com/items?itemName=ms-python.debugpy) | Herramienta de depuración avanzada para Python.                                                      |
+| 🔌 Extensión                                                                                | 📄 Descripción                                                                                                       |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------- |
+| [🐍 Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)           | Soporte completo para Python en VS Code, incluyendo IntelliSense, depuración y ejecución de scripts.                |
+| [⚡ Autopep8](https://marketplace.visualstudio.com/items?itemName=ms-python.autopep8)       | Formatea el código Python para que cumpla con la guía de estilo PEP 8.                                              |
+| [🧹 Pylint](https://marketplace.visualstudio.com/items?itemName=ms-python.pylint)           | Linter para analizar y mejorar la calidad del código Python.                                                        |
+| [🔮 Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance)  | Análisis rápido e inteligente de código con sugerencias detalladas y errores en tiempo real. (Instalado con Python) |
+| [🐞 Python Debugger](https://marketplace.visualstudio.com/items?itemName=ms-python.debugpy) | Herramienta de depuración avanzada para Python. (Instalado con Python)                                              |
 
 ## 💡 Recomendaciones 💡
 
