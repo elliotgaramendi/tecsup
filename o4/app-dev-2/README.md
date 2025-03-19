@@ -1,6 +1,6 @@
 # [🚀 Enterprise Application Development 🏢](https://github.com/elliotgaramendi/tecsup/tree/develop/o4/app-dev-2)
 
-[![Enterprise Application Development](https://4kwallpapers.com/images/walls/thumbs_3t/16102.jpg)](https://github.com/elliotgaramendi/tecsup/tree/develop/o3/enterprise-apps)
+[![Enterprise Application Development](https://strapi.dhiwise.com/uploads/django_react_OG_Image_c6cfb497c1.webp)](https://github.com/elliotgaramendi/tecsup/tree/develop/o3/enterprise-apps)
 
 ---
 
