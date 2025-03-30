@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-8">
+    <h2>My Tasks</h2>
+  </div>
+  <div class="col-md-4 text-end">
+    <a href="{% url 'task_create' %}" class="btn btn-primary">
+      <i class="bi bi-plus-circle"></i> Add New Task
+    </a>
+  </div>
+</div>
+
+<div class="row mt-3 mb-4">
+  <div class="col">
+    <form method="get" class="row g-3">
+      <div class="col-md-5">
+        <label class="form-label">Status:</label>
+        <select name="status" class="form-select" onchange="this.form.submit()">
+          <option value="all" {% if status_filter=='all' or not status_filter %}selected{% endif %}>All</option>
+          <option value="pending" {% if status_filter=='pending' %}selected{% endif %}>Pending</option>
+          <option value="in_progress" {% if status_filter=='in_progress' %}selected{% endif %}>In Progress</option>
+          <option value="completed" {% if status_filter=='completed' %}selected{% endif %}>Completed</option>
+        </select>
+      </div>
+      <div class="col-md-5">
+        <label class="form-label">Priority:</label>
+        <select name="priority" class="form-select" onchange="this.form.submit()">
+          <option value="all" {% if priority_filter=='all' or not priority_filter %}selected{% endif %}>All</option>
+          <option value="high" {% if priority_filter=='high' %}selected{% endif %}>High</option>
+          <option value="medium" {% if priority_filter=='medium' %}selected{% endif %}>Medium</option>
+          <option value="low" {% if priority_filter=='low' %}selected{% endif %}>Low</option>
+        </select>
+      </div>
+      <div class="col-md-2 d-flex align-items-end">
+        <button type="submit" class="btn btn-secondary w-100">Filter</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% if tasks %}
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Priority</th>
+        <th>Status</th>
+        <th>Due Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for task in tasks %}
+      <tr class="{% if task.status == 'completed' %}task-completed{% else %}priority-{{ task.priority }}{% endif %}">
+        <td>{{ task.title }}</td>
+        <td>
+          {% if task.priority == 'high' %}
+          <span class="badge bg-danger">High</span>
+          {% elif task.priority == 'medium' %}
+          <span class="badge bg-warning text-dark">Medium</span>
+          {% else %}
+          <span class="badge bg-success">Low</span>
+          {% endif %}
+        </td>
+        <td>
+          {% if task.status == 'pending' %}
+          <span class="badge bg-secondary">Pending</span>
+          {% elif task.status == 'in_progress' %}
+          <span class="badge bg-primary">In Progress</span>
+          {% else %}
+          <span class="badge bg-success">Completed</span>
+          {% endif %}
+        </td>
+        <td>{% if task.due_date %}{{ task.due_date }}{% else %}-{% endif %}</td>
+        <td>
+          <div class="btn-group btn-group-sm">
+            <a href="{% url 'task_update' task.id %}" class="btn btn-outline-primary">Edit</a>
+            <a href="{% url 'task_delete' task.id %}" class="btn btn-outline-danger">Delete</a>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<div class="alert alert-info">
+  No tasks found. <a href="{% url 'task_create' %}">Create your first task</a>
+</div>
+{% endif %}
+{% endblock %}
