@@ -18,19 +18,19 @@
       <div class="col-md-5">
         <label class="form-label">Status:</label>
         <select name="status" class="form-select" onchange="this.form.submit()">
-          <option value="all" {% if status_filter=='all' or not status_filter %}selected{% endif %}>All</option>
-          <option value="pending" {% if status_filter=='pending' %}selected{% endif %}>Pending</option>
-          <option value="in_progress" {% if status_filter=='in_progress' %}selected{% endif %}>In Progress</option>
-          <option value="completed" {% if status_filter=='completed' %}selected{% endif %}>Completed</option>
+          <option value="all" {% if status_filter == 'all' or not status_filter %}selected{% endif %}>All</option>
+          <option value="pending" {% if status_filter == 'pending' %}selected{% endif %}>Pending</option>
+          <option value="in_progress" {% if status_filter == 'in_progress' %}selected{% endif %}>In Progress</option>
+          <option value="completed" {% if status_filter == 'completed' %}selected{% endif %}>Completed</option>
         </select>
       </div>
       <div class="col-md-5">
         <label class="form-label">Priority:</label>
         <select name="priority" class="form-select" onchange="this.form.submit()">
-          <option value="all" {% if priority_filter=='all' or not priority_filter %}selected{% endif %}>All</option>
-          <option value="high" {% if priority_filter=='high' %}selected{% endif %}>High</option>
-          <option value="medium" {% if priority_filter=='medium' %}selected{% endif %}>Medium</option>
-          <option value="low" {% if priority_filter=='low' %}selected{% endif %}>Low</option>
+          <option value="all" {% if priority_filter == 'all' or not priority_filter %}selected{% endif %}>All</option>
+          <option value="high" {% if priority_filter == 'high' %}selected{% endif %}>High</option>
+          <option value="medium" {% if priority_filter == 'medium' %}selected{% endif %}>Medium</option>
+          <option value="low" {% if priority_filter == 'low' %}selected{% endif %}>Low</option>
         </select>
       </div>
       <div class="col-md-2 d-flex align-items-end">
