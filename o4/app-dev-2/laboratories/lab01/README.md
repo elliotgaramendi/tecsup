@@ -5,7 +5,7 @@ This guide walks through setting up a Django 5 project with a modern, organized 
 ## Project Structure
 
 ```
-my_django_project/
+django_project/
 ├── README.md
 ├── venv/
 └── src/
@@ -38,8 +38,8 @@ my_django_project/
 
 ```bash
 # Create main project directory
-mkdir my_django_project
-cd my_django_project
+mkdir django_project
+cd django_project
 
 # Create virtual environment
 python3 -m venv venv
@@ -262,7 +262,7 @@ pip3 freeze > requirements.txt
 
 ### 20. Create a README.md file
 
-Create a file named `README.md` in the root directory (`my_django_project/`):
+Create a file named `README.md` in the root directory (`django_project/`):
 
 ```bash
 # Navigate back to root project directory
