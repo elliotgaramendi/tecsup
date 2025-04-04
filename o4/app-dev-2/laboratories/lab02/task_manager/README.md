@@ -19,8 +19,8 @@ A modern task management application built with Django.
 
 1. Clone this repository
 ```bash
-git clone https://github.com/yourusername/django-task-manager.git
-cd django-task-manager
+git clone https://github.com/yourusername/task_manager.git
+cd task_manager
 ```
 
 2. Create and activate a virtual environment

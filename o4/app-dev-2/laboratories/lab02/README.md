@@ -15,8 +15,8 @@ We'll build a Task Manager with these features:
 
 ```bash
 # Create main project directory
-mkdir django_task_manager
-cd django_task_manager
+mkdir task_manager
+cd task_manager
 
 # Create virtual environment
 python3 -m venv venv
