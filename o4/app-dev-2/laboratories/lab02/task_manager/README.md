@@ -59,7 +59,7 @@ python3 manage.py runserver
 ## 🧩 Project Structure
 
 ```
-django_task_manager/
+task_manager/
 ├── venv/                  # Virtual environment (not in repository)
 └── src/                   # Source code
     ├── config/            # Project configuration
