@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Crear Examen{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-8 offset-md-2">
+    <div class="card">
+      <div class="card-header">
+        <h2>Crear Nuevo Examen</h2>
+      </div>
+      <div class="card-body">
+        <form method="post">
+          {% csrf_token %}
+
+          <div class="mb-3">
+            <label for="{{ form.title.id_for_label }}" class="form-label">Título</label>
+            {{ form.title }}
+            {% if form.title.errors %}
+            <div class="text-danger">{{ form.title.errors }}</div>
+            {% endif %}
+          </div>
+
+          <div class="mb-3">
+            <label for="{{ form.description.id_for_label }}" class="form-label">Descripción</label>
+            {{ form.description }}
+            {% if form.description.errors %}
+            <div class="text-danger">{{ form.description.errors }}</div>
+            {% endif %}
+          </div>
+
+          <div class="d-flex justify-content-between">
+            <a href="{% url 'exam_list' %}" class="btn btn-secondary">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Continuar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

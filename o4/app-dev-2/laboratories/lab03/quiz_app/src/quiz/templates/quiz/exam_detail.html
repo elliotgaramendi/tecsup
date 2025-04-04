@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}{{ exam.title }}{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+  <div class="col-md-8">
+    <h1>{{ exam.title }}</h1>
+    <p>{{ exam.description }}</p>
+  </div>
+  <div class="col-md-4 text-end">
+    <a href="{% url 'question_create' exam.id %}" class="btn btn-primary">Añadir Pregunta</a>
+  </div>
+</div>
+
+<div class="mb-4">
+  <h2>Preguntas</h2>
+
+  {% if questions %}
+  <div class="accordion" id="accordionQuestions">
+    {% for question in questions %}
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#collapse{{ question.id }}">
+          {{ forloop.counter }}. {{ question.text }}
+        </button>
+      </h2>
+      <div id="collapse{{ question.id }}" class="accordion-collapse collapse" data-bs-parent="#accordionQuestions">
+        <div class="accordion-body">
+          <ul class="list-group">
+            {% for choice in question.choices.all %}
+            <li class="list-group-item {% if choice.is_correct %}list-group-item-success{% endif %}">
+              {{ choice.text }} {% if choice.is_correct %}<span class="badge bg-success">Correcta</span>{% endif %}
+            </li>
+            {% empty %}
+            <li class="list-group-item">No hay opciones para esta pregunta.</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="alert alert-info">
+    Este examen no tiene preguntas todavía.
+    <a href="{% url 'question_create' exam.id %}">Añade la primera pregunta</a>
+  </div>
+  {% endif %}
+</div>
+
+<div>
+  <a href="{% url 'exam_list' %}" class="btn btn-secondary">Volver a la lista</a>
+</div>
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}Añadir Pregunta{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-10 offset-md-1">
+    <div class="card">
+      <div class="card-header">
+        <h2>Añadir Pregunta a: {{ exam.title }}</h2>
+      </div>
+      <div class="card-body">
+        <form method="post">
+          {% csrf_token %}
+
+          <div class="mb-3">
+            <label for="{{ question_form.text.id_for_label }}" class="form-label">Texto de la pregunta</label>
+            {{ question_form.text }}
+            {% if question_form.text.errors %}
+            <div class="text-danger">{{ question_form.text.errors }}</div>
+            {% endif %}
+          </div>
+
+          <h4 class="mt-4 mb-3">Opciones de respuesta</h4>
+          <div class="alert alert-info">
+            Marca la casilla "Es correcta" en la opción que sea la respuesta correcta.
+          </div>
+
+          {{ formset.management_form }}
+          <div id="options-container">
+            {% for choice_form in formset %}
+            <div class="card mb-3">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-9">
+                    <label class="form-label">Opción {{ forloop.counter }}</label>
+                    {{ choice_form.text }}
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-check mt-2">
+                      {{ choice_form.is_correct }}
+                      <label class="form-check-label" for="{{ choice_form.is_correct.id_for_label }}">
+                        Es correcta
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                {{ choice_form.id }}
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+
+          <div class="d-flex justify-content-between mt-4">
+            <a href="{% url 'exam_detail' exam.id %}" class="btn btn-secondary">Cancelar</a>
+            <div>
+              <button type="submit" name="add_another" class="btn btn-info">Guardar y añadir otra</button>
+              <button type="submit" class="btn btn-primary">Guardar y terminar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const checkboxes = document.querySelectorAll('input[type=checkbox]');
+
+    checkboxes.forEach(function (checkbox) {
+      checkbox.addEventListener('change', function () {
+        if (this.checked) {
+          checkboxes.forEach(function (otherCheckbox) {
+            if (otherCheckbox !== checkbox) {
+              otherCheckbox.checked = false;
+            }
+          });
+        }
+      });
+    });
+  });
+</script>
+{% endblock %}
