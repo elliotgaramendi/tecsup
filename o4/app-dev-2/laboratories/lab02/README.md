@@ -11,7 +11,7 @@ We'll build a Task Manager with these features:
 
 ## 🛠️ Setup and Environment Configuration
 
-### 1. Create project directory and virtual environment
+### 1. Create project directory and virtual environment ✨
 
 ```bash
 # Create main project directory
@@ -29,32 +29,32 @@ mkdir src
 cd src
 ```
 
-### 2. Install Django
+### 2. Install Django 🐍
 
 ```bash
 pip3 install django
 ```
 
-### 3. Create a requirements file
+### 3. Create a requirements file 📄
 
 ```bash
 pip3 freeze > requirements.txt
 ```
 
-### 4. Create the Django project
+### 4. Create the Django project ⚙️
 
 ```bash
 # Being in the src folder
 django-admin startproject config .
 ```
 
-### 5. Create the tasks application
+### 5. Create the tasks application 📱
 
 ```bash
 python3 manage.py startapp tasks
 ```
 
-### 6. Register the application in settings.py
+### 6. Register the application in settings.py ✅
 
 Edit `src/config/settings.py`:
 
@@ -241,7 +241,7 @@ First, create the necessary directory structure:
 mkdir -p tasks/templates/tasks
 ```
 
-### Create base template
+### Create base template 📐
 
 Create `src/tasks/templates/base.html`:
 
@@ -305,7 +305,7 @@ Create `src/tasks/templates/base.html`:
 </html>
 ```
 
-### Create task list template
+### Create task list template 📋
 
 Create `src/tasks/templates/tasks/task_list.html`:
 
@@ -406,7 +406,7 @@ Create `src/tasks/templates/tasks/task_list.html`:
 {% endblock %}
 ```
 
-### Create task form template
+### Create task form template 📝
 
 Create `src/tasks/templates/tasks/task_form.html`:
 
@@ -500,7 +500,7 @@ Create `src/tasks/templates/tasks/task_form.html`:
 {% endblock %}
 ```
 
-### Create task delete confirmation template
+### Create task delete confirmation template 🗑️
 
 Create `src/tasks/templates/tasks/task_confirm_delete.html`:
 
@@ -556,71 +556,71 @@ python3 manage.py runserver
 ```
 
 Now you can access:
-- The task list at http://127.0.0.1:8000/
-- The task creation form at http://127.0.0.1:8000/task/new/
-- The admin interface at http://127.0.0.1:8000/admin/
+- The task list at http://127.0.0.1:8000/ 🏠
+- The task creation form at http://127.0.0.1:8000/task/new/ ✏️
+- The admin interface at http://127.0.0.1:8000/admin/ 👑
 
 ## 🔄 Django Workflow Applied
 
 This project follows the Django workflow as described in the presentation:
 
-1. **Configuration of the environment**
+1. **Configuration of the environment** 🛠️
    - Created virtual environment
    - Installed Django
    - Set up project structure
 
-2. **Design of Data Model**
+2. **Design of Data Model** 📊
    - Created Task model with relevant fields
    - Applied migrations to create database schema
 
-3. **Creation of Views**
+3. **Creation of Views** 👁️
    - Implemented list, create, update, and delete views for tasks
 
-4. **Definition of URLs**
+4. **Definition of URLs** 🔗
    - Configured URL patterns to map to appropriate views
 
-5. **Creation of Templates**
+5. **Creation of Templates** 🎨
    - Built HTML templates for displaying task list and forms
 
-6. **Form Handling**
+6. **Form Handling** 📝
    - Created a TaskForm using Django's ModelForm
 
-7. **Business Logic Implementation**
+7. **Business Logic Implementation** 🧠
    - Added filtering functionality
    - Implemented CRUD operations
 
-8. **Testing**
+8. **Testing** 🧪
    - The server is ready for manual testing
 
 ## 📈 Next Steps
 
 To further enhance your Task Manager:
 
-1. **Add User Authentication**
+1. **Add User Authentication** 🔐
    - Allow users to register and log in
    - Associate tasks with specific users
 
-2. **Add Task Categories**
+2. **Add Task Categories** 🏷️
    - Create a Category model
    - Allow tasks to be assigned to categories
 
-3. **Implement Task Search**
+3. **Implement Task Search** 🔍
    - Add a search box to find tasks by keywords
 
-4. **Add Due Date Reminders**
+4. **Add Due Date Reminders** ⏰
    - Email notifications for approaching deadlines
 
-5. **Implement Task Comments**
+5. **Implement Task Comments** 💬
    - Allow users to add comments to tasks
 
-6. **Research Challenge: Create an Authors App**
+6. **Research Challenge: Create an Authors App** 👥
    - Investigate how to create a separate Django app for authors/users
    - Research how to create relationships between authors and tasks
    - Explore Django's User model extension options
    - Design an interface for assigning tasks to specific authors
    - *This is an excellent exercise to understand model relationships (ForeignKey) and app separation*
 
-7. **Research Challenge: Implement a Tags System (Like Trello)**
+7. **Research Challenge: Implement a Tags System (Like Trello)** 🏷️
    - Research how to create a tags system similar to Trello
    - Explore Django's ManyToManyField for creating tag relationships
    - Design a color-coded tag system for visual organization
@@ -635,6 +635,6 @@ You've now created a functional Task Manager application using Django, following
 
 ## 📚 References
 
-- Django official documentation: https://docs.djangoproject.com/
-- Django Forms documentation: https://docs.djangoproject.com/en/stable/topics/forms/
-- Bootstrap documentation: https://getbootstrap.com/docs/5.3/
+- Django official documentation: https://docs.djangoproject.com/ 📖
+- Django Forms documentation: https://docs.djangoproject.com/en/stable/topics/forms/ 📑
+- Bootstrap documentation: https://getbootstrap.com/docs/5.3/ 🎨
