@@ -1,45 +1,45 @@
-# Guía: Aplicación Simple de Cuestionarios con Django
+# Guide: Simple Quiz Application with Django 🧠📝
 
-Esta guía te mostrará cómo crear una aplicación básica de cuestionarios con Django, con funcionalidades para crear exámenes, agregar preguntas y especificar respuestas correctas.
+This guide will show you how to create a basic quiz application with Django, with features to create exams, add questions, and specify correct answers.
 
-## Estructura de la Aplicación
+## 📋 Application Structure
 
-Crearemos 3 rutas principales:
-- Lista de exámenes
-- Detalle de un examen con sus preguntas
-- Formulario para crear exámenes y preguntas
+We'll create 3 main routes:
+- List of exams
+- Details of an exam with its questions
+- Form to create exams and questions
 
-## Paso 1: Configuración del Entorno
+## Step 1: Environment Setup 🛠️
 
 ```bash
-# Crear directorio del proyecto
+# Create project directory
 mkdir quiz_app
 cd quiz_app
 
-# Crear entorno virtual
+# Create virtual environment
 python3 -m venv venv
 
-# Activar entorno virtual
+# Activate virtual environment
 source venv/bin/activate
 
-# Crear directorio src (estructura similar a proyectos frontend)
+# Create src directory (similar structure to frontend projects)
 mkdir src
 cd src
 
-# Instalar Django
+# Install Django
 pip3 install django
 
-# Crear un archivo requirements.txt
+# Create a requirements.txt file
 pip3 freeze > requirements.txt
 ```
 
-**Nota**: Si estás usando Git, crea un archivo `.gitignore` en la raíz del proyecto:
+**Note**: If you're using Git, create a `.gitignore` file at the project root:
 
 ```bash
-# Volver a la raíz del proyecto
+# Return to the project root
 cd ..
 
-# Crear archivo .gitignore
+# Create .gitignore file
 echo "__pycache__/
 *.py[cod]
 *$py.class
@@ -51,24 +51,24 @@ venv/
 .vscode/" > .gitignore
 ```
 
-Esto evitará versionar archivos innecesarios como caché de Python, base de datos SQLite y el entorno virtual.
+This will prevent versioning unnecessary files like Python cache, SQLite database, and the virtual environment.
 
-## Paso 2: Crear el Proyecto Django
+## Step 2: Create the Django Project 🚀
 
 ```bash
-# Asegúrate de estar en el directorio src
+# Make sure you're in the src directory
 cd src
 
-# Crear proyecto
+# Create project
 django-admin startproject config .
 
-# Crear aplicación
+# Create application
 python3 manage.py startapp quiz
 ```
 
-## Paso 3: Configuración Básica
+## Step 3: Basic Configuration ⚙️
 
-Editar `config/settings.py` para incluir la app:
+Edit `config/settings.py` to include the app:
 
 ```python
 INSTALLED_APPS = [
@@ -82,17 +82,17 @@ INSTALLED_APPS = [
 ]
 ```
 
-## Paso 4: Definir los Modelos
+## Step 4: Define the Models 🏗️
 
-Editar `quiz/models.py`:
+Edit `quiz/models.py`:
 
 ```python
 from django.db import models
 
 class Exam(models.Model):
     """Model for exams"""
-    title = models.CharField(max_length=200, verbose_name="Título")
-    description = models.TextField(blank=True, verbose_name="Descripción")
+    title = models.CharField(max_length=200, verbose_name="Title")
+    description = models.TextField(blank=True, verbose_name="Description")
     created_date = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
@@ -105,7 +105,7 @@ class Exam(models.Model):
 class Question(models.Model):
     """Model for questions"""
     exam = models.ForeignKey(Exam, on_delete=models.CASCADE, related_name='questions')
-    text = models.TextField(verbose_name="Texto de la pregunta")
+    text = models.TextField(verbose_name="Question text")
     
     def __str__(self):
         return self.text[:50]
@@ -113,25 +113,25 @@ class Question(models.Model):
 class Choice(models.Model):
     """Model for answer choices"""
     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='choices')
-    text = models.CharField(max_length=200, verbose_name="Texto")
-    is_correct = models.BooleanField(default=False, verbose_name="Es correcta")
+    text = models.CharField(max_length=200, verbose_name="Text")
+    is_correct = models.BooleanField(default=False, verbose_name="Is correct")
     
     def __str__(self):
         return self.text
 ```
 
-## Paso 5: Migrar la Base de Datos
+## Step 5: Migrate the Database 💾
 
 ```bash
 python3 manage.py makemigrations
 python3 manage.py migrate
 ```
 
-**Nota**: Recuerda que los archivos de migración (en `migrations/`) deben versionarse, pero el archivo `db.sqlite3` debe excluirse del control de versiones (ya está en el `.gitignore` que creamos).
+**Note**: Remember that migration files (in `migrations/`) should be versioned, but the `db.sqlite3` file should be excluded from version control (it's already in the `.gitignore` we created).
 
-## Paso 6: Crear Formularios
+## Step 6: Create Forms 📝
 
-Crear archivo `quiz/forms.py`:
+Create file `quiz/forms.py`:
 
 ```python
 from django import forms
@@ -163,15 +163,15 @@ class ChoiceForm(forms.ModelForm):
             'is_correct': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
         }
 
-# Crear formset para opciones
+# Create formset for options
 ChoiceFormSet = forms.inlineformset_factory(
     Question, Choice, form=ChoiceForm, extra=4, can_delete=False
 )
 ```
 
-## Paso 7: Crear Vistas
+## Step 7: Create Views 👁️
 
-Editar `quiz/views.py`:
+Edit `quiz/views.py`:
 
 ```python
 from django.shortcuts import render, redirect, get_object_or_404
@@ -197,7 +197,7 @@ def exam_create(request):
         form = ExamForm(request.POST)
         if form.is_valid():
             exam = form.save()
-            messages.success(request, 'Examen creado correctamente.')
+            messages.success(request, 'Exam created successfully.')
             return redirect('question_create', exam_id=exam.id)
     else:
         form = ExamForm()
@@ -226,9 +226,9 @@ def question_create(request, exam_id):
                     # Verify that only one option is marked as correct
                     correct_count = question.choices.filter(is_correct=True).count()
                     if correct_count != 1:
-                        messages.warning(request, 'Debe haber exactamente una respuesta correcta.')
+                        messages.warning(request, 'There must be exactly one correct answer.')
                     else:
-                        messages.success(request, 'Pregunta añadida correctamente.')
+                        messages.success(request, 'Question added successfully.')
                         
                     # Decide where to redirect
                     if 'add_another' in request.POST:
@@ -246,9 +246,9 @@ def question_create(request, exam_id):
     })
 ```
 
-## Paso 8: Configurar URLs
+## Step 8: Configure URLs 🔗
 
-Crear `quiz/urls.py`:
+Create `quiz/urls.py`:
 
 ```python
 from django.urls import path
@@ -262,7 +262,7 @@ urlpatterns = [
 ]
 ```
 
-Editar `config/urls.py`:
+Edit `config/urls.py`:
 
 ```python
 from django.contrib import admin
@@ -274,36 +274,36 @@ urlpatterns = [
 ]
 ```
 
-## Paso 9: Crear Plantillas
+## Step 9: Create Templates 🎨
 
-Crear estructura de directorios:
+Create directory structure:
 
 ```bash
 mkdir -p quiz/templates/quiz
 ```
 
-### Plantilla Base (quiz/templates/base.html)
+### Base Template (quiz/templates/base.html)
 
 ```html
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Aplicación de Cuestionarios{% endblock %}</title>
+    <title>{% block title %}Quiz Application{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'exam_list' %}">Cuestionarios</a>
+            <a class="navbar-brand" href="{% url 'exam_list' %}">Quizzes</a>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'exam_list' %}">Exámenes</a>
+                        <a class="nav-link" href="{% url 'exam_list' %}">Exams</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'exam_create' %}">Crear Examen</a>
+                        <a class="nav-link" href="{% url 'exam_create' %}">Create Exam</a>
                     </li>
                 </ul>
             </div>
@@ -329,20 +329,20 @@ mkdir -p quiz/templates/quiz
 </html>
 ```
 
-### Lista de Exámenes (quiz/templates/quiz/exam_list.html)
+### Exam List (quiz/templates/quiz/exam_list.html)
 
 ```html
 {% extends "base.html" %}
 
-{% block title %}Exámenes{% endblock %}
+{% block title %}Exams{% endblock %}
 
 {% block content %}
 <div class="row mb-4">
     <div class="col-md-6">
-        <h1>Exámenes Disponibles</h1>
+        <h1>Available Exams</h1>
     </div>
     <div class="col-md-6 text-end">
-        <a href="{% url 'exam_create' %}" class="btn btn-primary">Crear Examen</a>
+        <a href="{% url 'exam_create' %}" class="btn btn-primary">Create Exam</a>
     </div>
 </div>
 
@@ -354,8 +354,8 @@ mkdir -p quiz/templates/quiz
                     <div class="card-body">
                         <h5 class="card-title">{{ exam.title }}</h5>
                         <p class="card-text">{{ exam.description|truncatechars:100 }}</p>
-                        <p class="text-muted">Preguntas: {{ exam.get_question_count }}</p>
-                        <a href="{% url 'exam_detail' exam.id %}" class="btn btn-primary">Ver Detalles</a>
+                        <p class="text-muted">Questions: {{ exam.get_question_count }}</p>
+                        <a href="{% url 'exam_detail' exam.id %}" class="btn btn-primary">View Details</a>
                     </div>
                 </div>
             </div>
@@ -363,8 +363,8 @@ mkdir -p quiz/templates/quiz
     {% else %}
         <div class="col-12">
             <div class="alert alert-info">
-                No hay exámenes disponibles.
-                <a href="{% url 'exam_create' %}">Crea el primero</a>
+                No exams available.
+                <a href="{% url 'exam_create' %}">Create the first one</a>
             </div>
         </div>
     {% endif %}
@@ -372,7 +372,7 @@ mkdir -p quiz/templates/quiz
 {% endblock %}
 ```
 
-### Detalle de Examen (quiz/templates/quiz/exam_detail.html)
+### Exam Detail (quiz/templates/quiz/exam_detail.html)
 
 ```html
 {% extends "base.html" %}
@@ -386,12 +386,12 @@ mkdir -p quiz/templates/quiz
         <p>{{ exam.description }}</p>
     </div>
     <div class="col-md-4 text-end">
-        <a href="{% url 'question_create' exam.id %}" class="btn btn-primary">Añadir Pregunta</a>
+        <a href="{% url 'question_create' exam.id %}" class="btn btn-primary">Add Question</a>
     </div>
 </div>
 
 <div class="mb-4">
-    <h2>Preguntas</h2>
+    <h2>Questions</h2>
     
     {% if questions %}
         <div class="accordion" id="accordionQuestions">
@@ -407,10 +407,10 @@ mkdir -p quiz/templates/quiz
                             <ul class="list-group">
                                 {% for choice in question.choices.all %}
                                     <li class="list-group-item {% if choice.is_correct %}list-group-item-success{% endif %}">
-                                        {{ choice.text }} {% if choice.is_correct %}<span class="badge bg-success">Correcta</span>{% endif %}
+                                        {{ choice.text }} {% if choice.is_correct %}<span class="badge bg-success">Correct</span>{% endif %}
                                     </li>
                                 {% empty %}
-                                    <li class="list-group-item">No hay opciones para esta pregunta.</li>
+                                    <li class="list-group-item">No options for this question.</li>
                                 {% endfor %}
                             </ul>
                         </div>
@@ -420,38 +420,38 @@ mkdir -p quiz/templates/quiz
         </div>
     {% else %}
         <div class="alert alert-info">
-            Este examen no tiene preguntas todavía.
-            <a href="{% url 'question_create' exam.id %}">Añade la primera pregunta</a>
+            This exam doesn't have any questions yet.
+            <a href="{% url 'question_create' exam.id %}">Add the first question</a>
         </div>
     {% endif %}
 </div>
 
 <div>
-    <a href="{% url 'exam_list' %}" class="btn btn-secondary">Volver a la lista</a>
+    <a href="{% url 'exam_list' %}" class="btn btn-secondary">Back to list</a>
 </div>
 {% endblock %}
 ```
 
-### Formulario de Examen (quiz/templates/quiz/exam_form.html)
+### Exam Form (quiz/templates/quiz/exam_form.html)
 
 ```html
 {% extends "base.html" %}
 
-{% block title %}Crear Examen{% endblock %}
+{% block title %}Create Exam{% endblock %}
 
 {% block content %}
 <div class="row">
     <div class="col-md-8 offset-md-2">
         <div class="card">
             <div class="card-header">
-                <h2>Crear Nuevo Examen</h2>
+                <h2>Create New Exam</h2>
             </div>
             <div class="card-body">
                 <form method="post">
                     {% csrf_token %}
                     
                     <div class="mb-3">
-                        <label for="{{ form.title.id_for_label }}" class="form-label">Título</label>
+                        <label for="{{ form.title.id_for_label }}" class="form-label">Title</label>
                         {{ form.title }}
                         {% if form.title.errors %}
                             <div class="text-danger">{{ form.title.errors }}</div>
@@ -459,7 +459,7 @@ mkdir -p quiz/templates/quiz
                     </div>
                     
                     <div class="mb-3">
-                        <label for="{{ form.description.id_for_label }}" class="form-label">Descripción</label>
+                        <label for="{{ form.description.id_for_label }}" class="form-label">Description</label>
                         {{ form.description }}
                         {% if form.description.errors %}
                             <div class="text-danger">{{ form.description.errors }}</div>
@@ -467,8 +467,8 @@ mkdir -p quiz/templates/quiz
                     </div>
                     
                     <div class="d-flex justify-content-between">
-                        <a href="{% url 'exam_list' %}" class="btn btn-secondary">Cancelar</a>
-                        <button type="submit" class="btn btn-primary">Continuar</button>
+                        <a href="{% url 'exam_list' %}" class="btn btn-secondary">Cancel</a>
+                        <button type="submit" class="btn btn-primary">Continue</button>
                     </div>
                 </form>
             </div>
@@ -478,35 +478,35 @@ mkdir -p quiz/templates/quiz
 {% endblock %}
 ```
 
-### Formulario de Pregunta (quiz/templates/quiz/question_form.html)
+### Question Form (quiz/templates/quiz/question_form.html)
 
 ```html
 {% extends "base.html" %}
 
-{% block title %}Añadir Pregunta{% endblock %}
+{% block title %}Add Question{% endblock %}
 
 {% block content %}
 <div class="row">
     <div class="col-md-10 offset-md-1">
         <div class="card">
             <div class="card-header">
-                <h2>Añadir Pregunta a: {{ exam.title }}</h2>
+                <h2>Add Question to: {{ exam.title }}</h2>
             </div>
             <div class="card-body">
                 <form method="post">
                     {% csrf_token %}
                     
                     <div class="mb-3">
-                        <label for="{{ question_form.text.id_for_label }}" class="form-label">Texto de la pregunta</label>
+                        <label for="{{ question_form.text.id_for_label }}" class="form-label">Question text</label>
                         {{ question_form.text }}
                         {% if question_form.text.errors %}
                             <div class="text-danger">{{ question_form.text.errors }}</div>
                         {% endif %}
                     </div>
                     
-                    <h4 class="mt-4 mb-3">Opciones de respuesta</h4>
+                    <h4 class="mt-4 mb-3">Answer options</h4>
                     <div class="alert alert-info">
-                        Marca la casilla "Es correcta" en la opción que sea la respuesta correcta.
+                        Check the "Is correct" box on the option that is the correct answer.
                     </div>
                     
                     {{ formset.management_form }}
@@ -516,14 +516,14 @@ mkdir -p quiz/templates/quiz
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-9">
-                                            <label class="form-label">Opción {{ forloop.counter }}</label>
+                                            <label class="form-label">Option {{ forloop.counter }}</label>
                                             {{ choice_form.text }}
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-check mt-2">
                                                 {{ choice_form.is_correct }}
                                                 <label class="form-check-label" for="{{ choice_form.is_correct.id_for_label }}">
-                                                    Es correcta
+                                                    Is correct
                                                 </label>
                                             </div>
                                         </div>
@@ -535,10 +535,10 @@ mkdir -p quiz/templates/quiz
                     </div>
                     
                     <div class="d-flex justify-content-between mt-4">
-                        <a href="{% url 'exam_detail' exam.id %}" class="btn btn-secondary">Cancelar</a>
+                        <a href="{% url 'exam_detail' exam.id %}" class="btn btn-secondary">Cancel</a>
                         <div>
-                            <button type="submit" name="add_another" class="btn btn-info">Guardar y añadir otra</button>
-                            <button type="submit" class="btn btn-primary">Guardar y terminar</button>
+                            <button type="submit" name="add_another" class="btn btn-info">Save and add another</button>
+                            <button type="submit" class="btn btn-primary">Save and finish</button>
                         </div>
                     </div>
                 </form>
@@ -550,14 +550,14 @@ mkdir -p quiz/templates/quiz
 
 {% block extra_js %}
 <script>
-    // Script para asegurar que solo una opción sea marcada como correcta
+    // Script to ensure only one option is marked as correct
     document.addEventListener('DOMContentLoaded', function() {
         const checkboxes = document.querySelectorAll('input[type=checkbox]');
         
         checkboxes.forEach(function(checkbox) {
             checkbox.addEventListener('change', function() {
                 if (this.checked) {
-                    // Desmarcar las demás opciones
+                    // Uncheck other options
                     checkboxes.forEach(function(otherCheckbox) {
                         if (otherCheckbox !== checkbox) {
                             otherCheckbox.checked = false;
@@ -571,19 +571,19 @@ mkdir -p quiz/templates/quiz
 {% endblock %}
 ```
 
-## Paso 10: Ejecutar el Servidor
+## Step 10: Run the Server 🚀
 
 ```bash
 python3 manage.py runserver
 ```
 
-Ahora puedes acceder a:
-- Lista de exámenes: http://127.0.0.1:8000/
-- Crear examen: http://127.0.0.1:8000/exam/create/
+Now you can access:
+- List of exams: http://127.0.0.1:8000/
+- Create exam: http://127.0.0.1:8000/exam/create/
 
-## Paso 11: Registrar los Modelos en el Admin (opcional)
+## Step 11: Register Models in Admin (optional) 👨‍💼
 
-Editar `quiz/admin.py`:
+Edit `quiz/admin.py`:
 
 ```python
 from django.contrib import admin
@@ -612,98 +612,98 @@ class QuestionAdmin(admin.ModelAdmin):
     inlines = [ChoiceInline]
 ```
 
-## Flujo de Trabajo de la Aplicación
+## Application Workflow 🔄
 
-1. **Crear un examen**:
-   - Accede a la página principal y haz clic en "Crear Examen"
-   - Completa el título y descripción
-   - Haz clic en "Continuar"
+1. **Create an exam** 📝:
+   - Access the main page and click "Create Exam"
+   - Complete the title and description
+   - Click "Continue"
 
-2. **Añadir preguntas al examen**:
-   - Después de crear el examen, serás redirigido al formulario de preguntas
-   - Escribe el texto de la pregunta
-   - Agrega las opciones de respuesta
-   - Marca la casilla "Es correcta" en la opción que sea la respuesta correcta
-   - Haz clic en "Guardar y añadir otra" para añadir más preguntas o "Guardar y terminar" para finalizar
+2. **Add questions to the exam** ❓:
+   - After creating the exam, you'll be redirected to the question form
+   - Write the question text
+   - Add the answer options
+   - Check the "Is correct" box on the option that is the correct answer
+   - Click "Save and add another" to add more questions or "Save and finish" to complete
 
-3. **Ver la lista de exámenes**:
-   - Accede a la página principal para ver todos los exámenes
-   - Haz clic en "Ver Detalles" para explorar un examen específico
+3. **View the list of exams** 📋:
+   - Access the main page to see all exams
+   - Click "View Details" to explore a specific exam
 
-4. **Ver detalle de un examen**:
-   - Revisa todas las preguntas del examen
-   - Expande cada pregunta para ver sus opciones
-   - Las opciones correctas se destacan en verde
+4. **View exam details** 🔍:
+   - Review all the questions in the exam
+   - Expand each question to see its options
+   - The correct options are highlighted in green
 
-## Conclusiones
+## Conclusions 🎓
 
-En esta guía, has aprendido a:
+In this guide, you've learned how to:
 
-1. **Crear una aplicación Django básica** con modelos para exámenes, preguntas y opciones.
+1. **Create a basic Django application** with models for exams, questions, and options.
 
-2. **Implementar relaciones entre modelos** usando ForeignKey para establecer conexiones entre exámenes, preguntas y opciones.
+2. **Implement relationships between models** using ForeignKey to establish connections between exams, questions, and options.
 
-3. **Crear formularios** para la entrada de datos, incluyendo formsets para manejar múltiples opciones de respuesta.
+3. **Create forms** for data entry, including formsets to handle multiple answer options.
 
-4. **Desarrollar vistas** para las tres funcionalidades principales:
-   - Listado de exámenes
-   - Detalle de un examen
-   - Creación de exámenes y preguntas
+4. **Develop views** for the three main functionalities:
+   - List of exams
+   - Exam details
+   - Creating exams and questions
 
-5. **Diseñar plantillas** utilizando Bootstrap para una interfaz sencilla pero funcional.
+5. **Design templates** using Bootstrap for a simple but functional interface.
 
-Esta aplicación demuestra cómo Django facilita la creación de aplicaciones web con modelos de datos relacionados. Los conceptos aprendidos aquí pueden aplicarse a proyectos más complejos, añadiendo más funcionalidades según sea necesario.
+This application demonstrates how Django facilitates the creation of web applications with related data models. The concepts learned here can be applied to more complex projects, adding more functionalities as needed.
 
-## Sugerencias para Ampliar el Proyecto
+## Suggestions to Expand the Project 🚀
 
-Si deseas ampliar esta aplicación, aquí hay algunos retos interesantes:
+If you want to expand this application, here are some interesting challenges:
 
-1. **Mejorar la gestión de exámenes**:
-   - Implementar la edición de exámenes y preguntas
-   - Añadir funcionalidad para eliminar preguntas
-   - Permitir reordenar las preguntas mediante drag-and-drop
+1. **Improve exam management** 📊:
+   - Implement editing of exams and questions
+   - Add functionality to delete questions
+   - Allow reordering questions using drag-and-drop
 
-2. **Crear un sistema de juego**:
-   - Desarrollar una vista para "jugar" el examen
-   - Implementar un temporizador para limitar el tiempo de respuesta
-   - Calcular y mostrar puntuaciones basadas en respuestas correctas
-   - Generar un resumen de resultados al finalizar
+2. **Create a game system** 🎮:
+   - Develop a view to "play" the exam
+   - Implement a timer to limit response time
+   - Calculate and display scores based on correct answers
+   - Generate a summary of results upon completion
 
-3. **Añadir características sociales**:
-   - Implementar un sistema de usuarios
-   - Permitir compartir exámenes con otros usuarios
-   - Crear rankings de puntuaciones
+3. **Add social features** 👥:
+   - Implement a user system
+   - Allow sharing exams with other users
+   - Create score rankings
 
-## Propuestas de Aplicaciones Adicionales
+## Additional Application Proposals 💡
 
-Para seguir practicando con Django, te propongo desarrollar estas aplicaciones complementarias:
+To continue practicing with Django, I propose developing these complementary applications:
 
-### 1. Aplicación de Categorías (categories)
+### 1. Categories Application (categories) 🏷️
 
-Crea una aplicación separada para gestionar categorías de exámenes:
+Create a separate application to manage exam categories:
 
 ```bash
 python3 manage.py startapp categories
 ```
 
-Esta aplicación podría:
-- Definir un modelo `Category` con campos como nombre, descripción e icono
-- Relacionar categorías con exámenes (relación muchos a muchos)
-- Permitir filtrar exámenes por categoría
-- Mostrar estadísticas de exámenes por categoría
+This application could:
+- Define a `Category` model with fields like name, description, and icon
+- Relate categories to exams (many-to-many relationship)
+- Allow filtering exams by category
+- Show statistics of exams by category
 
-### 2. Aplicación de Estadísticas (stats)
+### 2. Statistics Application (stats) 📈
 
-Desarrolla una aplicación para analizar el rendimiento:
+Develop an application to analyze performance:
 
 ```bash
 python3 manage.py startapp stats
 ```
 
-Esta aplicación podría:
-- Registrar los intentos de los usuarios en los exámenes
-- Calcular estadísticas como porcentaje de aciertos, tiempo promedio, etc.
-- Generar gráficos de rendimiento
-- Identificar preguntas con mayor índice de fallos
+This application could:
+- Record user attempts on exams
+- Calculate statistics such as percentage of correct answers, average time, etc.
+- Generate performance graphs
+- Identify questions with highest failure rates
 
-Implementar estas aplicaciones te permitirá practicar conceptos más avanzados de Django como relaciones entre modelos, queries complejas y gestión de datos entre múltiples aplicaciones.
+Implementing these applications will allow you to practice more advanced Django concepts such as relationships between models, complex queries, and data management across multiple applications.
