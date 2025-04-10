@@ -1,8 +1,8 @@
-# Django 5 Project Setup Guide
+# 🚀 Django 5 Project Setup Guide
 
 This guide walks through setting up a Django 5 project with a modern, organized structure optimized for scalability.
 
-## Project Structure
+## 📂 Project Structure
 
 ```
 django_project/
@@ -32,9 +32,9 @@ django_project/
         └── views.py
 ```
 
-## Step-by-Step Setup Guide
+## 🛠️ Step-by-Step Setup Guide
 
-### 1. Initial Setup
+### 1. Initial Setup ✨
 
 ```bash
 # Create main project directory
@@ -52,13 +52,13 @@ mkdir src
 cd src
 ```
 
-### 2. Install Django
+### 2. Install Django 🐍
 
 ```bash
 pip3 install django
 ```
 
-### 3. Create the project with separate configuration
+### 3. Create the project with separate configuration ⚙️
 
 ```bash
 # Being in the src folder
@@ -69,14 +69,14 @@ This creates:
 - `manage.py` in the `src/` directory
 - A `config/` folder with `settings.py`, `urls.py`, etc.
 
-### 4. Create the core application
+### 4. Create the core application 📱
 
 ```bash
 # Being in the src folder
 python3 manage.py startapp core
 ```
 
-### 5. Register the application in settings.py
+### 5. Register the application in settings.py ✅
 
 Edit `src/config/settings.py`:
 
@@ -84,7 +84,7 @@ Edit `src/config/settings.py`:
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
-    'django.contrib.contenttents',
+    'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
@@ -92,7 +92,7 @@ INSTALLED_APPS = [
 ]
 ```
 
-### 6. Define a basic model
+### 6. Define a basic model 📊
 
 In `src/core/models.py`:
 
@@ -108,7 +108,7 @@ class Item(models.Model):
         return self.name
 ```
 
-### 7. Create and apply migrations
+### 7. Create and apply migrations 🔄
 
 ```bash
 # Being in src
@@ -116,7 +116,7 @@ python3 manage.py makemigrations
 python3 manage.py migrate
 ```
 
-### 8. Create a basic view
+### 8. Create a basic view 👁️
 
 In `src/core/views.py`:
 
@@ -129,7 +129,7 @@ def item_list(request):
     return render(request, 'core/item_list.html', {'items': items})
 ```
 
-### 9. Configure URLs
+### 9. Configure URLs 🔗
 
 In `src/config/urls.py`:
 
@@ -154,14 +154,14 @@ urlpatterns = [
 ]
 ```
 
-### 10. Create directories for templates
+### 10. Create directories for templates 📁
 
 ```bash
 # Being in /src
 mkdir -p core/templates/core
 ```
 
-### 11. Create base template
+### 11. Create base template 🎨
 
 Create `src/core/templates/base.html`:
 
@@ -188,7 +188,7 @@ Create `src/core/templates/base.html`:
 </html>
 ```
 
-### 12. Create list template
+### 12. Create list template 📋
 
 Create `src/core/templates/core/item_list.html`:
 
@@ -207,7 +207,7 @@ Create `src/core/templates/core/item_list.html`:
 {% endblock %}
 ```
 
-### 13. Register model in admin
+### 13. Register model in admin 👑
 
 In `src/core/admin.py`:
 
@@ -218,7 +218,7 @@ from .models import Item
 admin.site.register(Item)
 ```
 
-### 14. Create superuser for admin access
+### 14. Create superuser for admin access 🔐
 
 ```bash
 python3 manage.py createsuperuser
@@ -226,19 +226,19 @@ python3 manage.py createsuperuser
 # Email: you can leave it blank for development
 ```
 
-### 15. Run development server
+### 15. Run development server 🚀
 
 ```bash
 # From src
 python3 manage.py runserver
 ```
 
-### 16. Access the admin panel
+### 16. Access the admin panel 💼
 
 1. Open your browser and go to http://127.0.0.1:8000/admin/
 2. Log in with the admin user and password you created
 
-### 17. Create test items
+### 17. Create test items ✏️
 
 1. In the admin panel, click on "Items" under the "Core" section
 2. Click on "ADD ITEM" in the top right corner
@@ -248,19 +248,19 @@ python3 manage.py runserver
 4. Click "SAVE"
 5. Create another item following the same steps
 
-### 18. View the main page with the items
+### 18. View the main page with the items 🖥️
 
 1. Go to http://127.0.0.1:8000/ in your browser
 2. You should see the list of items you just created
 
-### 19. Generate requirements.txt file
+### 19. Generate requirements.txt file 📝
 
 ```bash
 # From src directory
 pip3 freeze > requirements.txt
 ```
 
-### 20. Create a README.md file
+### 20. Create a README.md file 📄
 
 Create a file named `README.md` in the root directory (`django_project/`):
 
@@ -270,7 +270,7 @@ cd ..
 touch README.md
 ```
 
-## Sample README.md
+## 📚 Sample README.md
 
 ```markdown
 # 🚀 My Django Project
@@ -341,3 +341,4 @@ Your Name
 ---
 
 Built with ❤️ using Django 5
+```
