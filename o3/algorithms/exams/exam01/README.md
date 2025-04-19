@@ -34,7 +34,7 @@ Cada ejercicio está evaluado con **5 pruebas automatizadas** que validan:
 
 | Archivo     | Propósito                                                         |
 | ----------- | ----------------------------------------------------------------- |
-| `exam.py`   | Implementación completa del examen con todos los grupos y pruebas |
+| `main.py`   | Implementación completa del examen con todos los grupos y pruebas |
 | `README.md` | Documento de instrucciones y detalles técnicos del examen         |
 | `guide.md`  | Versión base inicial con los enunciados estructurados             |
 
@@ -70,7 +70,7 @@ test("2.3.4 fibonacci(10)", fibonacci(10) == 55)
 ## ✅ Ejecución
 Para ejecutar el examen:
 ```bash
-python exam.py
+python main.py
 ```
 
 ---
