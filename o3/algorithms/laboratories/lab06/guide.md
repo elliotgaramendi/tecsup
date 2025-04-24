@@ -943,7 +943,7 @@ Here are five unique challenges to test and expand your understanding of circula
 
 ### Challenge 3: Traffic Light Simulation
 
-**Problem**: Create a simulation of traffic flow through an intersection with traffic lights. Vehicles arrive at random intervals and must wait at red lights.
+**Problem**: Create a simulation of traffic flow through an intersection with traffic lights. Vehicles arrive at fixed intervals and must wait at red lights.
 
 **Approach**:
 - Use circular queues to represent each lane of traffic

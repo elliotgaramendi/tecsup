@@ -1,8 +1,12 @@
-"""Circular Queue Implementation with practical applications and exercises."""
+"""Circular Queue Implementation in Python with practical applications and exercises."""
 
-# ===================================================
+# ==========================================================================
 # 1. UNDERSTANDING THE FUNDAMENTAL CONCEPT
-# ===================================================
+# ==========================================================================
+# A circular queue is an efficient queue implementation that uses a circular
+# array or linked list to achieve O(1) enqueue and dequeue operations.
+
+# 1.1 Queue Basics 📚
 
 
 class CircularQueue:
@@ -83,10 +87,11 @@ class CircularQueue:
         return f"Queue: [{', '.join(result)}]"
 
 
-# ===================================================
+# ==========================================================================
 # 2. PROGRESSIVE IMPLEMENTATIONS
-# ===================================================
+# ==========================================================================
 
+# 2.1 Dynamic Circular Array Queue 🔄
 class DynamicCircularQueue:
     """Queue implementation with a dynamically resizing circular array."""
 
@@ -175,6 +180,7 @@ class DynamicCircularQueue:
             self.rear = self.size_count - 1
 
 
+# 2.2 Circular Linked List Queue 🔁
 class Node:
     """Node for a circular linked list queue."""
 
@@ -242,10 +248,11 @@ class CircularLinkedQueue:
         return self.size_count
 
 
-# ===================================================
+# ==========================================================================
 # 3. PRACTICAL APPLICATIONS
-# ===================================================
+# ==========================================================================
 
+# 3.1 Print Queue Simulation 🖨️
 class PrintJob:
     """Represent a print job with name and pages."""
 
@@ -352,6 +359,7 @@ def simulate_print_queue():
         return True  # All jobs completed eventually
 
 
+# 3.2 Breadth-First Search 🔍
 def breadth_first_search(graph, start_node):
     """Perform breadth-first search on a graph using a circular queue."""
     # Create a queue with sufficient capacity
@@ -410,10 +418,11 @@ def demonstrate_bfs():
     return traversal[0] == expected_first and len(traversal) == len(graph)
 
 
-# ===================================================
+# ==========================================================================
 # 4. REAL-WORLD CASE STUDY
-# ===================================================
+# ==========================================================================
 
+# 4.1 Bank Service System 🏦
 class Customer:
     """Represent a bank customer."""
 
@@ -532,7 +541,7 @@ def simulate_bank_service():
     ]
 
     # Add all customers to the system
-    print("Customers arriving at the bank...")
+    print("Customers arriving at the bank... 🏦")
     for customer in customers:
         bank.add_customer(customer)
 
@@ -545,7 +554,7 @@ def simulate_bank_service():
     print(f"Total Waiting: {status['total_waiting']} customers")
 
     # Simulate serving customers
-    print("\nServing customers by priority...")
+    print("\nServing customers by priority... 🔄")
 
     # Serve customers until all queues are empty
     while status['total_waiting'] > 0:
@@ -561,10 +570,11 @@ def simulate_bank_service():
     return status['total_served'] == len(customers)
 
 
-# ===================================================
+# ==========================================================================
 # 5. TECHNICAL CHALLENGES
-# ===================================================
+# ==========================================================================
 
+# 5.1 Sliding Window Maximum 🪟
 def sliding_window_maximum(nums, k):
     """Find maximum elements in sliding windows of size k."""
     if not nums or k <= 0 or k > len(nums):
@@ -592,6 +602,7 @@ def sliding_window_maximum(nums, k):
     return result
 
 
+# 5.2 Rotating Array Elements 🔄
 def rotate_array(nums, k):
     """Rotate array to the right by k steps using circular queue."""
     if not nums or k <= 0:
@@ -625,6 +636,83 @@ def rotate_array(nums, k):
     return to_front + result
 
 
+# 5.3 Traffic Light Simulation 🚦
+class SimpleCircularQueue:
+    """Simple circular queue for traffic simulation."""
+
+    def __init__(self, capacity):
+        """Initialize empty queue with fixed capacity."""
+        self.queue = [None] * capacity
+        self.front = 0
+        self.rear = 0
+        self.size = 0
+        self.capacity = capacity
+
+    def enqueue(self, item):
+        """Add item to rear of queue."""
+        if self.size < self.capacity:
+            self.queue[self.rear] = item
+            self.rear = (self.rear + 1) % self.capacity
+            self.size += 1
+        else:
+            return None
+
+    def dequeue(self):
+        """Remove and return front item."""
+        if self.size == 0:
+            return None
+        item = self.queue[self.front]
+        self.front = (self.front + 1) % self.capacity
+        self.size -= 1
+        return item
+
+
+def simulate_traffic_light(ticks, green_duration):
+    """Simulate traffic flow with traffic lights."""
+    ns_queue = SimpleCircularQueue(5)  # 🚗 North-South queue
+    ew_queue = SimpleCircularQueue(5)  # 🚙 East-West queue
+    total_wait = 0
+    served = 0
+
+    for t in range(1, ticks + 1):
+        # Add vehicles based on arrival patterns 🚗
+        if t % 2 == 0:
+            ns_queue.enqueue(t)  # Vehicle arrives at NS
+        if t % 3 == 0:
+            ew_queue.enqueue(t)  # Vehicle arrives at EW
+
+        # Determine green light direction 🚦
+        direction = 'NS' if (t // green_duration) % 2 == 0 else 'EW'
+
+        print(f"\n[t={t}] 🟢 Semáforo verde en: {direction}")
+        print(
+            f"  🚗 NS Queue: {ns_queue.queue}, front={ns_queue.front}, rear={ns_queue.rear}")
+        print(
+            f"  🚙 EW Queue: {ew_queue.queue}, front={ew_queue.front}, rear={ew_queue.rear}")
+
+        # Process vehicle from queue with green light
+        if direction == 'NS':
+            vehicle = ns_queue.dequeue()
+        else:
+            vehicle = ew_queue.dequeue()
+
+        # Calculate wait time for served vehicle ⏱️
+        if vehicle is not None:
+            wait_time = t - vehicle
+            total_wait += wait_time
+            served += 1
+
+    # Calculate final statistics 📊
+    avg_wait_time = total_wait / served if served > 0 else 0
+    print(f"\nServed={served}, Avg wait={avg_wait_time:.2f}")
+
+    return {
+        'served': served,
+        'avg_wait_time': avg_wait_time
+    }
+
+
+# 5.4 Round-Robin Task Scheduling ⏱️
 class Process:
     """Represent a process in a task scheduler."""
 
@@ -642,7 +730,7 @@ class Process:
 def round_robin_scheduler(processes, time_quantum):
     """Simulate round-robin scheduling using a circular queue."""
     if not processes or time_quantum <= 0:
-        return []
+        return {}
 
     # Create a circular queue for processes
     n = len(processes)
@@ -682,6 +770,7 @@ def round_robin_scheduler(processes, time_quantum):
     return completion_times
 
 
+# 5.5 Circular Buffer for Streaming Data 📊
 class CircularBuffer:
     """Circular buffer for streaming data."""
 
@@ -702,6 +791,7 @@ class CircularBuffer:
 
     def add(self, item):
         """Add an item to the buffer, overwriting oldest item if full."""
+        # Store the item at the current write position
         self.buffer[self.write_index] = item
 
         # Move write pointer circularly
@@ -743,10 +833,11 @@ class CircularBuffer:
         return result
 
 
-# ===================================================
+# ==========================================================================
 # 6. TESTING FUNCTIONS
-# ===================================================
+# ==========================================================================
 
+# 6.1 Basic Circular Queue Tests ✅
 def test_circular_queue():
     """Test the circular queue implementation."""
     queue = CircularQueue(5)
@@ -786,6 +877,7 @@ def test_circular_queue():
     return True
 
 
+# 6.2 Dynamic Circular Queue Tests 🔄
 def test_dynamic_circular_queue():
     """Test the dynamic circular queue implementation."""
     queue = DynamicCircularQueue(3)  # Start with smaller capacity
@@ -833,6 +925,7 @@ def test_dynamic_circular_queue():
     return True
 
 
+# 6.3 Circular Linked Queue Tests 🔁
 def test_circular_linked_queue():
     """Test the circular linked list queue implementation."""
     queue = CircularLinkedQueue()
@@ -873,6 +966,7 @@ def test_circular_linked_queue():
     return True
 
 
+# 6.4 Challenge Tests 🧩
 def test_sliding_window_maximum():
     """Test sliding window maximum algorithm."""
     # Test cases
@@ -907,6 +1001,27 @@ def test_rotate_array():
         assert result == expected, f"Test case {i}: Expected {expected}, got {result}"
 
     print("All array rotation tests passed! ✅")
+    return True
+
+
+def test_traffic_light_simulation():
+    """Test traffic light simulation."""
+    # Run a short simulation with known parameters
+    result = simulate_traffic_light(ticks=6, green_duration=2)
+
+    # Verify that simulation runs and returns results
+    assert 'served' in result, "Result should contain 'served' count"
+    assert 'avg_wait_time' in result, "Result should contain average wait time"
+
+    # Run a different configuration to test flexibility
+    result2 = simulate_traffic_light(ticks=10, green_duration=3)
+
+    # Verify that simulation completes successfully
+    assert isinstance(result2['served'],
+                      int), "Served count should be an integer"
+    assert isinstance(result2['avg_wait_time'],
+                      float), "Average wait time should be a float"
+
     return True
 
 
@@ -972,9 +1087,9 @@ def test_circular_buffer():
     return True
 
 
-# ===================================================
-# MAIN
-# ===================================================
+# ==========================================================================
+# 7. MAIN EXECUTION
+# ==========================================================================
 
 def run_all_tests():
     """Run all tests for circular queue implementations and applications."""
@@ -988,7 +1103,8 @@ def run_all_tests():
         ("Breadth-First Search", demonstrate_bfs),
         ("Bank Service System", simulate_bank_service),
         ("Sliding Window Maximum", test_sliding_window_maximum),
-        ("Array Rotation", test_rotate_array),
+        ("Rotating Array Elements", test_rotate_array),
+        ("Traffic Light Simulation", test_traffic_light_simulation),
         ("Round-Robin Scheduler", test_round_robin_scheduler),
         ("Circular Buffer", test_circular_buffer)
     ]

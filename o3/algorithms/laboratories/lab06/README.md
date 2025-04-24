@@ -21,6 +21,7 @@ This project explores circular queue data structures - an efficient implementati
 - Advanced technical exercises:
   - Sliding window maximum algorithm 🪟
   - Array rotation using circular queues 🔄
+  - Traffic light simulation 🚦
   - Round-robin task scheduling ⏱️
   - Circular buffer for streaming data 📊
 
@@ -39,17 +40,33 @@ All implementations support these fundamental operations:
 
 ### Key Implementation Techniques
 
-- **Modulo Arithmetic** (`%`): The "magic" that enables circular behavior by wrapping indices around the array when they reach the end
-- **Front and Rear Pointers**: Track the queue boundaries without needing to shift elements
-- **Dynamic Resizing**: Automatically grow the queue when it gets full while maintaining the circular property
-- **Circular Linked Lists**: Implement a queue with just a single rear pointer by forming a circular connection
+- **Modulo Arithmetic** (`%`): The "magic" that enables circular behavior by wrapping indices around the array when they reach the end 🔄
+- **Front and Rear Pointers**: Track the queue boundaries without needing to shift elements 📍
+- **Dynamic Resizing**: Automatically grow the queue when it gets full while maintaining the circular property 📈
+- **Circular Linked Lists**: Implement a queue with just a single rear pointer by forming a circular connection 🔁
 
-## 💻 Usage
+## 💻 Usage Examples
 
+### Basic Usage 🔰
 ```python
-# Example: Using a circular queue for a process scheduler
-from main import CircularQueue, Process
+# Create a circular queue with capacity 5
+queue = CircularQueue(5)
 
+# Add elements 📥
+queue.enqueue("A")
+queue.enqueue("B")
+queue.enqueue("C")
+
+# Remove elements 📤
+first = queue.dequeue()  # Returns "A"
+second = queue.dequeue()  # Returns "B"
+
+# Check front element without removing 👀
+front = queue.peek()  # Returns "C"
+```
+
+### Using for Process Scheduling ⏱️
+```python
 # Create a circular queue to hold processes
 process_queue = CircularQueue(10)
 
@@ -58,10 +75,13 @@ process_queue.enqueue(Process(1, 10))
 process_queue.enqueue(Process(2, 5))
 process_queue.enqueue(Process(3, 8))
 
-# Process queue in FIFO order
+# Process queue in FIFO order with round-robin scheduling
 while not process_queue.is_empty():
     current_process = process_queue.dequeue()
-    print(f"Processing: {current_process}")
+    
+    # Execute process for a time slice
+    executed_time = min(time_quantum, current_process.remaining_time)
+    current_process.remaining_time -= executed_time
     
     # If not finished, re-queue for next round
     if current_process.remaining_time > 0:
@@ -79,23 +99,40 @@ python main.py
 
 ## 📊 Performance Comparison
 
-| Implementation         | Enqueue        | Dequeue | Memory Usage           | Best Use Cases                                          |
-| ---------------------- | -------------- | ------- | ---------------------- | ------------------------------------------------------- |
-| Circular Array         | O(1) ⚡         | O(1) ⚡  | Fixed, may waste space | Fixed-size bounded queues, performance-critical systems |
-| Dynamic Circular Array | O(1) average ⚡ | O(1) ⚡  | Grows as needed        | When size requirements vary but performance matters     |
-| Circular Linked List   | O(1) ⚡         | O(1) ⚡  | Exact, no waste        | Memory-constrained environments, frequent size changes  |
+| Implementation | Enqueue | Dequeue | Memory Usage | Dynamic Resizing           |
+| -------------- | ------- | ------- | ------------ | -------------------------- |
+| Circular Array | O(1) ⚡  | O(1) ⚡  | O(n) 📦       | No ❌                       |
+| Dynamic Array  | O(1)* ⚡ | O(1) ⚡  | O(n) 📦       | Yes ✅ (O(n) when resizing) |
+| Linked List    | O(1) ⚡  | O(1) ⚡  | O(n) 📦       | Yes ✅ (always dynamic)     |
 
-### Key Advantages of Circular Queues
+\* Amortized O(1), occasionally O(n) during resize operations
 
-1. **Efficient Space Utilization**: Reuses array space that becomes available after dequeuing
-2. **Constant-time Operations**: Both enqueue and dequeue are O(1) operations
-3. **No Element Shifting**: Unlike simple array implementations, elements don't need to be shifted when dequeuing
-4. **Memory Locality**: Array-based implementations benefit from better cache performance
+### 🧮 Memory Efficiency:
+- **Circular Array**: 100% utilization after elements wrap around 🔄
+- **Dynamic Array**: May have unused space after resizing 📏
+- **Linked List**: Higher overhead per element due to pointers 🔗
 
-## 📝 License
+### ⏱️ Operational Speed:
+- **Circular Array**: Fastest for fixed-size applications 🚀
+- **Dynamic Array**: Slight overhead during resize operations 📈
+- **Linked List**: Slightly slower due to pointer traversal 🐢
 
-MIT License
+## 🧩 Applications
+
+Circular queues are excellent for:
+
+- **Print Job Management** 🖨️: Managing pending print jobs in an efficient manner
+- **Process Scheduling** ⏱️: Implementing round-robin CPU scheduling
+- **Traffic Control** 🚦: Simulating traffic flow at intersections
+- **Buffer Management** 📊: Implementing streaming data buffers
+- **Breadth-First Search** 🔍: Efficient graph traversal algorithms
+- **Banking Systems** 🏦: Customer service queue management
+
+## 🔗 Related Resources
+- [Queue Data Structure](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)) 📚
+- [Circular Buffer](https://en.wikipedia.org/wiki/Circular_buffer) 🔄
+- [Breadth-First Search](https://en.wikipedia.org/wiki/Breadth-first_search) 🔍
+- [Round-Robin Scheduling](https://en.wikipedia.org/wiki/Round-robin_scheduling) ⏱️
 
 ---
-
-Happy coding with circular queues! 🎉 Remember, when implemented correctly, circular data structures can significantly improve performance in many real-world applications.
+Created with ❤️ by a world-class data structures expert 🧠
