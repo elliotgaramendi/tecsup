@@ -23,7 +23,6 @@
     - [Challenge 3: Lowest Common Ancestor](#challenge-3-lowest-common-ancestor)
     - [Challenge 4: Vertical Order Traversal](#challenge-4-vertical-order-traversal)
     - [Challenge 5: Tree Pruning](#challenge-5-tree-pruning)
-    - [Challenge 5: Tree Pruning](#challenge-5-tree-pruning-1)
   - [6. Comparative Analysis](#6-comparative-analysis)
     - [Key insights:](#key-insights)
     - [When to use which tree structure:](#when-to-use-which-tree-structure)
@@ -1458,7 +1457,6 @@ def test_vertical_order_traversal():
     # ... and so on
 ```
 
-### Challenge 5: Tree Pruning
 ### Challenge 5: Tree Pruning
 
 **Problem**: Given a binary tree and a value, remove all subtrees that don't contain the value. ✂️
