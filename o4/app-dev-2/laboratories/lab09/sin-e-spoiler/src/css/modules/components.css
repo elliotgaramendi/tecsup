@@ -20,20 +20,20 @@
 .main {
   --grad-primary: color-mix(in srgb, var(--primary-color) 18%, transparent);
   --grad-secondary: color-mix(in srgb, var(--secondary-color) 15%, transparent);
-}
 
-.main> :nth-child(odd) {
-  background-image:
-    radial-gradient(circle at 20% 30%, var(--grad-primary) 0%, transparent 40%),
-    radial-gradient(circle at 80% 70%, var(--grad-secondary) 0%, transparent 40%),
-    linear-gradient(135deg, var(--primary-background) 0%, var(--secondary-background) 100%);
-}
+  &> :nth-child(odd) {
+    background-image:
+      radial-gradient(circle at 20% 30%, var(--grad-primary) 0%, transparent 40%),
+      radial-gradient(circle at 80% 70%, var(--grad-secondary) 0%, transparent 40%),
+      linear-gradient(135deg, var(--primary-background) 0%, var(--secondary-background) 100%);
+  }
 
-.main> :nth-child(even) {
-  background-image:
-    radial-gradient(circle at 80% 30%, var(--grad-secondary) 0%, transparent 40%),
-    radial-gradient(circle at 20% 70%, var(--grad-primary) 0%, transparent 40%),
-    linear-gradient(135deg, var(--secondary-background) 0%, var(--primary-background) 100%);
+  &> :nth-child(even) {
+    background-image:
+      radial-gradient(circle at 80% 30%, var(--grad-secondary) 0%, transparent 40%),
+      radial-gradient(circle at 20% 70%, var(--grad-primary) 0%, transparent 40%),
+      linear-gradient(135deg, var(--secondary-background) 0%, var(--primary-background) 100%);
+  }
 }
 
 .nav {
@@ -175,12 +175,12 @@
 
 .footer {
   position: relative;
-}
 
-.footer>.nav:nth-child(odd) {
-  backdrop-filter: blur(calc(var(--size) * 4));
-}
+  &>.nav:nth-child(odd) {
+    backdrop-filter: blur(calc(var(--size) * 4));
+  }
 
-.footer>.nav:nth-child(even) {
-  background-color: var(--light-shadow);
+  &>.nav:nth-child(even) {
+    background-color: var(--light-shadow);
+  }
 }
