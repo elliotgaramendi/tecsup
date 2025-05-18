@@ -936,13 +936,15 @@ This step defines how to structure and use movie data in our app. We use real TM
 **📁 Folder Structure**
 
 ```
-src/data/ 📂
-├── movies.js 🎞️  # Raw TMDB movie data
-└── movie.utils.js 🧠  # Mapping and image utilities
+src/ 📂
+├── data/
+│   └── movies.data.js 🎞️  # Raw TMDB movie data
+└── utils/
+    └── movie.utils.js 🧠  # Mapping and image utilities
 ```
 ---
 
-**🎞️ `src/data/movies.js`**
+**🎞️ `src/data/movies.data.js`**
 ```js
 export const tmdbNowPlayingMock = {
   "page": 1,
@@ -1345,7 +1347,7 @@ export const tmdbNowPlayingMock = {
 
 ---
 
-**🧠 `src/data/movie.utils.js`**
+**🧠 `src/utils/movie.utils.js`**
 
 ```javascript
 export const getImageUrl = (size = "w342", path) => {
