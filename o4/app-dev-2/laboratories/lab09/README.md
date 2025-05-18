@@ -183,17 +183,20 @@ npm install
 ```html
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>🎬 Sin E Spoiler</title>
-  </head>
-  <body class="body">
-    <div id="root"></div>
-  </body>
-</html>
 
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎬 Sin E Spoiler</title>
+</head>
+
+<body class="body">
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
+</html>
 ```
 
 🎯 Tip: Use classes to give styles and semantic tags inside div#root like `<main class="main">`, `<header class="header">` and `<footer class="footer">`.
@@ -271,12 +274,12 @@ index.html
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sin E Spoiler 🎥 | AI-Powered Movie Reviews</title>
   <meta name="description" content="Spoiler-free cinema experience. AI reviews, AR posters, and premiere giveaways." />
+  <meta name="theme-color" content="#23B5E8" />
   <link rel="icon" type="image/svg+xml" href="/logo.svg" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-  <meta name="theme-color" content="#199afc" />
+  <!-- <link rel="apple-touch-icon" href="/apple-touch-icon.png" /> -->
 </head>
 
-<body>
+<body class="body">
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
 </body>
@@ -290,7 +293,7 @@ index.html
 
 - Use meaningful metadata for SEO and share previews (e.g., Open Graph later)
 - Replace `/vite.svg` with `/logo.svg` for branding
-- Add `apple-touch-icon` for mobile bookmarks
+- Add `apple-touch-icon` for mobile bookmarks (coming soon)
 - Theme color sets browser UI color on mobile devices
 
 ---
