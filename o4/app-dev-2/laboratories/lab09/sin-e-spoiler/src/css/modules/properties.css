@@ -1,0 +1,11 @@
+@property --length {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0;
+}
+
+@property --color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}

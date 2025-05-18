@@ -1,0 +1,16 @@
+.body {
+  margin: 0;
+  font-family: var(--primary-font);
+  background-color: var(--primary-background);
+  color: var(--primary-text);
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main *[id] {
+  scroll-margin-top: calc(var(--size) * 32);
+}

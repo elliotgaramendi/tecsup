@@ -1,0 +1,19 @@
+@keyframes change-length {
+  from {
+    --length: var(--initial-length);
+  }
+
+  to {
+    --length: var(--final-length);
+  }
+}
+
+@keyframes change-color {
+  from {
+    --color: var(--initial-color);
+  }
+
+  to {
+    --color: var(--final-color);
+  }
+}
