@@ -4,15 +4,17 @@ const Rating = ({ value, maxValue = 5 }) => {
   const emptyStars = maxValue - Math.ceil(value);
 
   return (
-    <div className="rating d-flex a-items-center g-1">
-      {[...Array(fullStars)].map((_, i) => (
-        <span key={`full-${i}`} className="rating__star">★</span>
-      ))}
-      {hasHalfStar && <span className="rating__star rating__star--half">★</span>}
-      {[...Array(emptyStars)].map((_, i) => (
-        <span key={`empty-${i}`} className="rating__star rating__star--empty">☆</span>
-      ))}
-      <span className="rating__value">{value.toFixed(1)}</span>
+    <div className="d-flex a-items-center g-2">
+      <div className="d-flex a-items-center g-1">
+        {[...Array(fullStars)].map((_, i) => (
+          <span key={`full-${i}`} className="interactive interactive--lg c-warning">★</span>
+        ))}
+        {hasHalfStar && <span className="interactive interactive--lg">★</span>}
+        {[...Array(emptyStars)].map((_, i) => (
+          <span key={`empty-${i}`} className="interactive interactive--lg">☆</span>
+        ))}
+      </div>
+      <span className="interactive">{value.toFixed(1)}</span>
     </div>
   );
 };

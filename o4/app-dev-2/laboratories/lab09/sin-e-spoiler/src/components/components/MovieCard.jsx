@@ -4,35 +4,30 @@ const MovieCard = ({ movie }) => {
   const { title, rating, genre, duration, image, description, showTimes } = movie;
 
   return (
-    <article className="card card--movie">
-      <div className="card__header">
+    <article className="card d-flex f-direction-column">
+      <div className="p-relative">
         <img
           src={image}
           alt={`${title} poster`}
           className="card__image"
           loading="lazy"
         />
-        <div className="card__overlay">
-          <span className="badge badge--primary">{genre}</span>
-        </div>
+        <span className="badge badge--primary interactive p-absolute t-2 r-2 f-weight-700">{genre}</span>
       </div>
-
-      <div className="card__body">
-        <h3 className="card__title">{title}</h3>
-        <div className="card__meta d-flex g-2">
+      <div className="card__body f-1 g-2">
+        <h3 className="title title--2xs">{title}</h3>
+        <div className="d-flex a-items-center g-2">
           <Rating value={rating} />
-          <span className="card__duration">{duration}</span>
+          <span className="interactive c-secondary">{duration}</span>
         </div>
-
-        <p className="card__description">{description}</p>
-
-        <div className="card__showtimes">
-          <h4 className="card__subtitle">Today's Showtimes</h4>
+        <p className="text text--sm c-shadow">{description.slice(0, 256)}...</p>
+        <div className="d-flex f-direction-column g-2 m-top-auto">
+          <h4 className="interactive interactive--lg c-primary">Today's Showtimes</h4>
           <div className="d-flex f-wrap g-2">
             {showTimes.map((time, index) => (
               <button
                 key={index}
-                className="button button--time"
+                className="button button--outline-primary interactive interactive--sm"
                 aria-label={`Show time ${time} for ${title}`}
               >
                 {time}
