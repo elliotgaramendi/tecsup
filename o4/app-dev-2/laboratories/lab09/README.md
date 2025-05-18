@@ -181,21 +181,22 @@ npm install
 ✏️ Edit `public/index.html`:
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>🎬 Sin E Spoiler</title>
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🎬 Sin E Spoiler</title>
   </head>
-  <body>
-    <main id="root"></main>
+  <body class="body">
+    <div id="root"></div>
   </body>
 </html>
+
 ```
 
-🎯 Tip: Use `<main>` for semantic and accessible layout structure.
+🎯 Tip: Use classes to give styles and semantic tags inside div#root like `<main class="main">`, `<header class="header">` and `<footer class="footer">`.
 
 ---
 
