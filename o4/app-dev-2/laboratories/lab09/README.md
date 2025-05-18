@@ -23,7 +23,7 @@ _A professional guide to building a modern cinema web application using React 19
     - [CSS Modular Architecture](#css-modular-architecture)
     - [Safe Rendering with `safeString`](#safe-rendering-with-safestring)
   - [3. Implementation](#3-implementation)
-    - [Step 0: HTML Entry Setup I Base Structure 🧱](#step-0-html-entry-setup-i-base-structure-)
+    - [Step 0: HTML Entry Setup I Base Structure](#step-0-html-entry-setup-i-base-structure)
     - [Step 1: Base CSS Architecture I Complete System for “Sin E Spoiler”](#step-1-base-css-architecture-i-complete-system-for-sin-e-spoiler)
     - [Step 2: Movie Data Structure I Realistic TMDB-based Records](#step-2-movie-data-structure-i-realistic-tmdb-based-records)
     - [Step 3: Header Component I Sin E Spoiler](#step-3-header-component-i-sin-e-spoiler)
@@ -240,7 +240,7 @@ export const safeString = (str = "") =>
 
 ## 3. Implementation
 
-### Step 0: HTML Entry Setup I Base Structure 🧱
+### Step 0: HTML Entry Setup I Base Structure
 
 This step prepares your Vite + React project with the essential HTML metadata and assets for a professional cinema experience. 🎬✨
 
@@ -359,6 +359,7 @@ Centralized design tokens for consistent theming and spacing:
 
   --primary-color: #23B5E8;
   --secondary-color: #234B96;
+  --warning-color: #E8B523;
   --black-color: #010508;
   --white-color: #FEFEFE;
 
@@ -371,6 +372,7 @@ Centralized design tokens for consistent theming and spacing:
   --transition-duration: 0.25s;
 
   --primary-font: "Open Sans", sans-serif;
+  --secondary-font: "Roboto", sans-serif;
 
   --primary-background: var(--black-color);
   --secondary-background: var(--neutral-950);
@@ -397,6 +399,7 @@ Animation for scroll-based length and color transitions:
   from {
     --length: var(--initial-length);
   }
+
   to {
     --length: var(--final-length);
   }
@@ -406,6 +409,7 @@ Animation for scroll-based length and color transitions:
   from {
     --color: var(--initial-color);
   }
+
   to {
     --color: var(--final-color);
   }
@@ -517,20 +521,20 @@ Utility classes for flexible layout systems:
 .main {
   --grad-primary: color-mix(in srgb, var(--primary-color) 18%, transparent);
   --grad-secondary: color-mix(in srgb, var(--secondary-color) 15%, transparent);
-}
 
-.main > :nth-child(odd) {
-  background-image:
-    radial-gradient(circle at 20% 30%, var(--grad-primary) 0%, transparent 40%),
-    radial-gradient(circle at 80% 70%, var(--grad-secondary) 0%, transparent 40%),
-    linear-gradient(135deg, var(--primary-background) 0%, var(--secondary-background) 100%);
-}
+  &> :nth-child(odd) {
+    background-image:
+      radial-gradient(circle at 20% 30%, var(--grad-primary) 0%, transparent 40%),
+      radial-gradient(circle at 80% 70%, var(--grad-secondary) 0%, transparent 40%),
+      linear-gradient(135deg, var(--primary-background) 0%, var(--secondary-background) 100%);
+  }
 
-.main > :nth-child(even) {
-  background-image:
-    radial-gradient(circle at 80% 30%, var(--grad-secondary) 0%, transparent 40%),
-    radial-gradient(circle at 20% 70%, var(--grad-primary) 0%, transparent 40%),
-    linear-gradient(135deg, var(--secondary-background) 0%, var(--primary-background) 100%);
+  &> :nth-child(even) {
+    background-image:
+      radial-gradient(circle at 80% 30%, var(--grad-secondary) 0%, transparent 40%),
+      radial-gradient(circle at 20% 70%, var(--grad-primary) 0%, transparent 40%),
+      linear-gradient(135deg, var(--secondary-background) 0%, var(--primary-background) 100%);
+  }
 }
 
 .nav {
@@ -551,46 +555,50 @@ Utility classes for flexible layout systems:
   --t-translate: -100%;
   position: fixed;
   inset: 0;
+  width: 100%;
+  height: 100dvh;
   display: flex;
   background-color: var(--light-shadow);
   opacity: 0;
   pointer-events: none;
   transition: opacity var(--transition-duration);
-}
 
-.off-canvas:target {
-  --t-translate: 0;
-  opacity: initial;
-  pointer-events: initial;
+  &:target {
+    --t-translate: 0;
+    opacity: initial;
+    pointer-events: initial;
+  }
 }
 
 .off-canvas--right {
   --t-translate: 100%;
   justify-content: flex-end;
-}
 
-.off-canvas--right .off-canvas__child {
-  width: min(calc(var(--size) * 80), 50%);
-  transform: translate(var(--t-translate), 0);
+  & .off-canvas__child {
+    width: min(calc(var(--size) * 80), 50%);
+    transform: translate(var(--t-translate), 0);
+  }
 }
 
 .off-canvas--mobile {
-  @media (width >= 768px) {
+  @media (width >=768px) {
     all: unset;
-  }
 
-  .off-canvas__child {
-    all: unset;
-  }
+    & .off-canvas__child {
+      all: unset;
+    }
 
-  .off-canvas__backdrop {
-    display: none;
+    & .off-canvas__backdrop {
+      display: none;
+    }
   }
 }
 
 .off-canvas__backdrop {
   position: fixed;
   inset: 0;
+  width: 100%;
+  height: 100dvh;
 }
 
 .off-canvas__child {
@@ -634,11 +642,11 @@ Utility classes for flexible layout systems:
   box-shadow: calc(var(--size) * 0.0625) calc(var(--size) * 0.125) var(--size) calc(var(--size) * 0.0625) var(--primary-card-color);
   overflow: hidden;
   transition: box-shadow var(--transition-duration), transform var(--transition-duration);
-}
 
-.card:hover {
-  --primary-card-color: var(--primary-color);
-  transform: scale(1.0625);
+  &:hover {
+    --primary-card-color: var(--primary-color);
+    transform: scale(1.0625);
+  }
 }
 
 .card--overlay {
@@ -652,24 +660,30 @@ Utility classes for flexible layout systems:
   text-decoration: none;
 }
 
+.card__image {
+  object-fit: cover;
+  width: 100%;
+  height: calc(var(--size) * 80);
+}
+
 .card__body {
   display: flex;
   flex-direction: column;
   gap: var(--size);
   padding: calc(var(--size) * 4);
+  background-color: var(--secondary-background);
 }
 
 .footer {
   position: relative;
-  box-shadow: 0 0 calc(var(--size) * 0.5) calc(var(--size) * 0.125) var(--shadow);
-}
 
-.footer > .nav:nth-child(odd) {
-  background-color: var(--secondary-background);
-}
+  &>.nav:nth-child(odd) {
+    backdrop-filter: blur(calc(var(--size) * 4));
+  }
 
-.footer > .nav:nth-child(even) {
-  background-color: var(--primary-background);
+  &>.nav:nth-child(even) {
+    background-color: var(--light-shadow);
+  }
 }
 ```
 
@@ -680,8 +694,9 @@ Utility classes for flexible layout systems:
 ```css
 .title {
   margin: 0;
-  font-size: calc(var(--size) * 8);
   font-weight: 800;
+  font-size: calc(var(--size) * 8);
+  font-family: var(--primary-font);
 }
 
 .title--sm {
@@ -689,13 +704,20 @@ Utility classes for flexible layout systems:
 }
 
 .title--xs {
-  font-size: calc(var(--size) * 6);
   font-weight: 700;
+  font-size: calc(var(--size) * 6);
+}
+
+.title--2xs {
+  font-weight: 700;
+  font-size: calc(var(--size) * 5);
 }
 
 .text {
   margin: 0;
+  font-weight: 400;
   font-size: calc(var(--size) * 4);
+  font-family: var(--secondary-font);
 }
 
 .text--sm {
@@ -703,16 +725,24 @@ Utility classes for flexible layout systems:
 }
 
 .text--xs {
+  font-weight: 300;
   font-size: calc(var(--size) * 3);
 }
 
 .interactive {
   margin: 0;
-  font-size: calc(var(--size) * 3.5);
   font-weight: 600;
+  font-size: calc(var(--size) * 3.5);
+  font-family: var(--primary-font);
+}
+
+.interactive--2xl {
+  font-weight: 700;
+  font-size: calc(var(--size) * 5);
 }
 
 .interactive--xl {
+  font-weight: 700;
   font-size: calc(var(--size) * 4.5);
 }
 
@@ -725,6 +755,7 @@ Utility classes for flexible layout systems:
 }
 
 .interactive--xs {
+  font-weight: 500;
   font-size: calc(var(--size) * 2.5);
 }
 
@@ -752,25 +783,25 @@ Utility classes for flexible layout systems:
   color: var(--primary-text);
   text-decoration: none;
   transition: color var(--transition-duration);
-}
 
-.link::before {
-  content: "";
-  position: absolute;
-  bottom: -0.125em;
-  width: 100%;
-  height: 0.0625em;
-  background-color: var(--primary-color);
-  transform: scale(0);
-  transition: transform var(--transition-duration);
-}
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: -0.125em;
+    width: 100%;
+    height: 0.0625em;
+    background-color: var(--primary-color);
+    transform: scale(0);
+    transition: transform var(--transition-duration);
+  }
 
-.link:hover {
-  color: var(--primary-color);
-}
+  &:hover {
+    color: var(--primary-color);
+  }
 
-.link:hover::before {
-  transform: scale(1);
+  &:hover::before {
+    transform: scale(1);
+  }
 }
 
 .button {
@@ -785,16 +816,22 @@ Utility classes for flexible layout systems:
   text-decoration: none;
   font-family: var(--primary-font);
   transition: box-shadow var(--transition-duration), filter var(--transition-duration);
-}
 
-.button:hover {
-  box-shadow: 0 0 calc(var(--size) * 2) var(--primary-button-color);
-  filter: opacity(0.875);
+  &:hover {
+    box-shadow: 0 0 calc(var(--size) * 2) var(--primary-button-color);
+    filter: opacity(0.875);
+  }
 }
 
 .button--primary {
   --primary-button-color: var(--primary-color);
   --primary-button-text: var(--light-primary-text);
+}
+
+.button--outline-primary {
+  background-color: transparent;
+  --primary-button-color: var(--primary-color);
+  --primary-button-text: var(--primary-text);
 }
 
 .badge {
@@ -817,6 +854,22 @@ Utility classes for flexible layout systems:
 **🛠️ `src/css/modules/utils.css`**
 
 ```css
+.p-relative {
+  position: relative;
+}
+
+.p-absolute {
+  position: absolute;
+}
+
+.t-2 {
+  top: calc(var(--size) * 2);
+}
+
+.r-2 {
+  right: calc(var(--size) * 2);
+}
+
 .d-flex {
   display: flex;
 }
@@ -877,6 +930,10 @@ Utility classes for flexible layout systems:
   flex: 2;
 }
 
+.m-top-auto {
+  margin-top: auto;
+}
+
 .c-primary {
   color: var(--primary-color);
 }
@@ -893,11 +950,19 @@ Utility classes for flexible layout systems:
   color: var(--warning-color);
 }
 
+.c-shadow {
+  color: var(--shadow);
+}
+
+.f-weight-700 {
+  font-weight: 700;
+}
+
 .t-align-center {
   text-align: center;
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
   .md\:d-none {
     display: none;
   }
@@ -1350,9 +1415,11 @@ export const tmdbNowPlayingMock = {
 **🧠 `src/utils/movie.utils.js`**
 
 ```javascript
+import { tmdbNowPlayingMock } from "../data/movies.data";
+
 export const getImageUrl = (size = "w342", path) => {
   if (!path) return "https://picsum.photos/342/513?random";
-  return `https://image.tmdb.org/t/p/${size}/${path}`; 
+  return `https://image.tmdb.org/t/p/${size}/${path}`;
 };
 
 export const genres = {
@@ -1386,7 +1453,7 @@ export const mapTmdbToMovie = (tmdbMovie) => {
   };
 };
 
-export const getMovies = (tmdbResponse) => tmdbResponse.results.map(mapTmdbToMovie);
+export const getMovies = () => tmdbNowPlayingMock.results.map(mapTmdbToMovie);
 ```
 
 ✅ With this setup, your app is now equipped with realistic data and utility helpers to simulate a real-world movie listing platform. 🧠📊
@@ -1424,26 +1491,38 @@ const Header = () => {
   return (
     <header className="header">
       <nav className="nav nav--scroll">
-        <div className="container d-flex a-items-center j-content-between g-4">
-          <a href="#" className="d-flex a-items-center g-2">
+        <div className="container d-flex a-items-center g-4">
+          <a href="#" className="link f-1 d-flex a-items-center g-2">
             <img src="/logo.svg" alt="Sin E Spoiler" width="32" height="32" />
-            <strong className="c-primary">Sin E Spoiler</strong>
+            <h2 className="interactive interactive--lg c-primary">Sin E Spoiler</h2>
           </a>
-          <ul className="list d-flex g-5 f-2 j-content-center">
-            <li><a href="#movies" className="link interactive">Movies</a></li>
-            <li><a href="#cinemas" className="link interactive">Cinemas</a></li>
-            <li><a href="#promotions" className="link interactive">Promotions</a></li>
-            <li><a href="#tickets" className="link interactive">My Tickets</a></li>
-            <li><a href="#ar" className="link interactive">AR Posters</a></li>
-          </ul>
-          <div className="d-flex g-3">
-            <a href="#signin" className="button button--primary interactive">🎟️ Sign In</a>
+          <div className="off-canvas off-canvas--right off-canvas--mobile" id="menu">
+            <a
+              href="#"
+              className="off-canvas__backdrop"
+            ></a>
+            <div className="off-canvas__child">
+              <ul className="list f-2 list flexbox flexbox--center flexbox--responsive g-8">
+                <li><a href="#movies" className="link interactive">Movies</a></li>
+                <li><a href="#cinemas" className="link interactive">Cinemas</a></li>
+                <li><a href="#promotions" className="link interactive">Promotions</a></li>
+                <li><a href="#tickets" className="link interactive">My Tickets</a></li>
+                <li><a href="#ar" className="link interactive">AR Posters</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className="f-1 d-flex a-items-center j-content-end g-2">
+            <a href="#signin" className="button button--primary interactive">💕 Sign In</a>
+            <a href="#menu" className="link interactive interactive--2xl md:d-none">
+              📚
+            </a>
           </div>
         </div>
       </nav>
     </header>
   );
 };
+
 export default Header;
 ```
 
@@ -1484,48 +1563,64 @@ src/components/layouts/Footer.jsx
 ```jsx
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+
   return (
     <footer className="footer">
-      <div className="container g-layout g-layout--auto-fit-columns g-5">
-        <div className="d-flex f-direction-column g-2">
-          <a href="#"><img src="/logo.svg" alt="Sin E Spoiler Logo" className="img img--logo" /></a>
-          <h2 className="interactive interactive--lg">Sin E Spoiler</h2>
-          <p className="text text--xs">Enjoy spoiler-free cinema, smart reviews, and exclusive experiences.</p>
+      <nav className="nav">
+        <div className="container g-layout g-layout--auto-fit-columns g-10">
+          <div className="d-flex f-direction-column g-2">
+            <a href="#"><img src="/logo.svg" alt="Sin E Spoiler Logo" className="img img--logo" /></a>
+            <h2 className="interactive interactive--lg c-primary">Sin E Spoiler</h2>
+            <p className="text text--xs c-shadow">
+              Your trusted source for spoiler-free movie experiences. AI-powered reviews that preserve the magic of cinema.
+            </p>
+          </div>
+          <div className="d-flex f-direction-column g-2">
+            <h3 className="interactive interactive--lg">Showtimes</h3>
+            <ul className="list d-flex f-direction-column g-1">
+              <li><a href="#now-showing" className="link interactive interactive--sm c-shadow">Now Showing</a></li>
+              <li><a href="#coming-soon" className="link interactive interactive--sm c-shadow">Coming Soon</a></li>
+              <li><a href="#premieres" className="link interactive interactive--sm c-shadow">Premiere Giveaways</a></li>
+            </ul>
+          </div>
+          <div className="d-flex f-direction-column g-2">
+            <h3 className="interactive interactive--lg">Explore</h3>
+            <ul className="list d-flex f-direction-column g-1">
+              <li><a href="#faq" className="link interactive interactive--sm c-shadow">FAQs</a></li>
+              <li><a href="#about" className="link interactive interactive--sm c-shadow">About Us</a></li>
+              <li><a href="#blog" className="link interactive interactive--sm c-shadow">Cinema Blog</a></li>
+            </ul>
+          </div>
+          <div className="d-flex f-direction-column g-2">
+            <h3 className="interactive interactive--lg">Social Media</h3>
+            <ul className="list d-flex f-direction-column g-1">
+              <li><a href="https://www.instagram.com/elliotgaramendi/" className="link interactive interactive--sm c-shadow">Instagram</a></li>
+              <li><a href="https://x.com/elliotgaramendi" className="link interactive interactive--sm c-shadow">X</a></li>
+              <li><a href="https://www.youtube.com/@elliotgaramendi" className="link interactive interactive--sm c-shadow">YouTube</a></li>
+            </ul>
+          </div>
         </div>
-        <div className="d-flex f-direction-column g-2">
-          <h3 className="interactive interactive--lg">Showtimes</h3>
-          <ul className="list d-flex f-direction-column g-1">
-            <li><a href="#now-showing" className="link interactive interactive--sm">Now Showing</a></li>
-            <li><a href="#coming-soon" className="link interactive interactive--sm">Coming Soon</a></li>
-            <li><a href="#premieres" className="link interactive interactive--sm">Premiere Giveaways</a></li>
-          </ul>
-        </div>
-        <div className="d-flex f-direction-column g-2">
-          <h3 className="interactive interactive--lg">Explore</h3>
-          <ul className="list d-flex f-direction-column g-1">
-            <li><a href="#faq" className="link interactive interactive--sm">FAQs</a></li>
-            <li><a href="#about" className="link interactive interactive--sm">About Us</a></li>
-            <li><a href="#blog" className="link interactive interactive--sm">Cinema Blog</a></li>
-          </ul>
-        </div>
-        <div className="d-flex f-direction-column g-2">
-          <h3 className="interactive interactive--lg">Social Media</h3>
-          <ul className="list d-flex f-direction-column g-1">
-            <li><a href="#" className="link interactive interactive--sm">Instagram</a></li>
-            <li><a href="#" className="link interactive interactive--sm">YouTube</a></li>
-            <li><a href="#" className="link interactive interactive--sm">TikTok</a></li>
-          </ul>
-        </div>
-      </div>
+      </nav>
       <nav className="nav">
         <div className="container flexbox flexbox--centered-spacing flexbox--responsive g-2">
-          <p className="interactive interactive--xs">&copy; {currentYear} Sin E Spoiler. All rights reserved.</p>
-          <p className="interactive interactive--xs">Developed by <a href="https://www.instagram.com/elliotgaramendi/" className="link interactive interactive--xs">Elliot Garamendi</a></p>
+          <h2 className="interactive interactive--xs">
+            <a href="https://www.instagram.com/elliotgaramendi/" className="link interactive interactive--xs">
+              Elliot Garamendi</a> &copy; {currentYear} <a href="https://www.linkedin.com/in/elliotgaramendi/" className="link interactive interactive--xs">
+              Sin E Spoiler.
+            </a>
+            All rights reserved.
+          </h2>
+          <h2 className="interactive interactive--xs">
+            Made with ♥️ by: <a href="https://www.instagram.com/elliotgaramendi/" className="link interactive interactive--xs">
+              Elliot Garamendi
+            </a>
+          </h2>
         </div>
       </nav>
     </footer>
   );
 };
+
 export default Footer;
 ```
 
@@ -1559,22 +1654,26 @@ src/components/modules/Hero.jsx
 const Hero = () => {
   return (
     <article className="hero">
-      <div className="container d-flex f-direction-column g-10">
-        <div className="d-flex f-direction-column a-items-center g-4">
-          <h1 className="hero__title t-align-center">
-            Explore spoiler-free cinema with <span className="c-primary">AI reviews</span>
-          </h1>
-          <p className="hero__paragraph t-align-center">
-            Your movie app with advanced features, premieres, and interactive AR experiences.
-          </p>
+      <div className="container d-flex f-direction-column a-items-center g-4">
+        <h1 className="hero__title t-align-center">
+          Explore spoiler-free cinema with <span className="c-primary">AI reviews</span>
+        </h1>
+        <p className="hero__paragraph t-align-center">
+          Your movie app with advanced features, premieres, and interactive AR experiences.
+        </p>
+        <div className="d-flex g-4">
           <a href="#now-showing" className="button button--primary interactive interactive--xl">
             🎬 Browse Movies
           </a>
+          <button className="button button--outline-primary interactive interactive--xl">
+            🍃 Coming Soon
+          </button>
         </div>
       </div>
     </article>
   );
 };
+
 export default Hero;
 ```
 
@@ -1611,18 +1710,21 @@ const Rating = ({ value, maxValue = 5 }) => {
   const emptyStars = maxValue - Math.ceil(value);
 
   return (
-    <div className="rating d-flex a-items-center g-1">
-      {[...Array(fullStars)].map((_, i) => (
-        <span key={`full-${i}`} className="rating__star">★</span>
-      ))}
-      {hasHalfStar && <span className="rating__star rating__star--half">★</span>}
-      {[...Array(emptyStars)].map((_, i) => (
-        <span key={`empty-${i}`} className="rating__star rating__star--empty">☆</span>
-      ))}
-      <span className="rating__value">{value.toFixed(1)}</span>
+    <div className="d-flex a-items-center g-2">
+      <div className="d-flex a-items-center g-1">
+        {[...Array(fullStars)].map((_, i) => (
+          <span key={`full-${i}`} className="interactive interactive--lg c-warning">★</span>
+        ))}
+        {hasHalfStar && <span className="interactive interactive--lg">★</span>}
+        {[...Array(emptyStars)].map((_, i) => (
+          <span key={`empty-${i}`} className="interactive interactive--lg">☆</span>
+        ))}
+      </div>
+      <span className="interactive">{value.toFixed(1)}</span>
     </div>
   );
 };
+
 export default Rating;
 ```
 
@@ -1645,7 +1747,7 @@ Every movie deserves a spotlight 🎞️. This card shows title, poster, genre b
 **📁 File Path**
 
 ```
-src/components/widgets/MovieCard.jsx
+src/components/components/MovieCard.jsx
 ```
 
 ---
@@ -1662,41 +1764,36 @@ src/components/widgets/MovieCard.jsx
 **🧩 Code**
 
 ```jsx
-import Rating from './Rating';
+import Rating from "../widgets/Rating";
 
 const MovieCard = ({ movie }) => {
   const { title, rating, genre, duration, image, description, showTimes } = movie;
-  
+
   return (
-    <article className="card card--movie">
-      <div className="card__header">
-        <img 
-          src={image} 
+    <article className="card d-flex f-direction-column">
+      <div className="p-relative">
+        <img
+          src={image}
           alt={`${title} poster`}
           className="card__image"
           loading="lazy"
         />
-        <div className="card__overlay">
-          <span className="badge badge--primary">{genre}</span>
-        </div>
+        <span className="badge badge--primary interactive p-absolute t-2 r-2 f-weight-700">{genre}</span>
       </div>
-      
-      <div className="card__body">
-        <h3 className="card__title">{title}</h3>
-        <div className="card__meta d-flex g-2">
+      <div className="card__body f-1 g-2">
+        <h3 className="title title--2xs">{title}</h3>
+        <div className="d-flex a-items-center g-2">
           <Rating value={rating} />
-          <span className="card__duration">{duration}</span>
+          <span className="interactive c-secondary">{duration}</span>
         </div>
-        
-        <p className="card__description">{description}</p>
-        
-        <div className="card__showtimes">
-          <h4 className="card__subtitle">Today's Showtimes</h4>
+        <p className="text text--sm c-shadow">{description.slice(0, 256)}...</p>
+        <div className="d-flex f-direction-column g-2 m-top-auto">
+          <h4 className="interactive interactive--lg c-primary">Today's Showtimes</h4>
           <div className="d-flex f-wrap g-2">
             {showTimes.map((time, index) => (
-              <button 
+              <button
                 key={index}
-                className="button button--time"
+                className="button button--outline-primary interactive interactive--sm"
                 aria-label={`Show time ${time} for ${title}`}
               >
                 {time}
@@ -1747,15 +1844,14 @@ src/components/modules/MovieList.jsx
 **🧩 Code**
 
 ```jsx
-import MovieCard from '../widgets/MovieCard';
+import MovieCard from "../components/MovieCard";
 
 const MovieList = ({ movies }) => {
   return (
-    <section id="movies" className="section section--movies">
-      <div className="container">
-        <h2 className="section__title">Now Showing</h2>
-        
-        <div className="g-layout g-layout--auto-fit-columns">
+    <section id="movies" className="section">
+      <div className="container d-flex f-direction-column g-8">
+        <h2 className="title c-primary t-align-center">Now Showing</h2>
+        <div className="g-layout g-layout--auto-fit-columns g-8">
           {movies.map(movie => (
             <MovieCard key={movie.id} movie={movie} />
           ))}
@@ -1803,13 +1899,13 @@ src/App.jsx
 **🧩 Code**
 
 ```jsx
-import Header from './components/layouts/Header';
-import Hero from './components/modules/Hero';
-import MovieList from './components/modules/MovieList';
-import Footer from './components/layouts/Footer';
-import { getMovies } from './data/movie.utils';
+import Footer from "./components/layouts/Footer";
+import Header from "./components/layouts/Header";
+import Hero from "./components/modules/Hero";
+import MovieList from "./components/modules/MovieList";
+import { getMovies } from "./utils/movie.utils";
 
-const App = () => {
+function App() {
   const movies = getMovies();
 
   return (
@@ -1822,7 +1918,7 @@ const App = () => {
       <Footer />
     </>
   );
-};
+}
 
 export default App;
 ```
