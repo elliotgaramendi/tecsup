@@ -54,46 +54,50 @@
   --t-translate: -100%;
   position: fixed;
   inset: 0;
+  width: 100%;
+  height: 100dvh;
   display: flex;
   background-color: var(--light-shadow);
   opacity: 0;
   pointer-events: none;
   transition: opacity var(--transition-duration);
-}
 
-.off-canvas:target {
-  --t-translate: 0;
-  opacity: initial;
-  pointer-events: initial;
+  &:target {
+    --t-translate: 0;
+    opacity: initial;
+    pointer-events: initial;
+  }
 }
 
 .off-canvas--right {
   --t-translate: 100%;
   justify-content: flex-end;
-}
 
-.off-canvas--right .off-canvas__child {
-  width: min(calc(var(--size) * 80), 50%);
-  transform: translate(var(--t-translate), 0);
+  & .off-canvas__child {
+    width: min(calc(var(--size) * 80), 50%);
+    transform: translate(var(--t-translate), 0);
+  }
 }
 
 .off-canvas--mobile {
   @media (width >=768px) {
     all: unset;
-  }
 
-  .off-canvas__child {
-    all: unset;
-  }
+    & .off-canvas__child {
+      all: unset;
+    }
 
-  .off-canvas__backdrop {
-    display: none;
+    & .off-canvas__backdrop {
+      display: none;
+    }
   }
 }
 
 .off-canvas__backdrop {
   position: fixed;
   inset: 0;
+  width: 100%;
+  height: 100dvh;
 }
 
 .off-canvas__child {
@@ -137,11 +141,11 @@
   box-shadow: calc(var(--size) * 0.0625) calc(var(--size) * 0.125) var(--size) calc(var(--size) * 0.0625) var(--primary-card-color);
   overflow: hidden;
   transition: box-shadow var(--transition-duration), transform var(--transition-duration);
-}
 
-.card:hover {
-  --primary-card-color: var(--primary-color);
-  transform: scale(1.0625);
+  &:hover {
+    --primary-card-color: var(--primary-color);
+    transform: scale(1.0625);
+  }
 }
 
 .card--overlay {
@@ -155,22 +159,28 @@
   text-decoration: none;
 }
 
+.card__image {
+  object-fit: cover;
+  width: 100%;
+  height: calc(var(--size) * 80);
+}
+
 .card__body {
   display: flex;
   flex-direction: column;
   gap: var(--size);
   padding: calc(var(--size) * 4);
+  background-color: var(--secondary-background);
 }
 
 .footer {
   position: relative;
-  box-shadow: 0 0 calc(var(--size) * 0.5) calc(var(--size) * 0.125) var(--shadow);
 }
 
 .footer>.nav:nth-child(odd) {
-  background-color: var(--secondary-background);
+  backdrop-filter: blur(calc(var(--size) * 4));
 }
 
 .footer>.nav:nth-child(even) {
-  background-color: var(--primary-background);
+  background-color: var(--light-shadow);
 }

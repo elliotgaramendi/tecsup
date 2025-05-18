@@ -4,6 +4,7 @@
 
   --primary-color: #23B5E8;
   --secondary-color: #234B96;
+  --warning-color: #E8B523;
   --black-color: #010508;
   --white-color: #FEFEFE;
 
@@ -16,6 +17,7 @@
   --transition-duration: 0.25s;
 
   --primary-font: "Open Sans", sans-serif;
+  --secondary-font: "Roboto", sans-serif;
 
   --primary-background: var(--black-color);
   --secondary-background: var(--neutral-950);

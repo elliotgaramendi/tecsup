@@ -1,3 +1,19 @@
+.p-relative {
+  position: relative;
+}
+
+.p-absolute {
+  position: absolute;
+}
+
+.t-2 {
+  top: calc(var(--size) * 2);
+}
+
+.r-2 {
+  right: calc(var(--size) * 2);
+}
+
 .d-flex {
   display: flex;
 }
@@ -58,6 +74,10 @@
   flex: 2;
 }
 
+.m-top-auto {
+  margin-top: auto;
+}
+
 .c-primary {
   color: var(--primary-color);
 }
@@ -72,6 +92,14 @@
 
 .c-warning {
   color: var(--warning-color);
+}
+
+.c-shadow {
+  color: var(--shadow);
+}
+
+.f-weight-700 {
+  font-weight: 700;
 }
 
 .t-align-center {
