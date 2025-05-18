@@ -1,3 +1,5 @@
+import { tmdbNowPlayingMock } from "../data/movies.data";
+
 export const getImageUrl = (size = "w342", path) => {
   if (!path) return "https://picsum.photos/342/513?random";
   return `https://image.tmdb.org/t/p/${size}/${path}`;
@@ -34,4 +36,4 @@ export const mapTmdbToMovie = (tmdbMovie) => {
   };
 };
 
-export const getMovies = (tmdbResponse) => tmdbResponse.results.map(mapTmdbToMovie);
+export const getMovies = () => tmdbNowPlayingMock.results.map(mapTmdbToMovie);
