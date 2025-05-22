@@ -363,8 +363,9 @@ Centralized design tokens for consistent theming and spacing:
   --black-color: #010508;
   --white-color: #FEFEFE;
 
-  --neutral-950: #191B1C;
-  --shadow: #fefefe80;
+  --neutral-950: #1B1B1B;
+  --neutral-200: #BBB;
+  --shadow: #FEFEFE80;
   --light-shadow: #01050880;
 
   --size: 0.21875rem;
@@ -378,6 +379,7 @@ Centralized design tokens for consistent theming and spacing:
   --secondary-background: var(--neutral-950);
 
   --primary-text: var(--white-color);
+  --secondary-text: var(--neutral-200);
   --light-primary-text: var(--black-color);
 
   --border-radius: calc(var(--size) * 2);
@@ -645,7 +647,7 @@ Utility classes for flexible layout systems:
 
   &:hover {
     --primary-card-color: var(--primary-color);
-    transform: scale(1.0625);
+    transform: scale(1.025);
   }
 }
 
@@ -882,6 +884,10 @@ Utility classes for flexible layout systems:
   align-items: center;
 }
 
+.j-content-start {
+  justify-content: flex-start;
+}
+
 .j-content-end {
   justify-content: flex-end;
 }
@@ -952,6 +958,10 @@ Utility classes for flexible layout systems:
 
 .c-shadow {
   color: var(--shadow);
+}
+
+.c-secondary-text {
+  color: var(--secondary-text);
 }
 
 .f-weight-700 {
@@ -1492,10 +1502,12 @@ const Header = () => {
     <header className="header">
       <nav className="nav nav--scroll">
         <div className="container d-flex a-items-center g-4">
-          <a href="#" className="link f-1 d-flex a-items-center g-2">
-            <img src="/logo.svg" alt="Sin E Spoiler" width="32" height="32" />
-            <h2 className="interactive interactive--lg c-primary">Sin E Spoiler</h2>
-          </a>
+          <div className="f-1 d-flex j-content-start">
+            <a href="#" className="link d-flex a-items-center g-2">
+              <img src="/logo.svg" alt="Sin E Spoiler" width="32" height="32" />
+              <h2 className="interactive interactive--lg c-primary">Sin E Spoiler</h2>
+            </a>
+          </div>
           <div className="off-canvas off-canvas--right off-canvas--mobile" id="menu">
             <a
               href="#"
@@ -1571,32 +1583,32 @@ const Footer = () => {
           <div className="d-flex f-direction-column g-2">
             <a href="#"><img src="/logo.svg" alt="Sin E Spoiler Logo" className="img img--logo" /></a>
             <h2 className="interactive interactive--lg c-primary">Sin E Spoiler</h2>
-            <p className="text text--xs c-shadow">
+            <p className="text text--xs c-secondary-text">
               Your trusted source for spoiler-free movie experiences. AI-powered reviews that preserve the magic of cinema.
             </p>
           </div>
           <div className="d-flex f-direction-column g-2">
             <h3 className="interactive interactive--lg">Showtimes</h3>
             <ul className="list d-flex f-direction-column g-1">
-              <li><a href="#now-showing" className="link interactive interactive--sm c-shadow">Now Showing</a></li>
-              <li><a href="#coming-soon" className="link interactive interactive--sm c-shadow">Coming Soon</a></li>
-              <li><a href="#premieres" className="link interactive interactive--sm c-shadow">Premiere Giveaways</a></li>
+              <li><a href="#now-showing" className="link interactive interactive--sm c-secondary-text">Now Showing</a></li>
+              <li><a href="#coming-soon" className="link interactive interactive--sm c-secondary-text">Coming Soon</a></li>
+              <li><a href="#premieres" className="link interactive interactive--sm c-secondary-text">Premiere Giveaways</a></li>
             </ul>
           </div>
           <div className="d-flex f-direction-column g-2">
             <h3 className="interactive interactive--lg">Explore</h3>
             <ul className="list d-flex f-direction-column g-1">
-              <li><a href="#faq" className="link interactive interactive--sm c-shadow">FAQs</a></li>
-              <li><a href="#about" className="link interactive interactive--sm c-shadow">About Us</a></li>
-              <li><a href="#blog" className="link interactive interactive--sm c-shadow">Cinema Blog</a></li>
+              <li><a href="#faq" className="link interactive interactive--sm c-secondary-text">FAQs</a></li>
+              <li><a href="#about" className="link interactive interactive--sm c-secondary-text">About Us</a></li>
+              <li><a href="#blog" className="link interactive interactive--sm c-secondary-text">Cinema Blog</a></li>
             </ul>
           </div>
           <div className="d-flex f-direction-column g-2">
             <h3 className="interactive interactive--lg">Social Media</h3>
             <ul className="list d-flex f-direction-column g-1">
-              <li><a href="https://www.instagram.com/elliotgaramendi/" className="link interactive interactive--sm c-shadow">Instagram</a></li>
-              <li><a href="https://x.com/elliotgaramendi" className="link interactive interactive--sm c-shadow">X</a></li>
-              <li><a href="https://www.youtube.com/@elliotgaramendi" className="link interactive interactive--sm c-shadow">YouTube</a></li>
+              <li><a href="https://www.instagram.com/elliotgaramendi/" className="link interactive interactive--sm c-secondary-text">Instagram</a></li>
+              <li><a href="https://x.com/elliotgaramendi" className="link interactive interactive--sm c-secondary-text">X</a></li>
+              <li><a href="https://www.youtube.com/@elliotgaramendi" className="link interactive interactive--sm c-secondary-text">YouTube</a></li>
             </ul>
           </div>
         </div>
@@ -1665,9 +1677,9 @@ const Hero = () => {
           <a href="#now-showing" className="button button--primary interactive interactive--xl">
             🎬 Browse Movies
           </a>
-          <button className="button button--outline-primary interactive interactive--xl">
+          <a className="button button--outline-primary interactive interactive--xl">
             🍃 Coming Soon
-          </button>
+          </a>
         </div>
       </div>
     </article>
@@ -1791,13 +1803,13 @@ const MovieCard = ({ movie }) => {
           <h4 className="interactive interactive--lg c-primary">Today's Showtimes</h4>
           <div className="d-flex f-wrap g-2">
             {showTimes.map((time, index) => (
-              <button
+              <a
                 key={index}
                 className="button button--outline-primary interactive interactive--sm"
                 aria-label={`Show time ${time} for ${title}`}
               >
                 {time}
-              </button>
+              </a>
             ))}
           </div>
         </div>
