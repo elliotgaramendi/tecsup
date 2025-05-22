@@ -25,13 +25,13 @@ const MovieCard = ({ movie }) => {
           <h4 className="interactive interactive--lg c-primary">Today's Showtimes</h4>
           <div className="d-flex f-wrap g-2">
             {showTimes.map((time, index) => (
-              <button
+              <a
                 key={index}
                 className="button button--outline-primary interactive interactive--sm"
                 aria-label={`Show time ${time} for ${title}`}
               >
                 {time}
-              </button>
+              </a>
             ))}
           </div>
         </div>

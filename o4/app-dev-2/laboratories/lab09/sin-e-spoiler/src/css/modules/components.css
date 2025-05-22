@@ -144,7 +144,7 @@
 
   &:hover {
     --primary-card-color: var(--primary-color);
-    transform: scale(1.0625);
+    transform: scale(1.025);
   }
 }
 

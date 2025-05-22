@@ -26,6 +26,10 @@
   align-items: center;
 }
 
+.j-content-start {
+  justify-content: flex-start;
+}
+
 .j-content-end {
   justify-content: flex-end;
 }
@@ -96,6 +100,10 @@
 
 .c-shadow {
   color: var(--shadow);
+}
+
+.c-secondary-text {
+  color: var(--secondary-text);
 }
 
 .f-weight-700 {

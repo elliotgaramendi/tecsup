@@ -3,10 +3,12 @@ const Header = () => {
     <header className="header">
       <nav className="nav nav--scroll">
         <div className="container d-flex a-items-center g-4">
-          <a href="#" className="link f-1 d-flex a-items-center g-2">
-            <img src="/logo.svg" alt="Sin E Spoiler" width="32" height="32" />
-            <h2 className="interactive interactive--lg c-primary">Sin E Spoiler</h2>
-          </a>
+          <div className="f-1 d-flex j-content-start">
+            <a href="#" className="link d-flex a-items-center g-2">
+              <img src="/logo.svg" alt="Sin E Spoiler" width="32" height="32" />
+              <h2 className="interactive interactive--lg c-primary">Sin E Spoiler</h2>
+            </a>
+          </div>
           <div className="off-canvas off-canvas--right off-canvas--mobile" id="menu">
             <a
               href="#"

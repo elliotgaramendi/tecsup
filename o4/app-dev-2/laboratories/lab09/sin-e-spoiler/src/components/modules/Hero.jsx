@@ -12,9 +12,9 @@ const Hero = () => {
           <a href="#now-showing" className="button button--primary interactive interactive--xl">
             🎬 Browse Movies
           </a>
-          <button className="button button--outline-primary interactive interactive--xl">
+          <a className="button button--outline-primary interactive interactive--xl">
             🍃 Coming Soon
-          </button>
+          </a>
         </div>
       </div>
     </article>

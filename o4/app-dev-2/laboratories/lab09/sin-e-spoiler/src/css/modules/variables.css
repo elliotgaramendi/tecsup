@@ -8,8 +8,9 @@
   --black-color: #010508;
   --white-color: #FEFEFE;
 
-  --neutral-950: #191B1C;
-  --shadow: #fefefe80;
+  --neutral-950: #1B1B1B;
+  --neutral-200: #BBB;
+  --shadow: #FEFEFE80;
   --light-shadow: #01050880;
 
   --size: 0.21875rem;
@@ -23,6 +24,7 @@
   --secondary-background: var(--neutral-950);
 
   --primary-text: var(--white-color);
+  --secondary-text: var(--neutral-200);
   --light-primary-text: var(--black-color);
 
   --border-radius: calc(var(--size) * 2);
