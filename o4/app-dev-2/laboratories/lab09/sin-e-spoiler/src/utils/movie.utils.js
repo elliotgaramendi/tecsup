@@ -22,7 +22,7 @@ export const genres = {
   37: "Western"
 };
 
-export const mapTmdbToMovie = (tmdbMovie) => {
+export const adaptTmdbToMovie = (tmdbMovie) => {
   return {
     id: tmdbMovie.id,
     title: tmdbMovie.title,
@@ -36,4 +36,4 @@ export const mapTmdbToMovie = (tmdbMovie) => {
   };
 };
 
-export const getMovies = () => tmdbNowPlayingMock.results.map(mapTmdbToMovie);
+export const getMovies = () => tmdbNowPlayingMock.results.map(adaptTmdbToMovie);

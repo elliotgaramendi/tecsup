@@ -1449,7 +1449,7 @@ export const genres = {
   37: "Western"
 };
 
-export const mapTmdbToMovie = (tmdbMovie) => {
+export const adaptTmdbToMovie = (tmdbMovie) => {
   return {
     id: tmdbMovie.id,
     title: tmdbMovie.title,
