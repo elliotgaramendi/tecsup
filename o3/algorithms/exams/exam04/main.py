@@ -14,7 +14,7 @@ def record_test(test_name, condition):
 
 
 # ====================================================================
-# o1 Week 1 Algorithmic Complexity Challenges 📈⏱️
+# o1 Algorithmic Complexity Challenges 📈⏱️
 # ====================================================================
 
 
@@ -118,6 +118,94 @@ def test_o1_2():
 
 # Run tests for o1.2 🚀
 test_o1_2()
+
+
+# ====================================================================
+# o2 Recursion & Backtracking 🌀🔙
+# ====================================================================
+
+
+# --------------------------------------------------------------------
+# o2.1 🔁 Recursive Factorial 🧮✨
+# --------------------------------------------------------------------
+def factorial(n):
+    """🔁 Compute n! recursively; return None if input invalid."""
+    # Input validation ❌
+    if not isinstance(n, int) or n < 0:
+        return None
+    # Base case 🌱
+    if n == 0:
+        return 1
+    # Recursive case 🔄
+    return n * factorial(n - 1)
+
+
+def test_o2_1():
+    # o2.1.1: n = 0 → 1
+    record_test("o2.1.1 n=0 → 1", factorial(0) == 1)
+    # o2.1.2: n = 5 → 120
+    record_test("o2.1.2 n=5 → 120", factorial(5) == 120)
+    # o2.1.3: n = 7 → 5040
+    record_test("o2.1.3 n=7 → 5040", factorial(7) == 5040)
+    # o2.1.4: type-check
+    out = factorial(3)
+    record_test("o2.1.4 returns int", isinstance(out, int))
+    # o2.1.5: invalid input → None
+    record_test(
+        "o2.1.5 invalid returns None", factorial(-1) is None and factorial("a") is None
+    )
+
+
+# Run tests for o2.1 🚀
+test_o2_1()
+
+
+# --------------------------------------------------------------------
+# o2.2 🔤 Generate Binary Strings of Length N 0️⃣1️⃣🛤️
+# --------------------------------------------------------------------
+def generate_binary_strings(n):
+    """🔤 Generate all binary strings of length n via backtracking."""
+    # Input validation ❌
+    if not isinstance(n, int) or n < 0:
+        return []
+    result = []
+
+    def backtrack(prefix):
+        if len(prefix) == n:
+            result.append(prefix)
+            return
+        backtrack(prefix + "0")
+        backtrack(prefix + "1")
+
+    backtrack("")
+    return result
+
+
+def test_o2_2():
+    # o2.2.1: n = 2 → ['00','01','10','11']
+    record_test(
+        "o2.2.1 n=2 → 4 strings", generate_binary_strings(2) == ["00", "01", "10", "11"]
+    )
+    # o2.2.2: n = 3 → length = 8
+    record_test("o2.2.2 n=3 → length=8", len(generate_binary_strings(3)) == 8)
+    # o2.2.3: contains '101'
+    record_test("o2.2.3 contains '101'", "101" in generate_binary_strings(3))
+    # o2.2.4: type-check
+    res = generate_binary_strings(1)
+    record_test(
+        "o2.2.4 returns list[str]",
+        isinstance(res, list) and all(isinstance(s, str) for s in res),
+    )
+    # o2.2.5: invalid input → []
+    record_test(
+        "o2.2.5 invalid returns []",
+        generate_binary_strings(-1) == [] and generate_binary_strings("a") == [],
+    )
+
+
+# Run tests for o2.2 🚀
+test_o2_2()
+
 
 # ====================================================================
 # Final Summary 📋
