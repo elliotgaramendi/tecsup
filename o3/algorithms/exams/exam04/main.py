@@ -208,6 +208,146 @@ test_o2_2()
 
 
 # ====================================================================
+# o3 Linked Lists 📎🔗
+# ====================================================================
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+
+class LinkedList:
+    """Singly linked list with insert, display, search, delete, and length."""
+
+    def __init__(self):
+        self.head = None
+        self.length = 0
+
+    def insert_at_beginning(self, data):
+        """Insert new node at beginning and update length."""
+        if not isinstance(data, int):
+            return
+        node = Node(data)
+        node.next = self.head
+        self.head = node
+        self.length += 1
+
+    def insert_at_end(self, data):
+        """Insert new node at end and update length."""
+        if not isinstance(data, int):
+            return
+        node = Node(data)
+        if not self.head:
+            self.head = node
+        else:
+            curr = self.head
+            while curr.next:
+                curr = curr.next
+            curr.next = node
+        self.length += 1
+
+    def display(self):
+        """Return 'Empty list' or 'val1 -> val2 -> ...'."""
+        curr, vals = self.head, []
+        while curr:
+            vals.append(str(curr.data))
+            curr = curr.next
+        return " -> ".join(vals) if vals else "Empty list"
+
+    def search(self, target):
+        """Return True if target exists, else False."""
+        if not isinstance(target, int):
+            return False
+        curr = self.head
+        while curr:
+            if curr.data == target:
+                return True
+            curr = curr.next
+        return False
+
+    def delete(self, target):
+        """Delete first node with data == target and update length."""
+        if not isinstance(target, int):
+            return
+        # delete head
+        if self.head and self.head.data == target:
+            self.head = self.head.next
+            self.length -= 1
+            return
+        prev, curr = None, self.head
+        while curr:
+            if curr.data == target:
+                prev.next = curr.next
+                self.length -= 1
+                return
+            prev, curr = curr, curr.next
+
+
+# ====================================================================
+# o3.1 ➕ Insert at Beginning, Insert at End & Length 🏁👶➕📏
+# ====================================================================
+def test_o3_1():
+    ll = LinkedList()
+    # o3.1.1 Mixed single insert
+    ll.insert_at_beginning(2)
+    ll.insert_at_end(3)
+    record_test("o3.1.1 ll.display() == '2 -> 3'", ll.display() == "2 -> 3")
+    # o3.1.2 Mixed multiple inserts
+    ll.insert_at_beginning(1)
+    ll.insert_at_end(4)
+    record_test(
+        "o3.1.2 ll.display() == '1 -> 2 -> 3 -> 4'", ll.display() == "1 -> 2 -> 3 -> 4"
+    )
+    # o3.1.3 Length tracking
+    record_test("o3.1.3 ll.length == 4", ll.length == 4)
+    # o3.1.4 Invalid input handling
+    old_len = ll.length
+    ll.insert_at_beginning(None)
+    ll.insert_at_end("x")
+    record_test("o3.1.4 invalid ignored", ll.length == old_len)
+    # o3.1.5 Return-type verification
+    record_test(
+        "o3.1.5 types ok", isinstance(ll.length, int) and isinstance(ll.display(), str)
+    )
+
+
+# Run tests for o3.1 🚀
+test_o3_1()
+
+
+# ====================================================================
+# o3.2 🔍❌ Search & Delete 🕵️‍♂️🗑️
+# ====================================================================
+def test_o3_2():
+    ll = LinkedList()
+    for v in [1, 2, 3, 4]:
+        ll.insert_at_end(v)
+    # o3.2.1 Search found
+    record_test("o3.2.1 search(3) True", ll.search(3) is True)
+    # o3.2.2 Delete middle
+    ll.delete(2)
+    record_test("o3.2.2 display == '1 -> 3 -> 4'", ll.display() == "1 -> 3 -> 4")
+    # o3.2.3 Delete ends
+    ll.delete(1)
+    ll.delete(4)
+    record_test("o3.2.3 display == '3'", ll.display() == "3")
+    # o3.2.4 Invalid operations
+    old = ll.length
+    cond = ll.search(None) is False
+    ll.delete(999)
+    cond = cond and (ll.length == old)
+    record_test("o3.2.4 invalid handled", cond)
+    # o3.2.5 Return-type
+    record_test(
+        "o3.2.5 types ok", isinstance(ll.search(3), bool) and isinstance(ll.length, int)
+    )
+
+
+# Run tests for o3.2 🚀
+test_o3_2()
+
+
+# ====================================================================
 # Final Summary 📋
 # ====================================================================
 print("\n# Final Test Summary 📋")
