@@ -466,7 +466,7 @@ def record_test(test_name, condition):
 def generate_binary_strings(n):
     """🔤 Generate all binary strings of length n via backtracking."""
     # Your solution here 🛠️
-    pass
+    return []
 
 def test_o2_2():
     # o2.2.1: n = 2 → ['00','01','10','11']
@@ -821,3 +821,297 @@ for r in test_results:
 * Combines **lookup** and **removal**—key for dynamic collections 🔄.
 * Emphasizes robust **edge-case** handling (head/tail/absent) 🎯.
 * Prepares for advanced list manipulations like **filter** & **splice**.
+
+## o4: Stacks 📚🧱
+
+### o4.1 🧩 **Array-Based Stack: `is_empty`, `push`, `pop`** 🔄📥📤
+
+---
+
+#### ❓ Problem 🤔
+
+Implement a `Stack` class using a Python list with methods:
+
+* `is_empty()` → check empty
+* `push(data)` → add to top
+* `pop()` → remove and return top (or `None` if empty) 🚀
+
+---
+
+#### 📜 Description 📖
+
+* **Class**:
+
+  ```python
+  class Stack:
+      def __init__(self):
+          self.items = []
+  ```
+* **Methods to implement**:
+
+  1. `is_empty(self) → bool` – return `True` if `self.items` is empty.
+  2. `push(self, data) → None` – append `data` to `self.items`.
+  3. `pop(self) → Any | None` – if non‐empty, remove and return last element; else `None`.
+* **Constraints**:
+
+  * Use only built‐in list operations (`append`, `pop`).
+  * No errors on invalid use.
+  * Safe stub defaults so the harness always runs.
+
+---
+
+#### 🧪 Tests to Pass ✅
+
+1. **o4.1.1**: Core operations
+
+   * `s = Stack()`
+   * `s.is_empty()` → `True`
+   * `s.push(1); s.push(2)` → `s.items == [1,2]`
+   * `s.pop() == 2` and `s.pop() == 1` ✅
+2. **o4.1.2**: Pop on empty
+
+   * `s2 = Stack()`
+   * `s2.pop() is None` ✅
+3. **o4.1.3**: Mixed operations
+
+   * `s3 = Stack(); s3.push(0); s3.push(99)`
+   * `s3.pop() == 99` and `s3.is_empty() == False` ✅
+4. **o4.1.4**: Input‐agnostic
+
+   * `s4 = Stack(); s4.push(None); s4.push("x")`
+   * `s4.items == [None, "x"]` ✅
+5. **o4.1.5**: Return‐type tests
+
+   * `isinstance(s.is_empty(), bool)`
+   * `isinstance(s.pop(), (int, str, type(None)))` ✅
+
+---
+
+#### 💻 Base Code 🖥️
+
+```python
+test_results = []
+def record_test(test_name, condition):
+    emoji = "✅" if condition else "❌"
+    test_results.append(f"{emoji} {test_name}")
+
+class Stack:
+    def __init__(self):
+        self.items = []
+
+    def is_empty(self):
+        """Return True if stack is empty."""
+        # Your solution here 🛠️
+        return True   # safe default
+
+    def push(self, data):
+        """Push data onto the stack."""
+        # Your solution here 🛠️
+        return        # safe default
+
+    def pop(self):
+        """Pop and return top item or None if empty."""
+        # Your solution here 🛠️
+        return None   # safe default
+
+def test_o4_1():
+    # o4.1.1 Core operations
+    s = Stack()
+    cond1 = (
+        s.is_empty() is True
+        and s.push(1) is None and s.push(2) is None
+        and s.items == [1,2]
+        and s.pop() == 2 and s.pop() == 1
+    )
+    record_test("o4.1.1 core ops", cond1)
+
+    # o4.1.2 Pop on empty
+    s2 = Stack()
+    record_test("o4.1.2 pop empty → None", s2.pop() is None)
+
+    # o4.1.3 Mixed operations
+    s3 = Stack(); s3.push(0); s3.push(99)
+    cond3 = (s3.pop() == 99 and s3.is_empty() == False)
+    record_test("o4.1.3 mixed ops", cond3)
+
+    # o4.1.4 Input-agnostic
+    s4 = Stack(); s4.push(None); s4.push("x")
+    record_test("o4.1.4 store any", s4.items == [None,"x"])
+
+    # o4.1.5 Return-type tests
+    val = s.pop()
+    cond5 = isinstance(s.is_empty(), bool) and isinstance(val, (int,str,type(None)))
+    record_test("o4.1.5 return types", cond5)
+
+# 🚀 Run tests
+test_o4_1()
+
+# 📋 Summary
+for r in test_results:
+    print(r)
+```
+
+---
+
+#### 💡 Tips ✨
+
+* Use `self.items.append(data)` for `push` 📥.
+* Use `self.items.pop()` inside `if self.items:` for `pop` 🔄.
+* Check emptiness by `not self.items` or `len(self.items) == 0` 🔍.
+
+---
+
+#### 🧠 Motivation 💭
+
+* Stacks are **LIFO**: Last In, First Out 🔝.
+* Fundamental for **undo/redo**, **call stacks**, and **DFS** 🌲.
+
+---
+
+### o4.2 🧩 **Linked-List Stack: `push`, `pop`, `peek`, `size`** 🔗👀📏
+
+---
+
+#### ❓ Problem 🤔
+
+Implement a `LinkedStack` using nodes, with methods:
+
+* `push(data)` → add to top
+* `pop()` → remove & return top (or `None`)
+* `peek()` → view top without removal
+* `size()` → number of elements
+
+---
+
+#### 📜 Description 📖
+
+* **Classes**:
+
+  ```python
+  class Node:
+      def __init__(self, data):
+          self.data = data
+          self.next = None
+
+  class LinkedStack:
+      def __init__(self):
+          self.top = None      # Node or None
+          self._size = 0       # int
+  ```
+* **Methods to implement**:
+
+  1. `push(self, data)` – new `Node(data)` at head, `self._size += 1`.
+  2. `pop(self)` → if `self.top`, unlink & return `data`, else `None`.
+  3. `peek(self)` → return `self.top.data` or `None`.
+  4. `size(self)` → return `self._size`.
+* **Safe stub defaults** so base code runs without errors.
+
+---
+
+#### 🧪 Tests to Pass ✅
+
+1. **o4.2.1**: Empty behavior
+
+   * `s = LinkedStack()`
+   * `s.peek() is None`, `s.pop() is None`, `s.size() == 0` ✅
+2. **o4.2.2**: Push & peek & size
+
+   * `s.push(5); s.push(7); s.push(9)`
+   * `s.peek() == 9`, `s.size() == 3` ✅
+3. **o4.2.3**: After pop
+
+   * `s.pop()`
+   * `s.peek() == 7`, `s.size() == 2` ✅
+4. **o4.2.4**: Mixed types allowed
+
+   * `s.push("a")`
+   * `s.peek() == "a"`, `s.size() == 3` ✅
+5. **o4.2.5**: Return-type verification
+
+   * `isinstance(s.peek(), (int,str,type(None)))`
+   * `isinstance(s.size(), int)` ✅
+
+---
+
+#### 💻 Base Code 🖥️
+
+```python
+test_results = []
+def record_test(test_name, condition):
+    emoji = "✅" if condition else "❌"
+    test_results.append(f"{emoji} {test_name}")
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class LinkedStack:
+    def __init__(self):
+        self.top = None
+        self._size = 0
+
+    def push(self, data):
+        """Push element using linked nodes."""
+        # Your solution here 🛠️
+        return    # safe default
+
+    def pop(self):
+        """Pop and return top data or None."""
+        # Your solution here 🛠️
+        return None  # safe default
+
+    def peek(self):
+        """Return top data without removing or None."""
+        # Your solution here 🛠️
+        return None  # safe default
+
+    def size(self):
+        """Return number of items."""
+        # Your solution here 🛠️
+        return 0     # safe default
+
+def test_o4_2():
+    s = LinkedStack()
+    # o4.2.1 Empty behavior
+    cond1 = (s.peek() is None and s.pop() is None and s.size() == 0)
+    record_test("o4.2.1 empty behavior", cond1)
+    # o4.2.2 After pushes
+    s.push(5); s.push(7); s.push(9)
+    cond2 = (s.peek() == 9 and s.size() == 3)
+    record_test("o4.2.2 push/peek/size", cond2)
+    # o4.2.3 After pop
+    s.pop()
+    cond3 = (s.peek() == 7 and s.size() == 2)
+    record_test("o4.2.3 pop adjusts", cond3)
+    # o4.2.4 Mixed types
+    s.push("a")
+    cond4 = (s.peek() == "a" and s.size() == 3)
+    record_test("o4.2.4 mixed types", cond4)
+    # o4.2.5 Return-type tests
+    cond5 = isinstance(s.peek(), (int,str,type(None))) and isinstance(s.size(), int)
+    record_test("o4.2.5 return types", cond5)
+
+# 🚀 Run tests
+test_o4_2()
+
+# 📋 Summary
+for r in test_results:
+    print(r)
+```
+
+---
+
+#### 💡 Tips ✨
+
+* **Array stack**: use list ops at the end for O(1) performance.
+* **Linked stack**: insert/remove at the head, track `_size`.
+* `peek` never mutates; `size` simply returns the counter.
+
+---
+
+#### 🧠 Motivation 💭
+
+* Master both **list-backed** and **node-backed** stacks 🔄.
+* Understand contiguous vs. linked memory trade-offs 🚧.
+* Prepares for **DFS**, **undo/redo**, and **call-stack** systems 🌲.
