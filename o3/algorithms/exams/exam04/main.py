@@ -283,9 +283,9 @@ class LinkedList:
             prev, curr = curr, curr.next
 
 
-# ====================================================================
+# --------------------------------------------------------------------
 # o3.1 ➕ Insert at Beginning, Insert at End & Length 🏁👶➕📏
-# ====================================================================
+# --------------------------------------------------------------------
 def test_o3_1():
     ll = LinkedList()
     # o3.1.1 Mixed single insert
@@ -315,9 +315,9 @@ def test_o3_1():
 test_o3_1()
 
 
-# ====================================================================
+# --------------------------------------------------------------------
 # o3.2 🔍❌ Search & Delete 🕵️‍♂️🗑️
-# ====================================================================
+# --------------------------------------------------------------------
 def test_o3_2():
     ll = LinkedList()
     for v in [1, 2, 3, 4]:
@@ -481,6 +481,136 @@ def test_o4_2():
 
 # Run tests for o4.2 🚀
 test_o4_2()
+
+
+# ====================================================================
+# o5 Queues 🚶‍♀️
+# ====================================================================
+
+
+# --------------------------------------------------------------------
+# o5.1 🔄 Array-Based Queue: enqueue, dequeue, peek 📥📤👀
+# --------------------------------------------------------------------
+class Queue:
+    def __init__(self):
+        self.items = []
+
+    def enqueue(self, item):
+        """Add item to rear."""
+        self.items.append(item)
+
+    def dequeue(self):
+        """Remove and return front item or None if empty."""
+        return self.items.pop(0) if self.items else None
+
+    def peek(self):
+        """Return front item without removing or None if empty."""
+        return self.items[0] if self.items else None
+
+
+def test_o5_1():
+    q = Queue()
+    record_test("o5.1.1 empty behavior", q.dequeue() is None and q.peek() is None)
+
+    q.enqueue(1)
+    q.enqueue(2)
+    q.enqueue(3)
+    record_test(
+        "o5.1.2 FIFO order", q.dequeue() == 1 and q.dequeue() == 2 and q.dequeue() == 3
+    )
+
+    q.enqueue("x")
+    record_test("o5.1.3 peek preserves", q.peek() == "x" and q.dequeue() == "x")
+
+    q.enqueue(None)
+    q.enqueue("y")
+    record_test("o5.1.4 mixed types", q.peek() is None and q.dequeue() is None)
+
+    val1 = q.dequeue()
+    val2 = q.peek()
+    record_test(
+        "o5.1.5 return types",
+        isinstance(val1, (int, str, type(None)))
+        and isinstance(val2, (int, str, type(None))),
+    )
+
+
+# 🚀 Run tests for o5.1
+test_o5_1()
+
+
+# --------------------------------------------------------------------
+# o5.2 🔗 Linked-List Queue: is_empty, enqueue, dequeue, size 🧩📏
+# --------------------------------------------------------------------
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+
+class LinkedQueue:
+    def __init__(self):
+        self.front = None
+        self.rear = None
+        self._size = 0
+
+    def is_empty(self):
+        """Return True if queue is empty."""
+        return self._size == 0
+
+    def enqueue(self, item):
+        """Add item to rear."""
+        node = Node(item)
+        if self.rear:
+            self.rear.next = node
+            self.rear = node
+        else:
+            self.front = self.rear = node
+        self._size += 1
+
+    def dequeue(self):
+        """Remove and return front item or None if empty."""
+        if not self.front:
+            return None
+        data = self.front.data
+        self.front = self.front.next
+        if not self.front:
+            self.rear = None
+        self._size -= 1
+        return data
+
+    def size(self):
+        """Return number of elements."""
+        return self._size
+
+
+def test_o5_2():
+    q = LinkedQueue()
+    record_test("o5.2.1 empty", q.is_empty() is True and q.size() == 0)
+
+    q.enqueue("a")
+    q.enqueue("b")
+    record_test(
+        "o5.2.2 enqueue/dequeue",
+        q.is_empty() is False and q.size() == 2 and q.dequeue() == "a",
+    )
+
+    q.dequeue()
+    record_test("o5.2.3 drained", q.is_empty() is True and q.size() == 0)
+
+    old = q.size()
+    record_test("o5.2.4 invalid dequeue", q.dequeue() is None and q.size() == old)
+
+    record_test(
+        "o5.2.5 return types",
+        isinstance(q.is_empty(), bool)
+        and isinstance(q.size(), int)
+        and isinstance(q.dequeue(), (int, str, type(None))),
+    )
+
+
+# 🚀 Run tests for o5.2
+test_o5_2()
 
 
 # ====================================================================
