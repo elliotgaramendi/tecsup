@@ -246,14 +246,6 @@ class LinkedList:
             curr.next = node
         self.length += 1
 
-    def display(self):
-        """Return 'Empty list' or 'val1 -> val2 -> ...'."""
-        curr, vals = self.head, []
-        while curr:
-            vals.append(str(curr.data))
-            curr = curr.next
-        return " -> ".join(vals) if vals else "Empty list"
-
     def search(self, target):
         """Return True if target exists, else False."""
         if not isinstance(target, int):
@@ -281,6 +273,14 @@ class LinkedList:
                 self.length -= 1
                 return
             prev, curr = curr, curr.next
+
+    def display(self):
+        """Return 'Empty list' or 'val1 -> val2 -> ...'."""
+        curr, vals = self.head, []
+        while curr:
+            vals.append(str(curr.data))
+            curr = curr.next
+        return " -> ".join(vals) if vals else "Empty list"
 
 
 # --------------------------------------------------------------------

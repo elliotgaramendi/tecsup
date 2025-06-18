@@ -759,13 +759,6 @@ class LinkedList:
             curr.next = new
         self.length += 1
 
-    def display(self):
-        curr, vals = self.head, []
-        while curr:
-            vals.append(str(curr.data))
-            curr = curr.next
-        return " -> ".join(vals) if vals else "Empty list"
-
     def search(self, target):
         """Return True if target exists, else False."""
         # Your solution here 🛠️
@@ -775,6 +768,13 @@ class LinkedList:
         """Delete first node with data == target and update length."""
         # Your solution here 🛠️
         pass
+
+    def display(self):
+        curr, vals = self.head, []
+        while curr:
+            vals.append(str(curr.data))
+            curr = curr.next
+        return " -> ".join(vals) if vals else "Empty list"
 
 def test_o3_2():
     ll = LinkedList()
