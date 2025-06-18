@@ -1169,7 +1169,7 @@ for result in test_results:
 
 ## o5: Queues 🚶‍♀️🚶
 
-### o5.1 🔄 **Array-Based Queue: `enqueue`, `dequeue`, `peek`** 📥📤👀
+### o5.1 🧩 **Array-Based Queue: `enqueue`, `dequeue`, `peek`** 📥📤👀
 
 ---
 
@@ -1177,55 +1177,55 @@ for result in test_results:
 
 Implement a simple FIFO `Queue` class using a Python list with methods:
 
-1. `enqueue(item)` → add item at rear
-2. `dequeue()` → remove and return front element (or `None` if empty)
-3. `peek()` → return front element without removing (or `None` if empty)
+1. `enqueue(item)` → add item at rear  
+2. `dequeue()` → remove and return front element (or `None` if empty)  
+3. `peek()` → return front element without removing (or `None` if empty)  
 
 ---
 
 #### 📜 Description 📖
 
 * **Class**:
-
   ```python
   class Queue:
       def __init__(self):
-          self.items = []
+          self._items = []
   ```
+
 * **Methods to implement**:
 
-  1. **`enqueue(self, item)`** – append `item` to `self.items`.
-  2. **`dequeue(self)`** – if `items` non‐empty, `pop(0)` and return; else return `None`.
-  3. **`peek(self)`** – if `items` non‐empty, return `items[0]`; else `None`.
+  1. **`enqueue(self, item)`** – append `item` to `self._items`.
+  2. **`dequeue(self)`** – if `self._items` non‐empty, `pop(0)` and return; else implicitly return `None`.
+  3. **`peek(self)`** – if `self._items` non‐empty, return `self._items[0]`; else `None`.
 * **Constraints**:
 
   * Use only list operations.
-  * Safe defaults so harness never errors.
+  * Safe stubs (`pass`) so harness never errors.
 
 ---
 
 #### 🧪 Tests to Pass ✅
 
-1. **o5.1.1**: Empty queue behavior
+1. **o5.1.1 Empty queue behavior**
 
-   * `q = Queue()`
-   * `q.dequeue() is None` and `q.peek() is None` ✅
-2. **o5.1.2**: Enqueue/Dequeue order
+   * `queue_array = Queue()`
+   * `queue_array.dequeue() is None` and `queue_array.peek() is None`
+2. **o5.1.2 Enqueue/Dequeue order**
 
-   * `q.enqueue(1); q.enqueue(2); q.enqueue(3)`
-   * `q.dequeue() == 1`, `q.dequeue() == 2`, `q.dequeue() == 3` ✅
-3. **o5.1.3**: Peek without removing
+   * `queue_array.enqueue(1); queue_array.enqueue(2); queue_array.enqueue(3)`
+   * `queue_array.dequeue() == 1`, `queue_array.dequeue() == 2`, `queue_array.dequeue() == 3`
+3. **o5.1.3 Peek without removing**
 
-   * on fresh `q.enqueue("x")`
-   * `q.peek() == "x"` and then still `q.dequeue() == "x"` ✅
-4. **o5.1.4**: Mixed‐type support
+   * fresh `queue_array.enqueue("x")`
+   * `queue_array.peek() == "x"` and then still `queue_array.dequeue() == "x"`
+4. **o5.1.4 Mixed‐type support**
 
-   * `q.enqueue(None); q.enqueue("y")`
-   * `q.peek() is None` and subsequently `q.dequeue() == None` ✅
-5. **o5.1.5**: Return‐type tests
+   * `queue_array.enqueue(None); queue_array.enqueue("y")`
+   * `queue_array.peek() is None` and subsequently `queue_array.dequeue() is None`
+5. **o5.1.5 Return‐type tests**
 
-   * `isinstance(q.dequeue(), (int,str,type(None)))`
-   * `isinstance(q.peek(), (int,str,type(None)))` ✅
+   * `isinstance(queue_array.dequeue(), (int, str, type(None)))`
+   * `isinstance(queue_array.peek(),   (int, str, type(None)))`
 
 ---
 
@@ -1239,59 +1239,66 @@ def record_test(test_name, condition):
 
 class Queue:
     def __init__(self):
-        self.items = []
+        self._items = []
 
     def enqueue(self, item):
         """Add item to rear."""
         # Your solution here 🛠️
-        return      # safe default
+        pass
 
     def dequeue(self):
         """Remove and return front item or None if empty."""
         # Your solution here 🛠️
-        return None # safe default
+        pass
 
     def peek(self):
         """Return front item without removing or None if empty."""
         # Your solution here 🛠️
-        return None # safe default
+        pass
 
 def test_o5_1():
-    q = Queue()
+    queue_array = Queue()
     record_test("o5.1.1 empty behavior",
-        q.dequeue() is None and q.peek() is None)
+        queue_array.dequeue() is None and queue_array.peek() is None)
 
-    q.enqueue(1); q.enqueue(2); q.enqueue(3)
+    queue_array.enqueue(1)
+    queue_array.enqueue(2)
+    queue_array.enqueue(3)
     record_test("o5.1.2 FIFO order",
-        q.dequeue() == 1 and q.dequeue() == 2 and q.dequeue() == 3)
+        queue_array.dequeue() == 1 and
+        queue_array.dequeue() == 2 and
+        queue_array.dequeue() == 3)
 
-    q.enqueue("x")
+    queue_array.enqueue("x")
     record_test("o5.1.3 peek preserves",
-        q.peek() == "x" and q.dequeue() == "x")
+        queue_array.peek() == "x" and queue_array.dequeue() == "x")
 
-    q.enqueue(None); q.enqueue("y")
+    queue_array.enqueue(None)
+    queue_array.enqueue("y")
     record_test("o5.1.4 mixed types",
-        q.peek() is None and q.dequeue() is None)
+        queue_array.peek() is None and queue_array.dequeue() is None)
 
-    val1 = q.dequeue(); val2 = q.peek()
+    val_removed = queue_array.dequeue()
+    val_peeked  = queue_array.peek()
     record_test("o5.1.5 return types",
-        isinstance(val1, (int,str,type(None))) and isinstance(val2, (int,str,type(None))))
+        isinstance(val_removed, (int, str, type(None))) and
+        isinstance(val_peeked,   (int, str, type(None))))
 
 # 🚀 Run tests
 test_o5_1()
 
 # 📋 Summary
-for r in test_results:
-    print(r)
+for result in test_results:
+    print(result)
 ```
 
 ---
 
 #### 💡 Tips ✨
 
-* Use `self.items.append(item)` for **enqueue** 📥.
-* Use `self.items.pop(0)` for **dequeue** 🔄.
-* Check `if self.items:` before accessing for **peek** 🔎.
+* Use `self._items.append(item)` for **enqueue** 📥.
+* Use `self._items.pop(0)` for **dequeue** 🔄.
+* Always check `if self._items:` before accessing for **peek** 🔎.
 
 ---
 
@@ -1302,7 +1309,7 @@ for r in test_results:
 
 ---
 
-### o5.2 🔗 **Linked-List Queue: `is_empty`, `enqueue`, `dequeue`, `size`** 🧩📏
+### o5.2 🧩 **Linked-List Queue: `is_empty`, `enqueue`, `dequeue`, `size`** 🔗📏
 
 ---
 
@@ -1310,7 +1317,7 @@ for r in test_results:
 
 Implement a linked‐list based FIFO `LinkedQueue` with methods:
 
-1. `is_empty()` → check if queue has no elements
+1. `is_empty()` → return `True` if queue has no elements
 2. `enqueue(item)` → add new node at rear
 3. `dequeue()` → remove & return front node’s data (or `None`)
 4. `size()` → return number of elements
@@ -1326,43 +1333,48 @@ Implement a linked‐list based FIFO `LinkedQueue` with methods:
       def __init__(self, data):
           self.data = data
           self.next = None
+
   class LinkedQueue:
       def __init__(self):
-          self.front = None  # Node or None
-          self.rear  = None  # Node or None
-          self._size = 0     # int
+          self._front = None    # Node or None
+          self._rear  = None    # Node or None
+          self._count = 0       # int
   ```
 * **Methods to implement**:
 
-  1. **`is_empty(self)`** – return `True` if `_size==0`.
-  2. **`enqueue(self, item)`** – create `Node(item)`, link at `rear`, adjust `front` if needed, `_size += 1`.
-  3. **`dequeue(self)`** – if non‐empty, remove `front`, return its `data`, `_size -= 1`; else `None`.
-  4. **`size(self)`** – return `_size`.
-* **Safe defaults** to keep harness running.
+  1. **`is_empty(self)`** – return `True` if `_count == 0`.
+  2. **`enqueue(self, item)`** – create `Node(item)`, link at `_rear`, adjust `_front` if first, `_count += 1`.
+  3. **`dequeue(self)`** – if non‐empty, remove `_front`, return its `data`, `_count -= 1`; else `None`.
+  4. **`size(self)`** – return `_count`.
+* **Constraints**:
+
+  * Safe stubs (`pass`) so harness never errors.
 
 ---
 
 #### 🧪 Tests to Pass ✅
 
-1. **o5.2.1**: Empty queue
+1. **o5.2.1 Empty queue**
 
-   * `q = LinkedQueue()`
-   * `q.is_empty() is True` and `q.size() == 0` ✅
-2. **o5.2.2**: Enqueue/Dequeue
+   * `queue_linked = LinkedQueue()`
+   * `queue_linked.is_empty() is True` and `queue_linked.size() == 0`
+2. **o5.2.2 Enqueue/Dequeue**
 
-   * `q.enqueue("a"); q.enqueue("b")`
-   * `q.is_empty() is False`, `q.size() == 2`, `q.dequeue() == "a"` ✅
-3. **o5.2.3**: After removing all
+   * `queue_linked.enqueue("a"); queue_linked.enqueue("b")`
+   * `queue_linked.is_empty() is False`, `queue_linked.size() == 2`, `queue_linked.dequeue() == "a"`
+3. **o5.2.3 After removing all**
 
-   * `q.dequeue()` twice
-   * `q.is_empty() is True`, `q.size() == 0` ✅
-4. **o5.2.4**: Invalid dequeue
+   * `queue_linked.dequeue()` twice
+   * `queue_linked.is_empty() is True`, `queue_linked.size() == 0`
+4. **o5.2.4 Invalid dequeue**
 
-   * record `old = q.size()`
-   * `q.dequeue() is None` and `q.size() == old` ✅
-5. **o5.2.5**: Return‐type verification
+   * `previous_size = queue_linked.size()`
+   * `queue_linked.dequeue() is None` and `queue_linked.size() == previous_size`
+5. **o5.2.5 Return‐type verification**
 
-   * `isinstance(q.is_empty(), bool)` and `isinstance(q.size(), int)` and `isinstance(q.dequeue(), (int,str,type(None)))` ✅
+   * `isinstance(queue_linked.is_empty(), bool)`
+   * `isinstance(queue_linked.size(), int)`
+   * `isinstance(queue_linked.dequeue(), (int, str, type(None)))`
 
 ---
 
@@ -1381,72 +1393,76 @@ class Node:
 
 class LinkedQueue:
     def __init__(self):
-        self.front = None
-        self.rear  = None
-        self._size = 0
+        self._front = None
+        self._rear  = None
+        self._count = 0
 
     def is_empty(self):
         """Return True if queue is empty."""
         # Your solution here 🛠️
-        return True  # safe default
+        pass
 
     def enqueue(self, item):
         """Add item to rear."""
         # Your solution here 🛠️
-        return       # safe default
+        pass
 
     def dequeue(self):
         """Remove and return front item or None."""
         # Your solution here 🛠️
-        return None  # safe default
+        pass
 
     def size(self):
         """Return number of elements."""
         # Your solution here 🛠️
-        return 0     # safe default
+        pass
 
 def test_o5_2():
-    q = LinkedQueue()
-    record_test("o5.2.1 empty", q.is_empty() is True and q.size() == 0)
+    queue_linked = LinkedQueue()
+    record_test("o5.2.1 empty",
+        queue_linked.is_empty() is True and queue_linked.size() == 0)
 
-    q.enqueue("a"); q.enqueue("b")
+    queue_linked.enqueue("a")
+    queue_linked.enqueue("b")
     record_test("o5.2.2 enqueue/dequeue",
-        q.is_empty() is False and q.size() == 2 and q.dequeue() == "a")
+        queue_linked.is_empty() is False and
+        queue_linked.size() == 2 and
+        queue_linked.dequeue() == "a")
 
-    q.dequeue()
+    queue_linked.dequeue()
     record_test("o5.2.3 drained",
-        q.is_empty() is True and q.size() == 0)
+        queue_linked.is_empty() is True and queue_linked.size() == 0)
 
-    old = q.size()
+    previous_size = queue_linked.size()
     record_test("o5.2.4 invalid dequeue",
-        q.dequeue() is None and q.size() == old)
+        queue_linked.dequeue() is None and queue_linked.size() == previous_size)
 
     record_test("o5.2.5 return types",
-        isinstance(q.is_empty(), bool)
-        and isinstance(q.size(), int)
-        and isinstance(q.dequeue(), (int,str,type(None))))
+        isinstance(queue_linked.is_empty(), bool) and
+        isinstance(queue_linked.size(), int) and
+        isinstance(queue_linked.dequeue(), (int, str, type(None))))
 
 # 🚀 Run tests
 test_o5_2()
 
 # 📋 Summary
-for r in test_results:
-    print(r)
+for result in test_results:
+    print(result)
 ```
 
 ---
 
 #### 💡 Tips ✨
 
-* **is\_empty** → check `_size == 0`.
-* **enqueue** → link at `rear`; init both `front` & `rear` if first item.
-* **dequeue** → unlink `front`; update `rear` if now empty.
-* **size** → return `_size`.
+* **`is_empty`** – check `self._count == 0`.
+* **`enqueue`** – link new `Node` at `self._rear`; if first, set both `self._front` and `self._rear`.
+* **`dequeue`** – unlink `self._front`; if now empty, reset `self._rear` to `None`.
+* **`size`** – return `self._count`.
 
 ---
 
 #### 🧠 Motivation 💭
 
-* Queues are crucial for **BFS**, **buffering**, and **rate‐limiting** 🔄.
-* Linked‐list version avoids list‐shifting cost O(n) of array‐based dequeue 🚧.
+* Queues support **BFS**, **buffering**, and **rate‐limiting** 🔄.
+* Linked‐list version avoids O(n) cost of shifting in array‐based dequeues 🚧.
 * Reinforces dynamic memory and pointer handling 🧩.
