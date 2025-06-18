@@ -369,43 +369,47 @@ class Stack:
 
     def pop(self):
         """Pop and return top item or None if empty."""
-        return self.items.pop() if self.items else None
+        if self.items:
+            return self.items.pop()
+        return None
 
 
 def test_o4_1():
     # o4.1.1 Core operations
-    s = Stack()
-    cond1 = (
-        s.is_empty() is True
-        and s.push(1) is None
-        and s.push(2) is None
-        and s.items == [1, 2]
-        and s.pop() == 2
-        and s.pop() == 1
+    main_stack = Stack()
+    cond_core = (
+        main_stack.is_empty() is True
+        and main_stack.push(1) is None
+        and main_stack.push(2) is None
+        and main_stack.items == [1, 2]
+        and main_stack.pop() == 2
+        and main_stack.pop() == 1
     )
-    record_test("o4.1.1 core ops", cond1)
+    record_test("o4.1.1 core operations", cond_core)
 
     # o4.1.2 Pop on empty
-    s2 = Stack()
-    record_test("o4.1.2 pop empty → None", s2.pop() is None)
+    secondary_stack = Stack()
+    record_test("o4.1.2 pop on empty", secondary_stack.pop() is None)
 
     # o4.1.3 Mixed operations
-    s3 = Stack()
-    s3.push(0)
-    s3.push(99)
-    cond3 = s3.pop() == 99 and s3.is_empty() == False
-    record_test("o4.1.3 mixed ops", cond3)
+    mixed_stack = Stack()
+    mixed_stack.push(0)
+    mixed_stack.push(99)
+    cond_mixed = mixed_stack.pop() == 99 and mixed_stack.is_empty() is False
+    record_test("o4.1.3 mixed operations", cond_mixed)
 
-    # o4.1.4 Input‐agnostic
-    s4 = Stack()
-    s4.push(None)
-    s4.push("x")
-    record_test("o4.1.4 store any", s4.items == [None, "x"])
+    # o4.1.4 Input-agnostic storage
+    any_stack = Stack()
+    any_stack.push(None)
+    any_stack.push("x")
+    record_test("o4.1.4 input-agnostic storage", any_stack.items == [None, "x"])
 
-    # o4.1.5 Return‐type tests
-    val = s.pop()
-    cond5 = isinstance(s.is_empty(), bool) and isinstance(val, (int, str, type(None)))
-    record_test("o4.1.5 return types", cond5)
+    # o4.1.5 Return-type verification
+    popped_value = main_stack.pop()
+    cond_types = isinstance(main_stack.is_empty(), bool) and isinstance(
+        popped_value, (int, str, type(None))
+    )
+    record_test("o4.1.5 return-type verification", cond_types)
 
 
 # Run tests for o4.1 🚀
@@ -428,19 +432,19 @@ class LinkedStack:
 
     def push(self, data):
         """Push element using linked nodes."""
-        node = Node(data)
-        node.next = self.top
-        self.top = node
+        new_node = Node(data)
+        new_node.next = self.top
+        self.top = new_node
         self._size += 1
 
     def pop(self):
         """Pop and return top data or None."""
         if not self.top:
             return None
-        data = self.top.data
+        popped_data = self.top.data
         self.top = self.top.next
         self._size -= 1
-        return data
+        return popped_data
 
     def peek(self):
         """Return top data without removing or None."""
@@ -452,31 +456,37 @@ class LinkedStack:
 
 
 def test_o4_2():
-    s = LinkedStack()
     # o4.2.1 Empty behavior
-    cond1 = s.peek() is None and s.pop() is None and s.size() == 0
-    record_test("o4.2.1 empty behavior", cond1)
+    linked_stack = LinkedStack()
+    cond_empty = (
+        linked_stack.peek() is None
+        and linked_stack.pop() is None
+        and linked_stack.size() == 0
+    )
+    record_test("o4.2.1 empty behavior", cond_empty)
 
     # o4.2.2 Push & peek & size
-    s.push(5)
-    s.push(7)
-    s.push(9)
-    cond2 = s.peek() == 9 and s.size() == 3
-    record_test("o4.2.2 push/peek/size", cond2)
+    linked_stack.push(5)
+    linked_stack.push(7)
+    linked_stack.push(9)
+    cond_push = linked_stack.peek() == 9 and linked_stack.size() == 3
+    record_test("o4.2.2 push/peek/size", cond_push)
 
     # o4.2.3 After pop
-    s.pop()
-    cond3 = s.peek() == 7 and s.size() == 2
-    record_test("o4.2.3 pop adjusts", cond3)
+    linked_stack.pop()
+    cond_after_pop = linked_stack.peek() == 7 and linked_stack.size() == 2
+    record_test("o4.2.3 pop adjusts", cond_after_pop)
 
-    # o4.2.4 Mixed types allowed
-    s.push("a")
-    cond4 = s.peek() == "a" and s.size() == 3
-    record_test("o4.2.4 mixed types", cond4)
+    # o4.2.4 Mixed types
+    linked_stack.push("a")
+    cond_mixed = linked_stack.peek() == "a" and linked_stack.size() == 3
+    record_test("o4.2.4 mixed types", cond_mixed)
 
-    # o4.2.5 Return‐type verification
-    cond5 = isinstance(s.peek(), (int, str, type(None))) and isinstance(s.size(), int)
-    record_test("o4.2.5 return types", cond5)
+    # o4.2.5 Return-type verification
+    cond_types = isinstance(linked_stack.peek(), (int, str, type(None))) and isinstance(
+        linked_stack.size(), int
+    )
+    record_test("o4.2.5 return-type verification", cond_types)
 
 
 # Run tests for o4.2 🚀
