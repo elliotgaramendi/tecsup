@@ -1466,3 +1466,442 @@ for result in test_results:
 * Queues support **BFS**, **buffering**, and **rate‐limiting** 🔄.
 * Linked‐list version avoids O(n) cost of shifting in array‐based dequeues 🚧.
 * Reinforces dynamic memory and pointer handling 🧩.
+
+---
+
+## o6: Advanced Queues 🚀📊
+
+### o6.1 🧩 **Circular Array Queue: `enqueue`, `dequeue`, `size`** 🔄📥📤
+
+---
+
+#### ❓ Problem 🤔
+
+Implement a fixed-capacity circular FIFO `CircularArrayQueue` with methods:
+
+1. `enqueue(item) -> bool` → add item at rear if not full, return `True`; else `False` 🚫  
+2. `dequeue() -> Any` → remove and return front element if not empty, else `None` 📭  
+3. `size() -> int` → return current number of elements 📏  
+
+Wrap-around 🔁, full 🚫, empty 📭 — make it fun!
+
+---
+
+#### 📜 Description 📖
+
+* **Class**:
+  ```python
+  class CircularArrayQueue:
+      def __init__(self, capacity: int = 5):
+          self.capacity = capacity
+          self._queue = [None] * capacity
+          self._front = 0
+          self._rear = -1
+          self._count = 0
+  ```
+
+* **Methods to implement**:
+
+  1. **`enqueue(self, item) -> bool`**
+
+     * if `_count < capacity`:
+
+       * `_rear = (_rear + 1) % capacity` 🔁
+       * `_queue[_rear] = item` 📥
+       * `_count += 1`
+       * return `True` ✅
+     * else return `False` 🚫
+  2. **`dequeue(self) -> Any`**
+
+     * if `_count > 0`:
+
+       * `item = _queue[_front]` 📤
+       * `_front = (_front + 1) % capacity` 🔁
+       * `_count -= 1`
+       * return `item`
+     * else return `None` 📭
+  3. **`size(self) -> int`**
+
+     * return `_count` 📏
+
+* **Constraints**: no external libs 🔒, safe stubs (`pass`)
+
+---
+
+#### 🧪 Tests to Pass ✅
+
+1. **o6.1.1 Basic enqueue/dequeue + count**
+
+   ```python
+   circular_array_queue = CircularArrayQueue(3)
+   circular_array_queue.enqueue("A")
+   circular_array_queue.enqueue("B")
+   circular_array_queue.enqueue("C")
+   circular_array_queue.dequeue() == "A" and \
+   circular_array_queue.dequeue() == "B" and \
+   circular_array_queue.dequeue() == "C" and \
+   circular_array_queue.size() == 0  # 🎯
+   ```
+2. **o6.1.2 Wrap-around behavior + count**
+
+   ```python
+   circular_array_queue = CircularArrayQueue(3)
+   circular_array_queue.enqueue(1)
+   circular_array_queue.enqueue(2)
+   circular_array_queue.enqueue(3)
+   circular_array_queue.dequeue()            # frees slot
+   circular_array_queue.enqueue(4)           # wrap into idx 0 🔁
+   circular_array_queue.dequeue() == 2 and \
+   circular_array_queue.dequeue() == 3 and \
+   circular_array_queue.dequeue() == 4 and \
+   circular_array_queue.size() == 0  # 🔄
+   ```
+3. **o6.1.3 Empty after ops + count**
+
+   ```python
+   circular_array_queue = CircularArrayQueue(2)
+   circular_array_queue.enqueue("X")
+   circular_array_queue.enqueue("Y")
+   circular_array_queue.dequeue()
+   circular_array_queue.dequeue()
+   circular_array_queue.dequeue() is None and \
+   circular_array_queue.size() == 0  # 📭
+   ```
+4. **o6.1.4 Validation: full queue + count unchanged**
+
+   ```python
+   circular_array_queue = CircularArrayQueue(2)
+   circular_array_queue.enqueue(9)
+   circular_array_queue.enqueue(8)
+   circular_array_queue.enqueue(7) is False and \
+   circular_array_queue.size() == 2  # 🚫
+   ```
+5. **o6.1.5 Return-type verification + size type**
+
+   ```python
+   circular_array_queue = CircularArrayQueue(1)
+   isinstance(circular_array_queue.enqueue("Z"), bool) and \
+   isinstance(circular_array_queue.dequeue(), (str, type(None))) and \
+   isinstance(circular_array_queue.size(), int)  # 🔍
+   ```
+
+---
+
+#### 💻 Base Code 🖥️
+
+```python
+test_results = []
+def record_test(test_name, condition):
+    emoji = "✅" if condition else "❌"
+    test_results.append(f"{emoji} {test_name}")
+
+class CircularArrayQueue:
+    def __init__(self, capacity: int = 5):
+        self.capacity = capacity
+        self._queue = [None] * capacity
+        self._front = 0
+        self._rear = -1
+        self._count = 0
+
+    def enqueue(self, item) -> bool:
+        """Add item if not full, return True; else False."""
+        # Your solution here 🎯
+        pass
+
+    def dequeue(self):
+        """Remove and return front item or None if empty."""
+        # Your solution here 🔄
+        pass
+
+    def size(self) -> int:
+        """Return number of elements."""
+        # Your solution here 📏
+        pass
+
+def test_o6_1():
+    circular_array_queue = CircularArrayQueue(3)
+    circular_array_queue.enqueue("A")
+    circular_array_queue.enqueue("B")
+    circular_array_queue.enqueue("C")
+    record_test(
+        "o6.1.1 basic",
+        circular_array_queue.dequeue() == "A" and
+        circular_array_queue.dequeue() == "B" and
+        circular_array_queue.dequeue() == "C" and
+        circular_array_queue.size() == 0
+    )
+
+    circular_array_queue = CircularArrayQueue(3)
+    circular_array_queue.enqueue(1)
+    circular_array_queue.enqueue(2)
+    circular_array_queue.enqueue(3)
+    circular_array_queue.dequeue()
+    circular_array_queue.enqueue(4)
+    record_test(
+        "o6.1.2 wrap",
+        circular_array_queue.dequeue() == 2 and
+        circular_array_queue.dequeue() == 3 and
+        circular_array_queue.dequeue() == 4 and
+        circular_array_queue.size() == 0
+    )
+
+    circular_array_queue = CircularArrayQueue(2)
+    circular_array_queue.enqueue("X")
+    circular_array_queue.enqueue("Y")
+    circular_array_queue.dequeue()
+    circular_array_queue.dequeue()
+    record_test(
+        "o6.1.3 empty",
+        circular_array_queue.dequeue() is None and
+        circular_array_queue.size() == 0
+    )
+
+    circular_array_queue = CircularArrayQueue(2)
+    circular_array_queue.enqueue(9)
+    circular_array_queue.enqueue(8)
+    record_test(
+        "o6.1.4 full",
+        circular_array_queue.enqueue(7) is False and
+        circular_array_queue.size() == 2
+    )
+
+    circular_array_queue = CircularArrayQueue(1)
+    record_test(
+        "o6.1.5 types",
+        isinstance(circular_array_queue.enqueue("Z"), bool) and
+        isinstance(circular_array_queue.dequeue(), (str, type(None))) and
+        isinstance(circular_array_queue.size(), int)
+    )
+
+# 🚀 Run tests
+test_o6_1()
+
+# 📋 Summary
+for result in test_results:
+    print(result)
+```
+
+---
+
+#### 💡 Tips ✨
+
+* Use modulo arithmetic: `next_index = (current_index + 1) % capacity` 🔢
+* Track `_count` via the `size()` getter 📏
+* Initialize `_rear = -1` so first `enqueue` sets it to 0 🥇
+
+---
+
+#### 🧠 Motivation 💭
+
+* Circular queues avoid wasted slots in buffers 🔄
+* Core for **round-robin scheduling**, **network buffers**, **real-time systems** ⏱️
+* Reinforces index arithmetic and boundary conditions 🧩
+
+---
+
+### o6.2 🧩 **Circular Linked Queue: `enqueue`, `dequeue`, `size`** 🔗🔄
+
+---
+
+#### ❓ Problem 🤔
+
+Implement a dynamic circular FIFO `CircularLinkedQueue` using nodes with methods:
+
+1. `enqueue(data) -> bool` → add new node at rear, return `True` ✅
+2. `dequeue() -> Any` → remove and return front node’s data, or `None` if empty 📭
+3. `size() -> int` → return current number of elements 📏
+
+No fixed capacity—growable circle! 🌱
+
+---
+
+#### 📜 Description 📖
+
+* **Classes**:
+
+  ```python
+  class Node:
+      def __init__(self, data):
+          self.data = data
+          self.next = None
+
+  class CircularLinkedQueue:
+      def __init__(self):
+          self.rear = None
+          self._count = 0
+  ```
+
+* **Methods to implement**:
+
+  1. **`enqueue(self, data) -> bool`**
+
+     * Create `Node(data)` 🆕
+     * If `rear is None`: `node.next = node` 🔁
+     * Else: `node.next = rear.next`; `rear.next = node`
+     * `rear = node`; `_count += 1`; return `True` ✅
+  2. **`dequeue(self) -> Any`**
+
+     * If `rear is None`: return `None` 📭
+     * `front_node = rear.next`; capture `front_node.data`
+     * If single node: `rear = None`
+     * Else: `rear.next = front_node.next`
+     * `_count -= 1`; return data
+  3. **`size(self) -> int`**
+
+     * return `_count` 📏
+
+* **Constraints**: no external libs 🔒, safe stubs (`pass`)
+
+---
+
+#### 🧪 Tests to Pass ✅
+
+1. **o6.2.1 Empty dequeue + count**
+
+   ```python
+   circular_linked_queue = CircularLinkedQueue()
+   circular_linked_queue.dequeue() is None and \
+   circular_linked_queue.size() == 0  # 📭
+   ```
+2. **o6.2.2 Single enqueue/dequeue + count**
+
+   ```python
+   circular_linked_queue = CircularLinkedQueue()
+   circular_linked_queue.enqueue("A") is True and \
+   circular_linked_queue.dequeue() == "A" and \
+   circular_linked_queue.size() == 0  # 🥇
+   ```
+3. **o6.2.3 Multiple FIFO + count**
+
+   ```python
+   circular_linked_queue = CircularLinkedQueue()
+   circular_linked_queue.enqueue(1)
+   circular_linked_queue.enqueue(2)
+   circular_linked_queue.enqueue(3)
+   circular_linked_queue.dequeue() == 1 and \
+   circular_linked_queue.dequeue() == 2 and \
+   circular_linked_queue.dequeue() == 3 and \
+   circular_linked_queue.size() == 0  # 🎯
+   ```
+4. **o6.2.4 Validation: empty after drain + count**
+
+   ```python
+   circular_linked_queue = CircularLinkedQueue()
+   circular_linked_queue.enqueue("X")
+   circular_linked_queue.dequeue()
+   circular_linked_queue.dequeue() is None and \
+   circular_linked_queue.size() == 0  # 📭 again empty
+   ```
+5. **o6.2.5 Return-type verification + size type**
+
+   ```python
+   circular_linked_queue = CircularLinkedQueue()
+   isinstance(circular_linked_queue.enqueue("Z"), bool) and \
+   isinstance(circular_linked_queue.dequeue(), (int, str, type(None))) and \
+   isinstance(circular_linked_queue.size(), int)  # 🔍
+   ```
+
+---
+
+#### 💻 Base Code 🖥️
+
+```python
+test_results = []
+def record_test(test_name, condition):
+    emoji = "✅" if condition else "❌"
+    test_results.append(f"{emoji} {test_name}")
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class CircularLinkedQueue:
+    def __init__(self):
+        self.rear = None
+        self._count = 0
+
+    def enqueue(self, data) -> bool:
+        """Add node at rear, return True."""
+        # Your solution here 🔗
+        pass
+
+    def dequeue(self):
+        """Remove and return front data or None if empty."""
+        # Your solution here 🔄
+        pass
+
+    def size(self) -> int:
+        """Return number of elements."""
+        # Your solution here 📏
+        pass
+
+def test_o6_2():
+    circular_linked_queue = CircularLinkedQueue()
+    record_test(
+        "o6.2.1 empty",
+        circular_linked_queue.dequeue() is None and
+        circular_linked_queue.size() == 0
+    )
+
+    circular_linked_queue = CircularLinkedQueue()
+    record_test(
+        "o6.2.2 single",
+        circular_linked_queue.enqueue("A") is True and
+        circular_linked_queue.dequeue() == "A" and
+        circular_linked_queue.size() == 0
+    )
+
+    circular_linked_queue = CircularLinkedQueue()
+    circular_linked_queue.enqueue(1)
+    circular_linked_queue.enqueue(2)
+    circular_linked_queue.enqueue(3)
+    record_test(
+        "o6.2.3 multiple",
+        circular_linked_queue.dequeue() == 1 and
+        circular_linked_queue.dequeue() == 2 and
+        circular_linked_queue.dequeue() == 3 and
+        circular_linked_queue.size() == 0
+    )
+
+    circular_linked_queue = CircularLinkedQueue()
+    circular_linked_queue.enqueue("X")
+    circular_linked_queue.dequeue()
+    record_test(
+        "o6.2.4 empty-again",
+        circular_linked_queue.dequeue() is None and
+        circular_linked_queue.size() == 0
+    )
+
+    circular_linked_queue = CircularLinkedQueue()
+    record_test(
+        "o6.2.5 types",
+        isinstance(circular_linked_queue.enqueue("Z"), bool) and
+        isinstance(circular_linked_queue.dequeue(), (int, str, type(None))) and
+        isinstance(circular_linked_queue.size(), int)
+    )
+
+# 🚀 Run tests
+test_o6_2()
+
+# 📋 Summary
+for result in test_results:
+    print(result)
+```
+
+---
+
+#### 💡 Tips ✨
+
+* For array queue: use `(idx + 1) % capacity` 🔢
+* For linked queue: link single node to itself first 🔗
+* Always update `_count` and expose via `size()` 📏
+* Private `_count` is fine—clients use `size()` getter 😉
+
+---
+
+#### 🧠 Motivation 💭
+
+* Count tracking is essential for **full/empty** checks 🔎
+* Circular structures power **schedulers**, **buffers**, **network loops** ⏱️
+* Reinforces boundary logic and pointer arithmetic 🧩

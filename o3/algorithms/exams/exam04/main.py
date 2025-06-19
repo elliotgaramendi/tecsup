@@ -650,6 +650,207 @@ def test_o5_2():
 # Run tests for o5.2 🚀
 test_o5_2()
 
+
+# ====================================================================
+# o6: Advanced Queues 🚀📊
+# ====================================================================
+
+
+# --------------------------------------------------------------------
+# o6.1 🧩 Circular Array Queue: enqueue, dequeue, size 🔄📥📤
+# --------------------------------------------------------------------
+class CircularArrayQueue:
+    def __init__(self, capacity: int = 5):
+        self.capacity = capacity
+        self._queue = [None] * capacity
+        self._front = 0
+        self._rear = -1
+        self._count = 0
+
+    def enqueue(self, item) -> bool:
+        """Add item if not full, return True; else False."""
+        if self._count < self.capacity:
+            self._rear = (self._rear + 1) % self.capacity  # wrap-around 🔁
+            self._queue[self._rear] = item  # store 📥
+            self._count += 1  # increment count
+            return True  # success ✅
+        return False  # full 🚫
+
+    def dequeue(self):
+        """Remove and return front item or None if empty."""
+        if self._count > 0:
+            item = self._queue[self._front]  # retrieve 📤
+            self._front = (self._front + 1) % self.capacity  # advance front 🔁
+            self._count -= 1  # decrement count
+            return item
+        return None  # empty 📭
+
+    def size(self) -> int:
+        """Return number of elements."""
+        return self._count  # return count 📏
+
+
+def test_o6_1():
+    # o6.1.1 Basic enqueue/dequeue + count
+    circular_array_queue = CircularArrayQueue(3)
+    circular_array_queue.enqueue("A")
+    circular_array_queue.enqueue("B")
+    circular_array_queue.enqueue("C")
+    record_test(
+        "o6.1.1 basic",
+        circular_array_queue.dequeue() == "A"
+        and circular_array_queue.dequeue() == "B"
+        and circular_array_queue.dequeue() == "C"
+        and circular_array_queue.size() == 0,
+    )
+
+    # o6.1.2 Wrap-around behavior + count
+    circular_array_queue = CircularArrayQueue(3)
+    circular_array_queue.enqueue(1)
+    circular_array_queue.enqueue(2)
+    circular_array_queue.enqueue(3)
+    circular_array_queue.dequeue()  # frees slot
+    circular_array_queue.enqueue(4)  # wrap into idx 0 🔁
+    record_test(
+        "o6.1.2 wrap",
+        circular_array_queue.dequeue() == 2
+        and circular_array_queue.dequeue() == 3
+        and circular_array_queue.dequeue() == 4
+        and circular_array_queue.size() == 0,
+    )
+
+    # o6.1.3 Empty after ops + count
+    circular_array_queue = CircularArrayQueue(2)
+    circular_array_queue.enqueue("X")
+    circular_array_queue.enqueue("Y")
+    circular_array_queue.dequeue()
+    circular_array_queue.dequeue()
+    record_test(
+        "o6.1.3 empty",
+        circular_array_queue.dequeue() is None and circular_array_queue.size() == 0,
+    )
+
+    # o6.1.4 Validation: full queue + count unchanged
+    circular_array_queue = CircularArrayQueue(2)
+    circular_array_queue.enqueue(9)
+    circular_array_queue.enqueue(8)
+    record_test(
+        "o6.1.4 full",
+        circular_array_queue.enqueue(7) is False and circular_array_queue.size() == 2,
+    )
+
+    # o6.1.5 Return-type verification + size type
+    circular_array_queue = CircularArrayQueue(1)
+    record_test(
+        "o6.1.5 types",
+        isinstance(circular_array_queue.enqueue("Z"), bool)
+        and isinstance(circular_array_queue.dequeue(), (str, type(None)))
+        and isinstance(circular_array_queue.size(), int),
+    )
+
+
+# 🚀 Run tests
+test_o6_1()
+
+
+# --------------------------------------------------------------------
+# o6.2 🧩 Circular Linked Queue: enqueue, dequeue, size 🔗🔄
+# --------------------------------------------------------------------
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+
+class CircularLinkedQueue:
+    def __init__(self):
+        self.rear = None  # Node or None
+        self._count = 0  # int
+
+    def enqueue(self, data) -> bool:
+        """Add node at rear, return True."""
+        new_node = Node(data)  # create node 🆕
+        if self.rear is None:  # empty circle
+            new_node.next = new_node  # point to itself 🔁
+            self.rear = new_node
+        else:
+            new_node.next = self.rear.next  # link into circle
+            self.rear.next = new_node
+            self.rear = new_node  # update rear pointer 🥇
+        self._count += 1  # increment count
+        return True  # success ✅
+
+    def dequeue(self):
+        """Remove and return front data or None if empty."""
+        if self.rear is None:
+            return None  # empty 📭
+        front_node = self.rear.next  # node at front
+        data = front_node.data  # capture data
+        if front_node is self.rear:
+            self.rear = None  # single node -> empty
+        else:
+            self.rear.next = front_node.next  # remove front
+        self._count -= 1  # decrement count
+        return data
+
+    def size(self) -> int:
+        """Return number of elements."""
+        return self._count  # return count 📏
+
+
+def test_o6_2():
+    # o6.2.1 Empty dequeue + count
+    circular_linked_queue = CircularLinkedQueue()
+    record_test(
+        "o6.2.1 empty",
+        circular_linked_queue.dequeue() is None and circular_linked_queue.size() == 0,
+    )
+
+    # o6.2.2 Single enqueue/dequeue + count
+    circular_linked_queue = CircularLinkedQueue()
+    record_test(
+        "o6.2.2 single",
+        circular_linked_queue.enqueue("A") is True
+        and circular_linked_queue.dequeue() == "A"
+        and circular_linked_queue.size() == 0,
+    )
+
+    # o6.2.3 Multiple FIFO + count
+    circular_linked_queue = CircularLinkedQueue()
+    circular_linked_queue.enqueue(1)
+    circular_linked_queue.enqueue(2)
+    circular_linked_queue.enqueue(3)
+    record_test(
+        "o6.2.3 multiple",
+        circular_linked_queue.dequeue() == 1
+        and circular_linked_queue.dequeue() == 2
+        and circular_linked_queue.dequeue() == 3
+        and circular_linked_queue.size() == 0,
+    )
+
+    # o6.2.4 Validation: empty after drain + count
+    circular_linked_queue = CircularLinkedQueue()
+    circular_linked_queue.enqueue("X")
+    circular_linked_queue.dequeue()
+    record_test(
+        "o6.2.4 empty-again",
+        circular_linked_queue.dequeue() is None and circular_linked_queue.size() == 0,
+    )
+
+    # o6.2.5 Return-type & size-type verification
+    circular_linked_queue = CircularLinkedQueue()
+    record_test(
+        "o6.2.5 types",
+        isinstance(circular_linked_queue.enqueue("Z"), bool)
+        and isinstance(circular_linked_queue.dequeue(), (int, str, type(None)))
+        and isinstance(circular_linked_queue.size(), int),
+    )
+
+
+# 🚀 Run tests
+test_o6_2()
+
+
 # ====================================================================
 # Final Summary 📋
 # ====================================================================
