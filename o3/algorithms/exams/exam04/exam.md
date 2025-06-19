@@ -6,6 +6,8 @@ Welcome to the ultimate Python-based exam! 🚀 Each week contains 2 exciting ch
 
 ## o1: Algorithmic Complexity Challenges 📈⏱️
 
+> Explore logarithmic vs. constant-time growth! 🔢➕📈 Implement doubling counts and closed-form sums, measure execution time ⏳, handle invalid inputs 🚫, and solidify your grasp of O(log n) vs O(1) analysis.
+
 ### o1.1 🧩 **Count Doublings to Exceed N** 🔢➕📈
 
 ---
@@ -286,6 +288,8 @@ for r in test_results:
 
 ## o2: Recursion & Backtracking 🌀🔙
 
+> In this section you’ll implement classic recursive and backtracking algorithms—computing factorials via pure recursion and generating all binary strings of length n through backtracking. Master the call stack, base cases, and explore combinatorial branches with elegance! 🔄🌳✨
+
 ### o2.1 🔁 **Recursive Factorial** 🧮✨
 
 ---
@@ -514,6 +518,9 @@ for r in test_results:
 ---
 
 ## o3: Linked Lists 📎🔗
+
+> In this section, you’ll build and manipulate singly linked lists using `Node` pointers—practicing insertion at both ends, length tracking, search, and deletion. 🐍✨🧩
+> Master dynamic memory, pointer updates, and edge-case handling for robust list operations! 🏁🔍❌📏
 
 ### o3.1 ➕ **Insert at Beginning, Insert at End & Length** 🏁👶➕📏
 
@@ -825,6 +832,13 @@ for r in test_results:
 ---
 
 ## o4: Stacks 📚🧱
+
+> Dive into LIFO magic! 🪄 In this section you’ll build two stack flavors:
+>
+> 1. **Array-Based Stack** with `is_empty()`, `push()`, `pop()`, and `peek()` using Python list ops 🔄📥📤👀
+> 2. **Linked-List Stack** with `push()`, `pop()`, `peek()`, and `size()` using Node pointers 🧩🔗📏
+>
+> Master constant-time operations, safe fallbacks, and both contiguous & pointer-based memory models! ⚡️✨
 
 ### o4.1 🧩 **Array-Based Stack: `is_empty`, `push`, `pop`** 🔄📥📤
 
@@ -1169,6 +1183,8 @@ for result in test_results:
 
 ## o5: Queues 🚶‍♀️🚶
 
+> Practice FIFO fundamentals with both array-based and linked-list implementations—enqueue, dequeue & peek to master core queue operations! 🎯🔄
+
 ### o5.1 🧩 **Array-Based Queue: `enqueue`, `dequeue`, `peek`** 📥📤👀
 
 ---
@@ -1470,6 +1486,8 @@ for result in test_results:
 ---
 
 ## o6: Advanced Queues 🚀📊
+
+> In this section, you'll master circular and dynamic queue implementations—handling wrap-around logic, capacity checks, and pointer manipulation with flair! 🎯⚙️✨
 
 ### o6.1 🧩 **Circular Array Queue: `enqueue`, `dequeue`, `size`** 🔄📥📤
 
