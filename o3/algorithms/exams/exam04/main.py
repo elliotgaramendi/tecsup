@@ -749,7 +749,7 @@ def test_o6_1():
     )
 
 
-# 🚀 Run tests
+# 🚀 Run tests for o6.1 🚀
 test_o6_1()
 
 
@@ -847,8 +847,248 @@ def test_o6_2():
     )
 
 
-# 🚀 Run tests
+# 🚀 Run tests for o6.2 🚀
 test_o6_2()
+
+
+# ====================================================================
+# o7: Binary Trees 🌳🔢
+# ====================================================================
+
+
+# --------------------------------------------------------------------
+# o7.1 🧩 Binary Search Tree: insert, update, delete 🔍➕🔄❌
+# --------------------------------------------------------------------
+class TreeNode:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+
+class BinarySearchTree:
+    def __init__(self):
+        self.root = None
+
+    def search(self, value) -> bool:
+        """Return True if value in BST."""
+
+        def _search(node, target):
+            if node is None:
+                return False
+            if target == node.value:
+                return True
+            return (
+                _search(node.left, target)
+                if target < node.value
+                else _search(node.right, target)
+            )
+
+        return _search(self.root, value)
+
+    def insert(self, value) -> bool:
+        """Insert value into BST; return False if duplicate."""
+        if self.root is None:
+            self.root = TreeNode(value)
+            return True
+
+        def _insert(node, val):
+            if val < node.value:
+                if node.left is None:
+                    node.left = TreeNode(val)
+                    return True
+                return _insert(node.left, val)
+            elif val > node.value:
+                if node.right is None:
+                    node.right = TreeNode(val)
+                    return True
+                return _insert(node.right, val)
+            else:
+                return False  # duplicate
+
+        return _insert(self.root, value)
+
+    def delete(self, value) -> bool:
+        """Delete value from BST; return False if not found."""
+
+        def _delete(node, val):
+            if node is None:
+                return node, False
+            if val < node.value:
+                node.left, deleted = _delete(node.left, val)
+            elif val > node.value:
+                node.right, deleted = _delete(node.right, val)
+            else:
+                deleted = True
+                if node.left is None:
+                    return node.right, True
+                if node.right is None:
+                    return node.left, True
+                # two children: replace with in-order successor
+                succ = node.right
+                while succ.left:
+                    succ = succ.left
+                node.value = succ.value
+                node.right, _ = _delete(node.right, succ.value)
+            return node, deleted
+
+        self.root, deleted = _delete(self.root, value)
+        return deleted
+
+    def update(self, old_value, new_value) -> bool:
+        """Replace old_value with new_value; maintain BST invariants."""
+        if not self.search(old_value):
+            return False
+        self.delete(old_value)
+        self.insert(new_value)
+        return True
+
+
+def test_o7_1():
+    # o7.1.1 Insert & Search
+    bst = BinarySearchTree()
+    record_test(
+        "o7.1.1 insert/find",
+        bst.insert(5) is True
+        and bst.insert(3)
+        and bst.insert(7)
+        and bst.search(3) is True
+        and bst.search(8) is False,
+    )
+    # o7.1.2 Update Existing
+    bst = BinarySearchTree()
+    for v in [10, 5, 15]:
+        bst.insert(v)
+    record_test(
+        "o7.1.2 update",
+        bst.update(5, 6) is True and bst.search(6) and not bst.search(5),
+    )
+    # o7.1.3 Delete Leaf & One/Two-Child
+    bst = BinarySearchTree()
+    for v in [20, 10, 30, 5, 15]:
+        bst.insert(v)
+    record_test(
+        "o7.1.3 delete",
+        bst.delete(5)
+        and bst.delete(30)
+        and bst.delete(10)
+        and not bst.search(5)
+        and not bst.search(30)
+        and not bst.search(10),
+    )
+    # o7.1.4 Validation: Duplicate Insert
+    bst = BinarySearchTree()
+    bst.insert(2)
+    record_test("o7.1.4 dup insert", bst.insert(2) is False and bst.search(2) is True)
+    # o7.1.5 Return-Type Verification
+    bst = BinarySearchTree()
+    record_test(
+        "o7.1.5 types",
+        isinstance(bst.insert(1), bool)
+        and isinstance(bst.update(1, 2), bool)
+        and isinstance(bst.delete(1), bool),
+    )
+
+
+# Run tests for o7.1 🚀
+test_o7_1()
+
+
+# --------------------------------------------------------------------
+# o7.2 🧩 Tree Traversals: Preorder, Inorder & Postorder 🔄👣
+# --------------------------------------------------------------------
+class BinaryTree:
+    def __init__(self, root=None):
+        self.root = root
+
+    def preorder_traversal(self, node=None, result=None):
+        if result is None:
+            result = []
+            node = self.root
+        if node:
+            result.append(node.value)
+            self.preorder_traversal(node.left, result)
+            self.preorder_traversal(node.right, result)
+        return result
+
+    def inorder_traversal(self, node=None, result=None):
+        if result is None:
+            result = []
+            node = self.root
+        if node:
+            self.inorder_traversal(node.left, result)
+            result.append(node.value)
+            self.inorder_traversal(node.right, result)
+        return result
+
+    def postorder_traversal(self, node=None, result=None):
+        if result is None:
+            result = []
+            node = self.root
+        if node:
+            self.postorder_traversal(node.left, result)
+            self.postorder_traversal(node.right, result)
+            result.append(node.value)
+        return result
+
+
+def test_o7_2():
+    # o7.2.1 Balanced Tree
+    root = TreeNode(1)
+    root.left = TreeNode(2)
+    root.right = TreeNode(3)
+    root.left.left = TreeNode(4)
+    root.left.right = TreeNode(5)
+    root.right.right = TreeNode(6)
+    tree = BinaryTree(root)
+    record_test(
+        "o7.2.1 balanced traversals",
+        tree.inorder_traversal() == [4, 2, 5, 1, 3, 6]
+        and tree.preorder_traversal() == [1, 2, 4, 5, 3, 6]
+        and tree.postorder_traversal() == [4, 5, 2, 6, 3, 1],
+    )
+
+    # o7.2.2 Single Node
+    single = BinaryTree(TreeNode(42))
+    record_test(
+        "o7.2.2 single",
+        single.preorder_traversal() == [42]
+        and single.inorder_traversal() == [42]
+        and single.postorder_traversal() == [42],
+    )
+
+    # o7.2.3 Empty Tree
+    empty = BinaryTree()
+    record_test(
+        "o7.2.3 empty",
+        empty.preorder_traversal() == []
+        and empty.inorder_traversal() == []
+        and empty.postorder_traversal() == [],
+    )
+
+    # o7.2.4 Right-Heavy Tree
+    rh = BinaryTree(TreeNode(1))
+    rh.root.right = TreeNode(2)
+    rh.root.right.right = TreeNode(3)
+    record_test(
+        "o7.2.4 right-heavy",
+        rh.preorder_traversal() == [1, 2, 3]
+        and rh.inorder_traversal() == [1, 2, 3]
+        and rh.postorder_traversal() == [3, 2, 1],
+    )
+
+    # o7.2.5 Return-Type Verification
+    tree2 = BinaryTree()
+    record_test(
+        "o7.2.5 types",
+        isinstance(tree2.preorder_traversal(), list)
+        and isinstance(tree2.inorder_traversal(), list)
+        and isinstance(tree2.postorder_traversal(), list),
+    )
+
+
+# Run tests for o7.2 🚀
+test_o7_2()
 
 
 # ====================================================================
