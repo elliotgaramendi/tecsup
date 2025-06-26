@@ -1932,95 +1932,90 @@ for result in test_results:
 
 ---
 
-### o7.1 🧩 **Binary Search Tree: `insert`, `update`, `delete`** 🌿➕🔄❌
+### o7.1 🧩 **TreeNode: `insert_left` & `insert_right`** 🌿➕
 
 #### ❓ Problem 🤔
+Implement two insertion methods on a simple binary-tree node:
 
-Implement a **Binary Search Tree** (`BinarySearchTree`) with methods:
+1. `insert_left(self, value) -> TreeNode`  
+2. `insert_right(self, value) -> TreeNode`  
 
-1. `insert(value) -> bool` → insert `value` following BST rules; return `True` if inserted, `False` if duplicate
-2. `update(old_value, new_value) -> bool` → if `old_value` exists, replace it with `new_value` (maintaining BST invariants), return `True`; else `False`
-3. `delete(value) -> bool` → remove node with `value`; return `True` if removed, `False` if not found
+Each should insert a new child in the specified position. If a child already exists there, the new node takes that spot and the old child becomes the corresponding child of the new node.
 
 ---
 
 #### 📜 Description 📖
-
-* **Classes**:
-
+* **Class**:
   ```python
   class TreeNode:
       def __init__(self, value):
           self.value = value
           self.left  = None
           self.right = None
-
-  class BinarySearchTree:
-      def __init__(self):
-          self.root = None
   ```
+
 * **Methods to implement**:
 
-  * `insert(self, value) -> bool`
-  * `update(self, old_value, new_value) -> bool`
-  * `delete(self, value) -> bool`
-* **Helper (optional)**:
+  * `insert_left(self, value) -> TreeNode`
+  * `insert_right(self, value) -> TreeNode`
+* **Behavior**:
 
-  * `search(self, value) -> bool` for testing/internals 🔍
+  * **Empty spot** → place new node directly.
+  * **Occupied spot** → new node takes position; old child becomes child of new node.
+* **Inputs**:
+
+  * `value`: any data to store in the node.
+* **Outputs**:
+
+  * The newly created `TreeNode`.
+* **Edge Cases**:
+
+  * Shifting an existing child under the new node.
 * **Constraints**:
 
-  * Safe stubs (`pass`) must not break harness ⚠️
+  * Do **not** change method signatures.
 
 ---
 
 #### 🧪 Tests to Pass ✅
 
-1. **o7.1.1 Insert & Search**
+1. **o7.1.1 Left Creation**
 
    ```python
-   bst = BinarySearchTree()
-   record_test("o7.1.1 insert/find",
-       bst.insert(5) is True and bst.insert(3) and bst.insert(7)
-       and bst.search(3) is True and bst.search(8) is False
-   )
+   root = TreeNode(1)
+   left = root.insert_left(2)
+   print(root.left.value == 2)
    ```
-2. **o7.1.2 Update Existing**
+2. **o7.1.2 Right Creation**
 
    ```python
-   bst = BinarySearchTree()
-   for v in [10,5,15]: bst.insert(v)
-   record_test("o7.1.2 update",
-       bst.update(5, 6) is True and bst.search(6) and not bst.search(5)
-   )
+   root = TreeNode(1)
+   right = root.insert_right(3)
+   print(root.right.value == 3)
    ```
-3. **o7.1.3 Delete Leaf & One/Two-Child**
+3. **o7.1.3 Independent Insertion**
 
    ```python
-   bst = BinarySearchTree()
-   for v in [20,10,30,5,15]: bst.insert(v)
-   record_test("o7.1.3 delete",
-       bst.delete(5) and bst.delete(30) and bst.delete(10)
-       and not bst.search(5) and not bst.search(30) and not bst.search(10)
-   )
+   root = TreeNode(1)
+   root.insert_left(4)
+   root.insert_right(5)
+   print(root.left.value == 4 and root.right.value == 5)
    ```
-4. **o7.1.4 Validation: Duplicate Insert**
+4. **o7.1.4 Validation: Left-Shift**
 
    ```python
-   bst = BinarySearchTree()
-   bst.insert(2)
-   record_test("o7.1.4 dup insert",
-       bst.insert(2) is False and bst.search(2) is True
-   )
+   root = TreeNode(1)
+   root.left = TreeNode(6)
+   new_left = root.insert_left(7)
+   print(new_left.left.value == 6)
    ```
 5. **o7.1.5 Return-Type Verification**
 
    ```python
-   bst = BinarySearchTree()
-   record_test("o7.1.5 types",
-       isinstance(bst.insert(1), bool)
-       and isinstance(bst.update(1,2), bool)
-       and isinstance(bst.delete(1), bool)
-   )
+   root = TreeNode(1)
+   left = root.insert_left(2)
+   right = root.insert_right(3)
+   print(isinstance(left, TreeNode) and isinstance(right, TreeNode))
    ```
 
 ---
@@ -2039,62 +2034,42 @@ class TreeNode:
         self.left  = None
         self.right = None
 
-class BinarySearchTree:
-    def __init__(self):
-        self.root = None
-
-    def insert(self, value) -> bool:
-        """Insert value into BST; return False if duplicate."""
-        # Your solution here 🛠️
+    def insert_left(self, value) -> 'TreeNode':
+        """Insert a new node to the left; shift existing child if present."""
         pass
 
-    def update(self, old_value, new_value) -> bool:
-        """Replace old_value with new_value; maintain BST."""
-        # Your solution here 🔄
-        pass
-
-    def delete(self, value) -> bool:
-        """Delete value from BST; return False if not found."""
-        # Your solution here ❌
-        pass
-
-    def search(self, value) -> bool:
-        """Return True if value in BST."""
-        # Your solution here 🔍
+    def insert_right(self, value) -> 'TreeNode':
+        """Insert a new node to the right; shift existing child if present."""
         pass
 
 def test_o7_1():
-    # o7.1.1 Insert & Search
-    bst = BinarySearchTree()
-    record_test("o7.1.1 insert/find",
-        bst.insert(5) is True and bst.insert(3) and bst.insert(7)
-        and bst.search(3) is True and bst.search(8) is False
+    # o7.1.1 Left Creation
+    root = TreeNode(1)
+    left = root.insert_left(2)
+    record_test("o7.1.1 left creation", root.left.value == 2)
+
+    # o7.1.2 Right Creation
+    root = TreeNode(1)
+    right = root.insert_right(3)
+    record_test("o7.1.2 right creation", root.right.value == 3)
+
+    # o7.1.3 Independent Insertion
+    root = TreeNode(1)
+    root.insert_left(4)
+    root.insert_right(5)
+    record_test(
+        "o7.1.3 independent insertion", root.left.value == 4 and root.right.value == 5
     )
-    # o7.1.2 Update Existing
-    bst = BinarySearchTree()
-    for v in [10,5,15]: bst.insert(v)
-    record_test("o7.1.2 update",
-        bst.update(5,6) is True and bst.search(6) and not bst.search(5)
-    )
-    # o7.1.3 Delete Leaf & One/Two-Child
-    bst = BinarySearchTree()
-    for v in [20,10,30,5,15]: bst.insert(v)
-    record_test("o7.1.3 delete",
-        bst.delete(5) and bst.delete(30) and bst.delete(10)
-        and not bst.search(5) and not bst.search(30) and not bst.search(10)
-    )
-    # o7.1.4 Validation: Duplicate Insert
-    bst = BinarySearchTree()
-    bst.insert(2)
-    record_test("o7.1.4 dup insert",
-        bst.insert(2) is False and bst.search(2) is True
-    )
+
+    # o7.1.4 Validation: Left-Shift
+    root = TreeNode(1)
+    root.left = TreeNode(6)
+    new_left = root.insert_left(7)
+    record_test("o7.1.4 left shift", new_left.left.value == 6)
+
     # o7.1.5 Return-Type Verification
-    bst = BinarySearchTree()
-    record_test("o7.1.5 types",
-        isinstance(bst.insert(1), bool)
-        and isinstance(bst.update(1,2), bool)
-        and isinstance(bst.delete(1), bool)
+    record_test(
+        "o7.1.5 return type", isinstance(left, TreeNode) and isinstance(right, TreeNode)
     )
 
 # 🚀 Run tests
@@ -2109,35 +2084,31 @@ for r in test_results:
 
 #### 💡 Tips ✨
 
-* **Insert**: compare and recurse left/right until spot found 🗺️
-* **Update**: you may `delete(old)` then `insert(new)` 🔄
-* **Delete**: handle three cases—leaf, one child, two children (replace with in-order successor) 🌱
-* **Search**: simple recursive lookup 🔍
+* When inserting, if `self.left` (or `self.right`) exists, reassign it under the new node.
+* Always return the newly created `TreeNode`.
+* Keep your stubs (`pass`) so the harness never errors prematurely.
 
 ---
 
 #### 🧠 Motivation 💭
 
-Binary search trees support **dynamic sets**, **ordered data**, and underlie **balanced trees**, **maps**, and **multisets** in real-world systems. 📊🛠️
+Simple node insertions form the basis for more advanced tree structures—expression trees, heaps, and even search trees. Mastering how children are attached and shifted is essential for building and manipulating dynamic trees! 🌳
 
 ---
 
 ### o7.2 🧩 **Tree Traversals: Preorder, Inorder & Postorder** 🔄👣
 
 #### ❓ Problem 🤔
-
 Implement three traversal methods in `BinaryTree`:
 
-1. `preorder_traversal(node=None, result=None) -> list[int]` (root–left–right) 🌲
-2. `inorder_traversal(node=None, result=None) -> list[int]` (left–root–right) 🔍
-3. `postorder_traversal(node=None, result=None) -> list[int]` (left–right–root) 🌴
+1. `preorder_traversal(self, node=None, result=None) -> list[int]` (root–left–right) 🌲  
+2. `inorder_traversal(self, node=None, result=None) -> list[int]`  (left–root–right) 🔍  
+3. `postorder_traversal(self, node=None, result=None) -> list[int]` (left–right–root) 🌴
 
 ---
 
 #### 📜 Description 📖
-
 * **Classes**:
-
   ```python
   class TreeNode:
       def __init__(self, value):
@@ -2149,11 +2120,26 @@ Implement three traversal methods in `BinaryTree`:
       def __init__(self, root=None):
           self.root = root
   ```
+
 * **Methods to implement**:
 
   * `preorder_traversal(self, node=None, result=None) -> list[int]`
   * `inorder_traversal(self, node=None, result=None) -> list[int]`
   * `postorder_traversal(self, node=None, result=None) -> list[int]`
+* **Behavior**:
+
+  * Use `result` as an accumulator list.
+  * Default `node` to `self.root` if `None`.
+* **Outputs**:
+
+  * A list of node values in the specified order.
+* **Edge Cases**:
+
+  * Empty tree ⇒ `[]`
+  * Single‐node tree ⇒ `[value]`
+* **Constraints**:
+
+  * Do **not** change method signatures.
 
 ---
 
@@ -2162,7 +2148,6 @@ Implement three traversal methods in `BinaryTree`:
 1. **o7.2.1 Balanced Tree**
 
    ```python
-   # Tree:
    #      1
    #     / \
    #    2   3
@@ -2174,10 +2159,10 @@ Implement three traversal methods in `BinaryTree`:
    root.right.right = TreeNode(6)
    tree = BinaryTree(root)
    record_test("o7.2.1 inorder",
-       tree.inorder_traversal() == [4,2,5,1,3,6]
+       tree.inorder_traversal()   == [4,2,5,1,3,6]
    )
    record_test("o7.2.1 preorder",
-       tree.preorder_traversal() == [1,2,4,5,3,6]
+       tree.preorder_traversal()  == [1,2,4,5,3,6]
    )
    record_test("o7.2.1 postorder",
        tree.postorder_traversal() == [4,5,2,6,3,1]
@@ -2188,8 +2173,8 @@ Implement three traversal methods in `BinaryTree`:
    ```python
    single = BinaryTree(TreeNode(42))
    record_test("o7.2.2 single",
-       single.preorder_traversal() == [42]
-       and single.inorder_traversal() == [42]
+       single.preorder_traversal()  == [42]
+       and single.inorder_traversal()   == [42]
        and single.postorder_traversal() == [42]
    )
    ```
@@ -2198,24 +2183,23 @@ Implement three traversal methods in `BinaryTree`:
    ```python
    empty = BinaryTree()
    record_test("o7.2.3 empty",
-       empty.preorder_traversal() == []
-       and empty.inorder_traversal() == []
+       empty.preorder_traversal()  == []
+       and empty.inorder_traversal()   == []
        and empty.postorder_traversal() == []
    )
    ```
 4. **o7.2.4 Right-Heavy Tree**
 
    ```python
-   # 1 -> right -> 2 -> right -> 3
    rh = BinaryTree(TreeNode(1))
    rh.root.right = TreeNode(2); rh.root.right.right = TreeNode(3)
    record_test("o7.2.4 right-heavy",
-       rh.preorder_traversal() == [1,2,3]
-       and rh.inorder_traversal() == [1,2,3]
+       rh.preorder_traversal()  == [1,2,3]
+       and rh.inorder_traversal()   == [1,2,3]
        and rh.postorder_traversal() == [3,2,1]
    )
    ```
-5. **o7.2.5 Return-Type Verification**
+5. **o7.2.5 Return‐Type Verification**
 
    ```python
    tree = BinaryTree()
@@ -2261,47 +2245,55 @@ class BinaryTree:
 def test_o7_2():
     # o7.2.1 Balanced Tree
     root = TreeNode(1)
-    root.left = TreeNode(2); root.right = TreeNode(3)
-    root.left.left = TreeNode(4); root.left.right = TreeNode(5)
+    root.left = TreeNode(2)
+    root.right = TreeNode(3)
+    root.left.left = TreeNode(4)
+    root.left.right = TreeNode(5)
     root.right.right = TreeNode(6)
     tree = BinaryTree(root)
-    record_test("o7.2.1 balanced traversals",
-        tree.inorder_traversal()   == [4,2,5,1,3,6]
-     and tree.preorder_traversal()  == [1,2,4,5,3,6]
-     and tree.postorder_traversal() == [4,5,2,6,3,1]
+    record_test(
+        "o7.2.1 balanced traversals",
+        tree.inorder_traversal() == [4, 2, 5, 1, 3, 6]
+        and tree.preorder_traversal() == [1, 2, 4, 5, 3, 6]
+        and tree.postorder_traversal() == [4, 5, 2, 6, 3, 1],
     )
 
     # o7.2.2 Single Node
     single = BinaryTree(TreeNode(42))
-    record_test("o7.2.2 single",
+    record_test(
+        "o7.2.2 single",
         single.preorder_traversal() == [42]
-     and single.inorder_traversal()  == [42]
-     and single.postorder_traversal() == [42]
+        and single.inorder_traversal() == [42]
+        and single.postorder_traversal() == [42],
     )
 
     # o7.2.3 Empty Tree
     empty = BinaryTree()
-    record_test("o7.2.3 empty",
+    record_test(
+        "o7.2.3 empty",
         empty.preorder_traversal() == []
-     and empty.inorder_traversal()  == []
-     and empty.postorder_traversal() == []
+        and empty.inorder_traversal() == []
+        and empty.postorder_traversal() == [],
     )
 
     # o7.2.4 Right-Heavy Tree
     rh = BinaryTree(TreeNode(1))
-    rh.root.right = TreeNode(2); rh.root.right.right = TreeNode(3)
-    record_test("o7.2.4 right-heavy",
-        rh.preorder_traversal() == [1,2,3]
-     and rh.inorder_traversal()  == [1,2,3]
-     and rh.postorder_traversal() == [3,2,1]
+    rh.root.right = TreeNode(2)
+    rh.root.right.right = TreeNode(3)
+    record_test(
+        "o7.2.4 right-heavy",
+        rh.preorder_traversal() == [1, 2, 3]
+        and rh.inorder_traversal() == [1, 2, 3]
+        and rh.postorder_traversal() == [3, 2, 1],
     )
 
     # o7.2.5 Return-Type Verification
     tree2 = BinaryTree()
-    record_test("o7.2.5 types",
+    record_test(
+        "o7.2.5 types",
         isinstance(tree2.preorder_traversal(), list)
-     and isinstance(tree2.inorder_traversal(),  list)
-     and isinstance(tree2.postorder_traversal(), list)
+        and isinstance(tree2.inorder_traversal(), list)
+        and isinstance(tree2.postorder_traversal(), list),
     )
 
 # 🚀 Run tests
@@ -2316,12 +2308,12 @@ for r in test_results:
 
 #### 💡 Tips ✨
 
-* Use recursion with `result` accumulator lists 😉
-* Call default: `node = self.root` if `node` is `None` 🌳
-* Follow order: root-left-right / left-root-right / left-right-root
+* Use recursion with a `result` accumulator 😉
+* Default `node = self.root` if `node` is `None` 🌳
+* Follow the exact order for each traversal 🔄
 
 ---
 
 #### 🧠 Motivation 💭
 
-Traversals power **expression evaluation**, **tree serialization**, and many core algorithms (e.g. **tree-to-list**, **copy**)—essential knowledge for advanced trees! 🌲🔄
+Traversals power **expression evaluation**, **tree serialization**, and many core algorithms—essential knowledge before moving on to search trees and beyond! 🌲🔄
