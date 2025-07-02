@@ -1548,60 +1548,22 @@ Wrap-around 🔁, full 🚫, empty 📭 — make it fun!
 
 #### 🧪 Tests to Pass ✅
 
-1. **o6.1.1 Basic enqueue/dequeue + count**
+- **o6.1.1 Basic FIFO behavior**  
+  Enqueue three items (`"A"`, `"B"`, `"C"`), then dequeue them in the same order; at the end `size()` must be 0.
 
-   ```python
-   circular_array_queue = CircularArrayQueue(3)
-   circular_array_queue.enqueue("A")
-   circular_array_queue.enqueue("B")
-   circular_array_queue.enqueue("C")
-   circular_array_queue.dequeue() == "A" and \
-   circular_array_queue.dequeue() == "B" and \
-   circular_array_queue.dequeue() == "C" and \
-   circular_array_queue.size() == 0  # 🎯
-   ```
-2. **o6.1.2 Wrap-around behavior + count**
+- **o6.1.2 Wrap-around correctness**  
+  Fill the queue, dequeue one element to free a slot, enqueue a new item (which wraps to the freed index), then dequeue all; `size()` returns 0.
 
-   ```python
-   circular_array_queue = CircularArrayQueue(3)
-   circular_array_queue.enqueue(1)
-   circular_array_queue.enqueue(2)
-   circular_array_queue.enqueue(3)
-   circular_array_queue.dequeue()            # frees slot
-   circular_array_queue.enqueue(4)           # wrap into idx 0 🔁
-   circular_array_queue.dequeue() == 2 and \
-   circular_array_queue.dequeue() == 3 and \
-   circular_array_queue.dequeue() == 4 and \
-   circular_array_queue.size() == 0  # 🔄
-   ```
-3. **o6.1.3 Empty after ops + count**
+- **o6.1.3 Underflow handling**  
+  After emptying the queue, an extra `dequeue()` should return `None` and `size()` must remain 0.
 
-   ```python
-   circular_array_queue = CircularArrayQueue(2)
-   circular_array_queue.enqueue("X")
-   circular_array_queue.enqueue("Y")
-   circular_array_queue.dequeue()
-   circular_array_queue.dequeue()
-   circular_array_queue.dequeue() is None and \
-   circular_array_queue.size() == 0  # 📭
-   ```
-4. **o6.1.4 Validation: full queue + count unchanged**
+- **o6.1.4 Overflow protection**  
+  Attempting to enqueue into a full queue returns `False` and does not change the reported size.
 
-   ```python
-   circular_array_queue = CircularArrayQueue(2)
-   circular_array_queue.enqueue(9)
-   circular_array_queue.enqueue(8)
-   circular_array_queue.enqueue(7) is False and \
-   circular_array_queue.size() == 2  # 🚫
-   ```
-5. **o6.1.5 Return-type verification + size type**
-
-   ```python
-   circular_array_queue = CircularArrayQueue(1)
-   isinstance(circular_array_queue.enqueue("Z"), bool) and \
-   isinstance(circular_array_queue.dequeue(), (str, type(None))) and \
-   isinstance(circular_array_queue.size(), int)  # 🔍
-   ```
+- **o6.1.5 Return-type verification**  
+  - `enqueue(...)` returns a `bool`  
+  - `dequeue()` returns the stored item (or `None`)  
+  - `size()` returns an `int`  
 
 ---
 
@@ -1717,6 +1679,7 @@ for result in test_results:
 
 ---
 
+
 ### o6.2 🧩 **Circular Linked Queue: `enqueue`, `dequeue`, `size`** 🔗🔄
 
 ---
@@ -1774,50 +1737,22 @@ No fixed capacity—growable circle! 🌱
 
 #### 🧪 Tests to Pass ✅
 
-1. **o6.2.1 Empty dequeue + count**
+- **o6.2.1 Empty queue behavior**  
+  A fresh queue’s `dequeue()` returns `None` and `size()` is 0.
 
-   ```python
-   circular_linked_queue = CircularLinkedQueue()
-   circular_linked_queue.dequeue() is None and \
-   circular_linked_queue.size() == 0  # 📭
-   ```
-2. **o6.2.2 Single enqueue/dequeue + count**
+- **o6.2.2 Single-element enqueue/dequeue**  
+  `enqueue("A")` returns `True`, `dequeue()` returns `"A"`, then `size()` is 0.
 
-   ```python
-   circular_linked_queue = CircularLinkedQueue()
-   circular_linked_queue.enqueue("A") is True and \
-   circular_linked_queue.dequeue() == "A" and \
-   circular_linked_queue.size() == 0  # 🥇
-   ```
-3. **o6.2.3 Multiple FIFO + count**
+- **o6.2.3 Multi-element FIFO**  
+  Enqueue 1, 2, 3; then dequeue them in order (1 → 2 → 3); final `size()` is 0.
 
-   ```python
-   circular_linked_queue = CircularLinkedQueue()
-   circular_linked_queue.enqueue(1)
-   circular_linked_queue.enqueue(2)
-   circular_linked_queue.enqueue(3)
-   circular_linked_queue.dequeue() == 1 and \
-   circular_linked_queue.dequeue() == 2 and \
-   circular_linked_queue.dequeue() == 3 and \
-   circular_linked_queue.size() == 0  # 🎯
-   ```
-4. **o6.2.4 Validation: empty after drain + count**
+- **o6.2.4 Underflow after drain**  
+  After dequeuing down to empty, an extra `dequeue()` still returns `None` and `size()` stays 0.
 
-   ```python
-   circular_linked_queue = CircularLinkedQueue()
-   circular_linked_queue.enqueue("X")
-   circular_linked_queue.dequeue()
-   circular_linked_queue.dequeue() is None and \
-   circular_linked_queue.size() == 0  # 📭 again empty
-   ```
-5. **o6.2.5 Return-type verification + size type**
-
-   ```python
-   circular_linked_queue = CircularLinkedQueue()
-   isinstance(circular_linked_queue.enqueue("Z"), bool) and \
-   isinstance(circular_linked_queue.dequeue(), (int, str, type(None))) and \
-   isinstance(circular_linked_queue.size(), int)  # 🔍
-   ```
+- **o6.2.5 Return‐type verification**  
+  - `enqueue(...)` returns a `bool`  
+  - `dequeue()` returns the stored data (or `None`)  
+  - `size()` returns an `int`  
 
 ---
 
@@ -2145,70 +2080,26 @@ Implement three traversal methods in `BinaryTree`:
 
 #### 🧪 Tests to Pass ✅
 
-1. **o7.2.1 Balanced Tree**
+- **o7.2.1 Balanced‐tree traversals**  
+  Verify that a full binary tree returns  
+  - Inorder: `[4,2,5,1,3,6]`  
+  - Preorder: `[1,2,4,5,3,6]`  
+  - Postorder: `[4,5,2,6,3,1]`
 
-   ```python
-   #      1
-   #     / \
-   #    2   3
-   #   / \   \
-   #  4   5   6
-   root = TreeNode(1)
-   root.left = TreeNode(2); root.right = TreeNode(3)
-   root.left.left = TreeNode(4); root.left.right = TreeNode(5)
-   root.right.right = TreeNode(6)
-   tree = BinaryTree(root)
-   record_test("o7.2.1 inorder",
-       tree.inorder_traversal()   == [4,2,5,1,3,6]
-   )
-   record_test("o7.2.1 preorder",
-       tree.preorder_traversal()  == [1,2,4,5,3,6]
-   )
-   record_test("o7.2.1 postorder",
-       tree.postorder_traversal() == [4,5,2,6,3,1]
-   )
-   ```
-2. **o7.2.2 Single Node**
+- **o7.2.2 Single‐node tree**  
+  All three traversals on a tree with one node (`42`) must return `[42]`.
 
-   ```python
-   single = BinaryTree(TreeNode(42))
-   record_test("o7.2.2 single",
-       single.preorder_traversal()  == [42]
-       and single.inorder_traversal()   == [42]
-       and single.postorder_traversal() == [42]
-   )
-   ```
-3. **o7.2.3 Empty Tree**
+- **o7.2.3 Empty tree**  
+  Each traversal on an empty tree must return an empty list `[]`.
 
-   ```python
-   empty = BinaryTree()
-   record_test("o7.2.3 empty",
-       empty.preorder_traversal()  == []
-       and empty.inorder_traversal()   == []
-       and empty.postorder_traversal() == []
-   )
-   ```
-4. **o7.2.4 Right-Heavy Tree**
+- **o7.2.4 Right‐heavy tree**  
+  For a chain `1 → 2 → 3` (all to the right):  
+  - Preorder: `[1,2,3]`  
+  - Inorder:  `[1,2,3]`  
+  - Postorder:`[3,2,1]`
 
-   ```python
-   rh = BinaryTree(TreeNode(1))
-   rh.root.right = TreeNode(2); rh.root.right.right = TreeNode(3)
-   record_test("o7.2.4 right-heavy",
-       rh.preorder_traversal()  == [1,2,3]
-       and rh.inorder_traversal()   == [1,2,3]
-       and rh.postorder_traversal() == [3,2,1]
-   )
-   ```
-5. **o7.2.5 Return‐Type Verification**
-
-   ```python
-   tree = BinaryTree()
-   record_test("o7.2.5 types",
-       isinstance(tree.preorder_traversal(), list)
-       and isinstance(tree.inorder_traversal(), list)
-       and isinstance(tree.postorder_traversal(), list)
-   )
-   ```
+- **o7.2.5 Return‐type verification**  
+  Confirm that each traversal method always returns a Python `list`.  
 
 ---
 
