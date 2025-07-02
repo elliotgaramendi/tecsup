@@ -1867,91 +1867,98 @@ for result in test_results:
 
 ---
 
-### o7.1 🧩 **TreeNode: `insert_left` & `insert_right`** 🌿➕
+### o7.1 🧩 **BinaryTree: `insert_left(parent, value)` & `insert_right(parent, value)`** 🌿➕
 
-#### ❓ Problem 🤔
-Implement two insertion methods on a simple binary-tree node:
+#### ❓ Problem 🤔  
+Move the child-insertion logic into the `BinaryTree` class. Implement two methods:
 
-1. `insert_left(self, value) -> TreeNode`  
-2. `insert_right(self, value) -> TreeNode`  
+1. `insert_left(self, parent, value)`  
+2. `insert_right(self, parent, value)`  
 
-Each should insert a new child in the specified position. If a child already exists there, the new node takes that spot and the old child becomes the corresponding child of the new node.
+Each should create a new `TreeNode(value)` and attach it to the given `parent`.  
+If that slot is already occupied, the new node takes it and the old subtree becomes that child of the new node.
 
 ---
 
-#### 📜 Description 📖
-* **Class**:
+#### 📜 Description 📖  
+* **Classes**:
   ```python
   class TreeNode:
       def __init__(self, value):
           self.value = value
           self.left  = None
           self.right = None
+
+  class BinaryTree:
+      def __init__(self, root=None):
+          self.root = root
   ```
 
 * **Methods to implement**:
 
-  * `insert_left(self, value) -> TreeNode`
-  * `insert_right(self, value) -> TreeNode`
+  * `insert_left(self, parent, value)`
+  * `insert_right(self, parent, value)`
 * **Behavior**:
 
-  * **Empty spot** → place new node directly.
-  * **Occupied spot** → new node takes position; old child becomes child of new node.
+  * **Empty slot** → attach new node directly.
+  * **Occupied slot** → attach new node, then shift the old child subtree under it.
 * **Inputs**:
 
-  * `value`: any data to store in the node.
-* **Outputs**:
+  * `parent`: an existing `TreeNode` in this tree.
+  * `value`: data to store in the new node.
+* **Output**:
 
-  * The newly created `TreeNode`.
+  * The newly created node (a `TreeNode` instance).
 * **Edge Cases**:
 
-  * Shifting an existing child under the new node.
+  * Shifting an existing child and its subtree.
 * **Constraints**:
 
-  * Do **not** change method signatures.
+  * Do **not** change method signatures or class definitions.
 
 ---
 
 #### 🧪 Tests to Pass ✅
 
-1. **o7.1.1 Left Creation**
+* **o7.1.1 Left-child insertion**
 
-   ```python
-   root = TreeNode(1)
-   left = root.insert_left(2)
-   print(root.left.value == 2)
-   ```
-2. **o7.1.2 Right Creation**
+  ```python
+  left = tree.insert_left(tree.root, 2)
+  # ✓ left is not None
+  # ✓ tree.root.left.value == 2
+  ```
+* **o7.1.2 Right-child insertion**
 
-   ```python
-   root = TreeNode(1)
-   right = root.insert_right(3)
-   print(root.right.value == 3)
-   ```
-3. **o7.1.3 Independent Insertion**
+  ```python
+  right = tree.insert_right(tree.root, 3)
+  # ✓ right is not None
+  # ✓ tree.root.right.value == 3
+  ```
+* **o7.1.3 Independent left & right**
 
-   ```python
-   root = TreeNode(1)
-   root.insert_left(4)
-   root.insert_right(5)
-   print(root.left.value == 4 and root.right.value == 5)
-   ```
-4. **o7.1.4 Validation: Left-Shift**
+  ```python
+  left  = tree.insert_left(tree.root, 4)
+  right = tree.insert_right(tree.root, 5)
+  # ✓ left/right are not None
+  # ✓ tree.root.left.value == 4
+  # ✓ tree.root.right.value == 5
+  ```
+* **o7.1.4 Shift existing subtree (left)**
 
-   ```python
-   root = TreeNode(1)
-   root.left = TreeNode(6)
-   new_left = root.insert_left(7)
-   print(new_left.left.value == 6)
-   ```
-5. **o7.1.5 Return-Type Verification**
+  ```python
+  tree.root.left = TreeNode(6)
+  new_left = tree.insert_left(tree.root, 7)
+  # ✓ new_left is not None
+  # ✓ new_left.left.value == 6
+  ```
+* **o7.1.5 Return-type verification**
 
-   ```python
-   root = TreeNode(1)
-   left = root.insert_left(2)
-   right = root.insert_right(3)
-   print(isinstance(left, TreeNode) and isinstance(right, TreeNode))
-   ```
+  ```python
+  left  = tree.insert_left(tree.root, 2)
+  right = tree.insert_right(tree.root, 3)
+  # ✓ isinstance(left, TreeNode)
+  # ✓ isinstance(right, TreeNode)
+  ```
 
 ---
 
@@ -1969,42 +1976,57 @@ class TreeNode:
         self.left  = None
         self.right = None
 
-    def insert_left(self, value) -> 'TreeNode':
-        """Insert a new node to the left; shift existing child if present."""
+class BinaryTree:
+    def __init__(self, root=None):
+        self.root = root
+
+    def insert_left(self, parent, value):
+        """Insert new node as left child of parent; shift subtree if present."""
         pass
 
-    def insert_right(self, value) -> 'TreeNode':
-        """Insert a new node to the right; shift existing child if present."""
+    def insert_right(self, parent, value):
+        """Insert new node as right child of parent; shift subtree if present."""
         pass
 
 def test_o7_1():
-    # o7.1.1 Left Creation
-    root = TreeNode(1)
-    left = root.insert_left(2)
-    record_test("o7.1.1 left creation", root.left.value == 2)
+    tree = BinaryTree(TreeNode(1))
 
-    # o7.1.2 Right Creation
-    root = TreeNode(1)
-    right = root.insert_right(3)
-    record_test("o7.1.2 right creation", root.right.value == 3)
-
-    # o7.1.3 Independent Insertion
-    root = TreeNode(1)
-    root.insert_left(4)
-    root.insert_right(5)
-    record_test(
-        "o7.1.3 independent insertion", root.left.value == 4 and root.right.value == 5
+    # o7.1.1 Left-child insertion
+    left = tree.insert_left(tree.root, 2)
+    record_test("o7.1.1 left creation",
+        left is not None and tree.root.left and tree.root.left.value == 2
     )
 
-    # o7.1.4 Validation: Left-Shift
-    root = TreeNode(1)
-    root.left = TreeNode(6)
-    new_left = root.insert_left(7)
-    record_test("o7.1.4 left shift", new_left.left.value == 6)
+    # o7.1.2 Right-child insertion
+    tree = BinaryTree(TreeNode(1))
+    right = tree.insert_right(tree.root, 3)
+    record_test("o7.1.2 right creation",
+        right is not None and tree.root.right and tree.root.right.value == 3
+    )
 
-    # o7.1.5 Return-Type Verification
-    record_test(
-        "o7.1.5 return type", isinstance(left, TreeNode) and isinstance(right, TreeNode)
+    # o7.1.3 Independent left & right
+    tree = BinaryTree(TreeNode(1))
+    left  = tree.insert_left(tree.root, 4)
+    right = tree.insert_right(tree.root, 5)
+    record_test("o7.1.3 independent",
+        left is not None and right is not None
+        and tree.root.left.value == 4 and tree.root.right.value == 5
+    )
+
+    # o7.1.4 Shift existing subtree (left)
+    tree = BinaryTree(TreeNode(1))
+    tree.root.left = TreeNode(6)
+    new_left = tree.insert_left(tree.root, 7)
+    record_test("o7.1.4 left shift",
+        new_left is not None and new_left.left and new_left.left.value == 6
+    )
+
+    # o7.1.5 Return-type verification
+    tree = BinaryTree(TreeNode(1))
+    left  = tree.insert_left(tree.root, 2)
+    right = tree.insert_right(tree.root, 3)
+    record_test("o7.1.5 return type",
+        isinstance(left, TreeNode) and isinstance(right, TreeNode)
     )
 
 # 🚀 Run tests
@@ -2019,15 +2041,15 @@ for r in test_results:
 
 #### 💡 Tips ✨
 
-* When inserting, if `self.left` (or `self.right`) exists, reassign it under the new node.
-* Always return the newly created `TreeNode`.
-* Keep your stubs (`pass`) so the harness never errors prematurely.
+* If `parent.left` (or `parent.right`) already exists, store it, attach the new node, then reattach the old subtree under the new node’s same side.
+* Always return the newly created `TreeNode` so tests can inspect it.
+* Keep the `pass` stubs so the harness runs without errors until implementation.
 
 ---
 
 #### 🧠 Motivation 💭
 
-Simple node insertions form the basis for more advanced tree structures—expression trees, heaps, and even search trees. Mastering how children are attached and shifted is essential for building and manipulating dynamic trees! 🌳
+Centralizing insertion logic in the `BinaryTree` class sets you up for advanced tree operations—search‐tree inserts, rotations, metadata updates—while keeping manipulation rules in one place. 🌳🚀
 
 ---
 
