@@ -857,7 +857,7 @@ test_o6_2()
 
 
 # --------------------------------------------------------------------
-# o7.1 🧩 TreeNode: insert_left & insert_right 🌿➕
+# o7.1 🧩 BinaryTree: insert_left & insert_right 🌿➕
 # --------------------------------------------------------------------
 class TreeNode:
     def __init__(self, value):
@@ -865,55 +865,71 @@ class TreeNode:
         self.left = None
         self.right = None
 
-    def insert_left(self, value) -> "TreeNode":
-        """Insert a new node to the left; shift existing child if present."""
+
+class BinaryTree:
+    def __init__(self, root=None):
+        self.root = root
+
+    def insert_left(self, parent, value):
+        """Insert new node as left child of parent; shift subtree if present."""
         new_node = TreeNode(value)
-        if self.left is None:
-            self.left = new_node
-        else:
-            old = self.left
-            self.left = new_node
-            new_node.left = old
+        if parent.left is not None:
+            new_node.left = parent.left
+        parent.left = new_node
         return new_node
 
-    def insert_right(self, value) -> "TreeNode":
-        """Insert a new node to the right; shift existing child if present."""
+    def insert_right(self, parent, value):
+        """Insert new node as right child of parent; shift subtree if present."""
         new_node = TreeNode(value)
-        if self.right is None:
-            self.right = new_node
-        else:
-            old = self.right
-            self.right = new_node
-            new_node.right = old
+        if parent.right is not None:
+            new_node.right = parent.right
+        parent.right = new_node
         return new_node
 
 
 def test_o7_1():
-    # o7.1.1 Left Creation
-    root = TreeNode(1)
-    left = root.insert_left(2)
-    record_test("o7.1.1 left creation", root.left.value == 2)
+    tree = BinaryTree(TreeNode(1))
 
-    # o7.1.2 Right Creation
-    root = TreeNode(1)
-    right = root.insert_right(3)
-    record_test("o7.1.2 right creation", root.right.value == 3)
-
-    # o7.1.3 Independent Insertion
-    root = TreeNode(1)
-    root.insert_left(4)
-    root.insert_right(5)
+    # o7.1.1 Left-child insertion
+    left = tree.insert_left(tree.root, 2)
     record_test(
-        "o7.1.3 independent insertion", root.left.value == 4 and root.right.value == 5
+        "o7.1.1 left creation",
+        left is not None and tree.root.left and tree.root.left.value == 2,
     )
 
-    # o7.1.4 Validation: Left-Shift
-    root = TreeNode(1)
-    root.left = TreeNode(6)
-    new_left = root.insert_left(7)
-    record_test("o7.1.4 left shift", new_left.left.value == 6)
+    # o7.1.2 Right-child insertion
+    tree = BinaryTree(TreeNode(1))
+    right = tree.insert_right(tree.root, 3)
+    record_test(
+        "o7.1.2 right creation",
+        right is not None and tree.root.right and tree.root.right.value == 3,
+    )
 
-    # o7.1.5 Return-Type Verification
+    # o7.1.3 Independent left & right
+    tree = BinaryTree(TreeNode(1))
+    left = tree.insert_left(tree.root, 4)
+    right = tree.insert_right(tree.root, 5)
+    record_test(
+        "o7.1.3 independent",
+        left is not None
+        and right is not None
+        and tree.root.left.value == 4
+        and tree.root.right.value == 5,
+    )
+
+    # o7.1.4 Shift existing subtree (left)
+    tree = BinaryTree(TreeNode(1))
+    tree.root.left = TreeNode(6)
+    new_left = tree.insert_left(tree.root, 7)
+    record_test(
+        "o7.1.4 left shift",
+        new_left is not None and new_left.left and new_left.left.value == 6,
+    )
+
+    # o7.1.5 Return-type verification
+    tree = BinaryTree(TreeNode(1))
+    left = tree.insert_left(tree.root, 2)
+    right = tree.insert_right(tree.root, 3)
     record_test(
         "o7.1.5 return type", isinstance(left, TreeNode) and isinstance(right, TreeNode)
     )
@@ -926,7 +942,7 @@ test_o7_1()
 # --------------------------------------------------------------------
 # o7.2 🧩 Tree Traversals: Preorder, Inorder & Postorder 🔄👣
 # --------------------------------------------------------------------
-class BinaryTree:
+class BinaryTreeTraversal:
     def __init__(self, root=None):
         self.root = root
 
@@ -975,7 +991,7 @@ def test_o7_2():
     root.left.left = TreeNode(4)
     root.left.right = TreeNode(5)
     root.right.right = TreeNode(6)
-    tree = BinaryTree(root)
+    tree = BinaryTreeTraversal(root)
     record_test(
         "o7.2.1 balanced traversals",
         tree.inorder_traversal() == [4, 2, 5, 1, 3, 6]
@@ -983,8 +999,8 @@ def test_o7_2():
         and tree.postorder_traversal() == [4, 5, 2, 6, 3, 1],
     )
 
-    # o7.2.2 Single Node
-    single = BinaryTree(TreeNode(42))
+    # o7.2.2 Single-node tree
+    single = BinaryTreeTraversal(TreeNode(42))
     record_test(
         "o7.2.2 single",
         single.preorder_traversal() == [42]
@@ -992,8 +1008,8 @@ def test_o7_2():
         and single.postorder_traversal() == [42],
     )
 
-    # o7.2.3 Empty Tree
-    empty = BinaryTree()
+    # o7.2.3 Empty tree
+    empty = BinaryTreeTraversal()
     record_test(
         "o7.2.3 empty",
         empty.preorder_traversal() == []
@@ -1001,8 +1017,8 @@ def test_o7_2():
         and empty.postorder_traversal() == [],
     )
 
-    # o7.2.4 Right-Heavy Tree
-    rh = BinaryTree(TreeNode(1))
+    # o7.2.4 Right-heavy tree
+    rh = BinaryTreeTraversal(TreeNode(1))
     rh.root.right = TreeNode(2)
     rh.root.right.right = TreeNode(3)
     record_test(
@@ -1012,8 +1028,8 @@ def test_o7_2():
         and rh.postorder_traversal() == [3, 2, 1],
     )
 
-    # o7.2.5 Return-Type Verification
-    tree2 = BinaryTree()
+    # o7.2.5 Return-type verification
+    tree2 = BinaryTreeTraversal()
     record_test(
         "o7.2.5 types",
         isinstance(tree2.preorder_traversal(), list)

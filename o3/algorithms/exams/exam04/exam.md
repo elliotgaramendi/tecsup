@@ -1993,40 +1993,46 @@ def test_o7_1():
 
     # o7.1.1 Left-child insertion
     left = tree.insert_left(tree.root, 2)
-    record_test("o7.1.1 left creation",
-        left is not None and tree.root.left and tree.root.left.value == 2
+    record_test(
+        "o7.1.1 left creation",
+        left is not None and tree.root.left and tree.root.left.value == 2,
     )
 
     # o7.1.2 Right-child insertion
     tree = BinaryTree(TreeNode(1))
     right = tree.insert_right(tree.root, 3)
-    record_test("o7.1.2 right creation",
-        right is not None and tree.root.right and tree.root.right.value == 3
+    record_test(
+        "o7.1.2 right creation",
+        right is not None and tree.root.right and tree.root.right.value == 3,
     )
 
     # o7.1.3 Independent left & right
     tree = BinaryTree(TreeNode(1))
-    left  = tree.insert_left(tree.root, 4)
+    left = tree.insert_left(tree.root, 4)
     right = tree.insert_right(tree.root, 5)
-    record_test("o7.1.3 independent",
-        left is not None and right is not None
-        and tree.root.left.value == 4 and tree.root.right.value == 5
+    record_test(
+        "o7.1.3 independent",
+        left is not None
+        and right is not None
+        and tree.root.left.value == 4
+        and tree.root.right.value == 5,
     )
 
     # o7.1.4 Shift existing subtree (left)
     tree = BinaryTree(TreeNode(1))
     tree.root.left = TreeNode(6)
     new_left = tree.insert_left(tree.root, 7)
-    record_test("o7.1.4 left shift",
-        new_left is not None and new_left.left and new_left.left.value == 6
+    record_test(
+        "o7.1.4 left shift",
+        new_left is not None and new_left.left and new_left.left.value == 6,
     )
 
     # o7.1.5 Return-type verification
     tree = BinaryTree(TreeNode(1))
-    left  = tree.insert_left(tree.root, 2)
+    left = tree.insert_left(tree.root, 2)
     right = tree.insert_right(tree.root, 3)
-    record_test("o7.1.5 return type",
-        isinstance(left, TreeNode) and isinstance(right, TreeNode)
+    record_test(
+        "o7.1.5 return type", isinstance(left, TreeNode) and isinstance(right, TreeNode)
     )
 
 # 🚀 Run tests
