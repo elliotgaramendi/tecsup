@@ -117,6 +117,9 @@ print("=" * 30)
 # Your code here 👇
 result = 0
 
+# Example output:
+# El resultado es: 15.0 🎉✅
+
 # Test cases:
 print("=" * 30)
 print(result == 15)
@@ -162,7 +165,7 @@ print("=" * 40)
 area = 0
 
 # Example output:
-# El área del rectángulo es: 15.0 metros cuadrados
+# El área del rectángulo es: 15.0 metros cuadrados 📐✅
 
 # Test cases:
 print("=" * 40)
@@ -207,6 +210,9 @@ print("=" * 30)
 
 # Your code here 👇
 fahrenheit = 0
+
+# Example output:
+# Fahrenheit es: 32.0 °F 🌡️🔥
 
 # Test cases:
 print("=" * 30)
