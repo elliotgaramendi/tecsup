@@ -3,8 +3,8 @@ from rest_framework.routers import DefaultRouter
 from .views import QuizViewSet
 
 router = DefaultRouter()
-router.register(r'quizzes', QuizViewSet)
+router.register(r"quizzes", QuizViewSet)
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path("v1/", include(router.urls)),
 ]
