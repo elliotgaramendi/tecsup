@@ -329,51 +329,7 @@ Las estructuras condicionales permiten que tus programas tomen decisiones inteli
 
 ---
 
-## 💻 Ejercicio 6: Detector de Número Positivo o Negativo
-
-### 🎯 Problema
-Determinar si un número ingresado por el usuario es positivo, negativo o cero.
-
-### 📝 Descripción
-Tu programa debe evaluar un número y clasificarlo en una de tres categorías: positivo (mayor que 0), negativo (menor que 0) o cero (igual a 0).
-
-### ⚙️ Funcionalidades
-- Solicitar un número al usuario
-- Evaluar si es positivo, negativo o cero
-- Mostrar la clasificación correspondiente
-
-### 🧪 Casos de Prueba
-1. Número: 5 → "positivo"
-2. Número: -3 → "negativo"
-3. Número: 0 → "cero"
-
-### 💻 Código Base
-```python
-# Number Classifier ➕➖
-print("➕➖ Clasificador de Números")
-print("=" * 30)
-
-# Your code here 👇
-result = ""
-
-# Test cases:
-print("=" * 30)
-print(result == "positivo")
-print(result == "negativo")
-print(result == "cero")
-```
-
-### 💡 Tips Útiles
-- Usa `if numero > 0:` para positivo
-- Usa `elif numero < 0:` para negativo
-- Usa `else:` para cero
-
-### 🎉 Motivación
-¡Tu programa ahora puede pensar y tomar decisiones! Esto es lo que hace que los programas sean verdaderamente útiles. 🧠
-
----
-
-## 💻 Ejercicio 7: Detector de Número Par o Impar
+## 💻 Ejercicio 6: Detector de Número Par o Impar
 
 ### 🎯 Problema
 Determinar si un número entero es par o impar.
@@ -414,6 +370,50 @@ print(result == "par")
 
 ### 🎉 Motivación
 ¡Dominas la lógica matemática! Los números pares e impares son fundamentales en programación. 🔍
+
+---
+
+## 💻 Ejercicio 7: Detector de Número Positivo o Negativo
+
+### 🎯 Problema
+Determinar si un número ingresado por el usuario es positivo, negativo o cero.
+
+### 📝 Descripción
+Tu programa debe evaluar un número y clasificarlo en una de tres categorías: positivo (mayor que 0), negativo (menor que 0) o cero (igual a 0).
+
+### ⚙️ Funcionalidades
+- Solicitar un número al usuario
+- Evaluar si es positivo, negativo o cero
+- Mostrar la clasificación correspondiente
+
+### 🧪 Casos de Prueba
+1. Número: 5 → "positivo"
+2. Número: -3 → "negativo"
+3. Número: 0 → "cero"
+
+### 💻 Código Base
+```python
+# Number Classifier ➕➖
+print("➕➖ Clasificador de Números")
+print("=" * 30)
+
+# Your code here 👇
+result = ""
+
+# Test cases:
+print("=" * 30)
+print(result == "positivo")
+print(result == "negativo")
+print(result == "cero")
+```
+
+### 💡 Tips Útiles
+- Usa `if numero > 0:` para positivo
+- Usa `elif numero < 0:` para negativo
+- Usa `else:` para cero
+
+### 🎉 Motivación
+¡Tu programa ahora puede pensar y tomar decisiones! Esto es lo que hace que los programas sean verdaderamente útiles. 🧠
 
 ---
 
@@ -506,29 +506,37 @@ print(result == "adulto mayor")
 
 ---
 
-## 💻 Ejercicio 10: Calculadora con Operación Simple
+## 💻 Ejercicio 10: Calculadora con 4 Operaciones
 
 ### 🎯 Problema
-Crear una calculadora que realice suma o resta según la elección del usuario.
+
+Crear una calculadora que realice **suma, resta, multiplicación o división** según la elección del usuario.
 
 ### 📝 Descripción
-Tu programa debe pedir dos números y una operación (+ o -), luego realizar el cálculo correspondiente y mostrar el resultado.
+
+Tu programa debe pedir dos números y una operación (`+`, `-`, `*`, `/`), luego realizar el cálculo correspondiente y almacenar el resultado.
 
 ### ⚙️ Funcionalidades
-- Solicitar primer número
-- Solicitar segundo número
-- Solicitar operación (+ o -)
-- Realizar el cálculo correspondiente
+
+* Solicitar primer número
+* Solicitar operación (`+`, `-`, `*`, `/`)
+* Solicitar segundo número
+* Realizar el cálculo correspondiente
 
 ### 🧪 Casos de Prueba
-1. Números: 10, 5, Operación: "+" → 15
-2. Números: 10, 3, Operación: "-" → 7
-3. Números: 8, 2, Operación: "+" → 10
+
+1. Número 1: 10, Operación: "+" Número 2: 5, → 15
+2. Número 1: 10, Operación: "-" Número 2: 3, → 7
+3. Número 1: 8, Operación: "*" Número 2: 2, → 16
+4. Número 1: 9, Operación: "/" Número 2: 3, → 3
+
+---
 
 ### 💻 Código Base
+
 ```python
-# Simple Calculator ➕➖
-print("➕➖ Calculadora Simple")
+# Simple Calculator ➕➖✖️➗
+print("➕➖✖️➗ Calculadora Simple")
 print("=" * 25)
 
 # Your code here 👇
@@ -536,18 +544,25 @@ result = 0
 
 # Test cases:
 print("=" * 25)
-print(result == 15)
-print(result == 7)
-print(result == 10)
+print(result == 15.0)
+print(result == 7.0)
+print(result == 16.0)
+print(result == 3.0)
 ```
 
+---
+
 ### 💡 Tips Útiles
-- Usa `if operation == "+":` para suma
-- Usa `elif operation == "-":` para resta
-- Almacena el resultado en una variable
+
+* Usa `if operation == "+":` para suma
+* Usa `elif operation == "-":` para resta
+* Usa `elif operation == "*":` para multiplicación
+* Usa `elif operation == "/":` para división
+* Almacena el resultado en una variable
 
 ### 🎉 Motivación
-¡Creaste tu primera calculadora! Ahora combinas entrada de usuario con lógica de decisión. 🧮
+
+¡Creaste tu primera calculadora con las 4 operaciones básicas! Ahora combinas entrada de usuario con lógica de decisión. 🧮
 
 ---
 
