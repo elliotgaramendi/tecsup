@@ -186,12 +186,12 @@ def exercise_09():
 def exercise_10():
     """➕➖ Simple Calculator"""
     print("\n" + "="*60)
-    print("Exercise 2.5 - Simple Calculator ➕➖")
+    print("Exercise 2.5 - Simple Calculator ➕➖✖️➗")
     print("="*60)
 
     num1 = float(input("🔢 Enter first number: "))
     num2 = float(input("🔢 Enter second number: "))
-    operation = input("⚙️ Enter operation (+ or -): ")
+    operation = input("⚙️ Enter operation (+ or -, or * or /): ")
 
     if operation == "+":
         result = num1 + num2
@@ -199,6 +199,12 @@ def exercise_10():
     elif operation == "-":
         result = num1 - num2
         emoji = "➖"
+    elif operation == "*":
+        result = num1 * num2
+        emoji = "✖️"
+    elif operation == "/":
+        result = num1 / num2
+        emoji = "➗"
     else:
         result = 0
         emoji = "❌"
