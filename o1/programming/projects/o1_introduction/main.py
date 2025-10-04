@@ -74,6 +74,7 @@
 # # --------------------------------------------------------------------
 # # o1.4 📊 Average Calculator
 # # --------------------------------------------------------------------
+
 # # Average Calculator 📊
 # print("📊 Calculadora de Promedio")
 # print("=" * 30)
@@ -97,6 +98,7 @@
 # # --------------------------------------------------------------------
 # # o1.5 📏 Rectangle Perimeter Calculator
 # # --------------------------------------------------------------------
+
 # # Rectangle Perimeter Calculator 📏
 # print("📏 Calculadora de Perímetro")
 # print("=" * 30)
@@ -114,3 +116,147 @@
 # print(perimeter == 16)
 # print(perimeter == 34)
 # print(perimeter == 16)
+
+
+
+# # ====================================================================
+# # 🔀 o2: Basic Conditional Structures
+# # ====================================================================
+
+
+# # --------------------------------------------------------------------
+# # o2.1 ➕➖ Positive, Negative or Zero Detector
+# # --------------------------------------------------------------------
+# # Even/Odd Detector 🔢
+# print("🔢 Detector Par/Impar")
+# print("=" * 25)
+
+# # Your code here 👇
+# number = int(input("Número: "))
+
+# if number % 2 == 0:
+#     result = "par"
+# else:
+#     result = "impar"
+
+# print(f"El resultado es: {result}")
+
+# # Test cases:
+# print("=" * 25)
+# print(result == "par")
+# print(result == "impar")
+# print(result == "par")
+
+
+# # --------------------------------------------------------------------
+# # o2.2 ➕➖ Positive, Negative or Zero Detector
+# # --------------------------------------------------------------------
+
+# # Number Classifier ➕➖
+# print("➕➖ Clasificador de Números")
+# print("=" * 30)
+
+# # Your code here 👇
+# number = float(input("Número: "))
+
+# if number > 0:
+#     result = "positivo"
+# elif number < 0:
+#     result = "negativo"
+# else:
+#     result = "cero"
+
+# print(f"El resultado es: {result}")
+
+# # Test cases:
+# print("=" * 30)
+# print(result == "positivo")
+# print(result == "negativo")
+# print(result == "cero")
+
+
+# # --------------------------------------------------------------------
+# # o2.3 ⚖️ Number Comparator
+# # --------------------------------------------------------------------
+
+# # Number Comparator ⚖️
+# print("⚖️ Comparador de Números")
+# print("=" * 28)
+
+# # Your code here 👇
+# number1 = float(input("Número 1: "))
+# number2 = float(input("Número 2: "))
+
+# if number1 > number2:
+#     result = "mayor"
+# elif number1 < number2:
+#     result = "menor"
+# else:
+#     result = "igual"
+
+# print(f"El resultado es: {result}")
+
+# # Test cases:
+# print("=" * 28)
+# print(result == "mayor")
+# print(result == "menor")
+# print(result == "igual")
+
+
+# # --------------------------------------------------------------------
+# # o2.4 👥 Age Classifier
+# # --------------------------------------------------------------------
+
+# # Age Classifier 👥
+# print("👥 Clasificador de Edades")
+# print("=" * 28)
+
+# # Your code here 👇
+# age = int(input("Edad: "))
+
+# if age < 18:
+#     result = "niño"
+# elif age <= 64:
+#     result = "adulto"
+# else:
+#     result = "adulto mayor"
+
+# print(f"El resultado es: {result}")
+
+# # Test cases:
+# print("=" * 28)
+# print(result == "niño")
+# print(result == "adulto")
+# print(result == "adulto mayor")
+
+
+# # --------------------------------------------------------------------
+# # o2.5 ➕➖ Simple Calculator
+# # --------------------------------------------------------------------
+
+# # Simple Calculator ➕➖✖️➗
+# print("➕➖✖️➗ Calculadora Simple")
+# print("=" * 25)
+
+# # Your code here 👇
+# number1 = float(input("Número 1: "))
+# operation = input("Operación (+, -, *, /): ")
+# number2 = float(input("Número 2: "))
+
+# if operation == "+":
+#     result = number1 + number2
+# elif operation == "-":
+#     result = number1 - number2
+# elif operation == "*":
+#     result = number1 * number2
+# elif operation == "/":
+#     result = number1 / number2
+
+# print(f"El resultado es: {result}")
+
+# # Test cases:
+# print("=" * 25)
+# print(result == 15.0)
+# print(result == 7.0)
+# print(result == 16.0)
+# print(result == 3.0)
