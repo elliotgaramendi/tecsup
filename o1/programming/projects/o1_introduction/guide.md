@@ -3,13 +3,13 @@
 ```
     ╔══════════════════════════════════════════════════════════╗
     ║                                                          ║
-    ║        🚀 BIENVENIDO AL MUNDO DE PYTHON 🚀                ║
+    ║          🚀 BIENVENIDO AL MUNDO DE PYTHON 🚀             ║
     ║                                                          ║
     ║    ┌─────┐ ┌─────┐ ┌─────┐ ┌─────┐ ┌─────┐ ┌─────┐       ║
     ║    │  P  │ │  Y  │ │  T  │ │  H  │ │  O  │ │  N  │       ║
     ║    └─────┘ └─────┘ └─────┘ └─────┘ └─────┘ └─────┘       ║
     ║                                                          ║
-    ║           Tu aventura de programación comienza aquí      ║
+    ║       Tu aventura de programación comienza aquí          ║
     ║                                                          ║
     ╚══════════════════════════════════════════════════════════╝
 ```
@@ -46,7 +46,7 @@ Cada tema incluye:
 
 ---
 
-## 🧠 Conceptos Básicos
+## 🧠 Conceptos básicos
 
 Antes de sumergirnos en los temas específicos, es importante entender algunos conceptos fundamentales:
 
@@ -60,36 +60,35 @@ Python es perfecto para principiantes porque:
 - **Versátil**: Puedes hacer sitios web, inteligencia artificial, juegos y más
 - **Comunidad**: Millones de programadores te pueden ayudar
 
-### 📐 Algoritmos y Diagramas de Flujo
+### 📐 Algoritmos y diagramas de Fflujo
 Un algoritmo es una serie de pasos ordenados para resolver un problema. Los diagramas de flujo nos ayudan a visualizar estos pasos usando símbolos gráficos.
 
 ```
 Símbolos básicos:
-┌─────────┐  ← Inicio/Fin (óvalo)
-│ INICIO  │
+ ─────────
+│ Punto   │  ← Inicio/Fin (óvalo)
+ ─────────
+
+┌─────────┐
+│ Acción  │  ← Proceso (rectángulo)
 └─────────┘
 
-┌─────────┐  ← Proceso (rectángulo)
-│ Acción  │
-└─────────┘
-
-◊─────────◊  ← Decisión (rombo)
-│ ¿Sí/No? │
-◊─────────◊
+     ◊
+◊ ¿Sí/No? ◊  ← Decisión (rombo)
+     ◊
 ```
 
 ---
 
-# 📚 TEMA 1: Algoritmos y Representación en Código
+# 📚 o1: Algoritmos y Representación en Código
 
-## 🎯 Descripción del Tema
+## 🎯 Descripción del tema
 
 En este tema aprenderás a pensar como un programador, descomponiendo problemas en pasos lógicos y traduciéndolos a código Python. Dominarás las operaciones básicas, variables y entrada/salida de datos.
 
 ---
 
-
-## 💻 Ejercicio 1: Suma de Dos Números
+## 💻 o1.1: Suma de Dos Números
 
 ### 🎯 Problema
 Crear un programa que sume dos números ingresados por el usuario.
@@ -99,14 +98,14 @@ Tu programa debe pedir dos números al usuario, sumarlos y mostrar el resultado.
 
 ### ⚙️ Funcionalidades
 - Solicitar primer número
-- Solicitar segundo número  
+- Solicitar segundo número
 - Sumar ambos números
 - Mostrar el resultado
 
 ### 🧪 Casos de Prueba
-1. Número1: 10, Número2: 5 → Suma: 15
-2. Número1: 7.5, Número2: 2.5 → Suma: 10.0
-3. Número1: 100, Número2: 200 → Suma: 300
+1. number1 = 10; number2 = 5 → result = 15.0
+2. number1 = 7.5; number2 = 2.5 → result = 10.0
+3. number1 = 100; number2 = 200 → result = 300.0
 
 ### 💻 Código Base
 ```python
@@ -122,9 +121,9 @@ result = 0
 
 # Test cases:
 print("=" * 30)
-print(result == 15)
+print(result == 15.0)
 print(result == 10.0)
-print(result == 300)
+print(result == 300.0)
 ```
 
 ### 💡 Tips Útiles
@@ -137,7 +136,7 @@ print(result == 300)
 
 ---
 
-## 💻 Ejercicio 2: Calculadora de Área de un Rectángulo
+## 💻 o1.2: Calculadora de Área de un Rectángulo
 
 ### 🎯 Problema
 Crear un programa que calcule el área de un rectángulo pidiendo al usuario la base y la altura.
@@ -151,9 +150,9 @@ El área de un rectángulo se calcula multiplicando su base por su altura. Tu pr
 - Mostrar el resultado con formato amigable
 
 ### 🧪 Casos de Prueba
-1. Base: 5, Altura: 3 → Área: 15
-2. Base: 10.5, Altura: 2.3 → Área: 24.15
-3. Base: 7, Altura: 7 → Área: 49
+1. base = 5; height = 3 → area = 15.0
+2. base = 10.5; height = 2.3 → area = 24.15
+3. base = 7; height = 7 → area = 49.0
 
 ### 💻 Código Base
 ```python
@@ -184,7 +183,7 @@ print(area == 49.0)
 
 ---
 
-## 💻 Ejercicio 3: Conversor de Celsius a Fahrenheit
+## 💻 o1.3: Conversor de Celsius a Fahrenheit
 
 ### 🎯 Problema
 Convertir una temperatura de Celsius a Fahrenheit usando la fórmula correspondiente.
@@ -222,7 +221,7 @@ print(fahrenheit == 212.0)
 ```
 
 ### 💡 Tips Útiles
-- Fórmula: F = (C * 9/5) + 32
+- Fórmula: Fahrenheit = (Celsius * 9/5) + 32
 - Usa paréntesis para el orden correcto de operaciones
 - Redondea con `round(resultado, 1)`
 
@@ -231,7 +230,7 @@ print(fahrenheit == 212.0)
 
 ---
 
-## 💻 Ejercicio 4: Calculadora de Promedio
+## 💻 o1.4: Calculadora de Promedio
 
 ### 🎯 Problema
 Calcular el promedio de tres números ingresados por el usuario.
@@ -246,9 +245,9 @@ Tu programa debe solicitar tres números, sumarlos y dividir el resultado entre 
 - Mostrar el resultado con 2 decimales
 
 ### 🧪 Casos de Prueba
-1. Números: 10, 20, 30 → Promedio: 20.0
-2. Números: 5, 10, 15 → Promedio: 10.0
-3. Números: 8, 9, 10 → Promedio: 9.0
+1. numbers: 10, 20, 30 → average: 20.0
+2. numbers: 5, 10, 15 → average: 10.0
+3. numbers: 8, 9, 10 → average: 9.0
 
 ### 💻 Código Base
 ```python
@@ -259,6 +258,9 @@ print("=" * 30)
 # Your code here 👇
 average = 0
 
+# Example output:
+# El promedio es: 20.0 📊
+
 # Test cases:
 print("=" * 30)
 print(average == 20.0)
@@ -267,7 +269,7 @@ print(average == 9.0)
 ```
 
 ### 💡 Tips Útiles
-- Promedio = (num1 + num2 + num3) / 3
+- average = (number1 + number2 + number3) / 3
 - Usa paréntesis para agrupar la suma
 - La división siempre produce un float
 
@@ -276,7 +278,7 @@ print(average == 9.0)
 
 ---
 
-## 💻 Ejercicio 5: Calculadora de Perímetro de Rectángulo
+## 💻 o1.5: Calculadora de Perímetro de Rectángulo
 
 ### 🎯 Problema
 Calcular el perímetro de un rectángulo conociendo su base y altura.
@@ -291,9 +293,9 @@ El perímetro de un rectángulo se calcula con la fórmula: P = 2 × (base + alt
 - Mostrar el resultado
 
 ### 🧪 Casos de Prueba
-1. Base: 5, Altura: 3 → Perímetro: 16
-2. Base: 10, Altura: 7 → Perímetro: 34
-3. Base: 4, Altura: 4 → Perímetro: 16
+1. base = 5; height = 3 → perimeter = 16
+2. base = 10; height = 7 → perimeter =  34
+3. base = 4; height = 4 → perimeter = 16
 
 ### 💻 Código Base
 ```python
@@ -303,6 +305,9 @@ print("=" * 30)
 
 # Your code here 👇
 perimeter = 0
+
+# Example output:
+# El perímetro es 16 📏
 
 # Test cases:
 print("=" * 30)
@@ -321,15 +326,15 @@ print(perimeter == 16)
 
 ---
 
-# 🔀 TEMA 2: Estructuras Condicionales Básicas
+# 🔀 o2: Estructuras Condicionales Básicas
 
-## 🎯 Descripción del Tema
+## 🎯 Descripción del tema
 
 Las estructuras condicionales permiten que tus programas tomen decisiones inteligentes. Aprenderás a usar `if`, `elif` y `else` para crear programas que se adapten a diferentes situaciones.
 
 ---
 
-## 💻 Ejercicio 6: Detector de Número Par o Impar
+## 💻 o2.1: Detector de Número Par o Impar
 
 ### 🎯 Problema
 Determinar si un número entero es par o impar.
@@ -343,9 +348,9 @@ Un número es par si es divisible por 2 (el resto de la división es 0). Tu prog
 - Mostrar si es "par" o "impar"
 
 ### 🧪 Casos de Prueba
-1. Número: 8 → "par"
-2. Número: 7 → "impar"
-3. Número: 0 → "par"
+1. number: 8 → "par"
+2. number: 7 → "impar"
+3. number: 0 → "par"
 
 ### 💻 Código Base
 ```python
@@ -355,6 +360,9 @@ print("=" * 25)
 
 # Your code here 👇
 result = ""
+
+# Example output:
+# El número 8 es par 🔢
 
 # Test cases:
 print("=" * 25)
@@ -373,7 +381,7 @@ print(result == "par")
 
 ---
 
-## 💻 Ejercicio 7: Detector de Número Positivo o Negativo
+## 💻 o2.2: Detector de Número Positivo o Negativo
 
 ### 🎯 Problema
 Determinar si un número ingresado por el usuario es positivo, negativo o cero.
@@ -387,9 +395,9 @@ Tu programa debe evaluar un número y clasificarlo en una de tres categorías: p
 - Mostrar la clasificación correspondiente
 
 ### 🧪 Casos de Prueba
-1. Número: 5 → "positivo"
-2. Número: -3 → "negativo"
-3. Número: 0 → "cero"
+1. number: 5 → "positivo"
+2. number: -3 → "negativo"
+3. number: 0 → "cero"
 
 ### 💻 Código Base
 ```python
@@ -399,6 +407,9 @@ print("=" * 30)
 
 # Your code here 👇
 result = ""
+
+# Example output:
+# El número 5 es positivo ➕
 
 # Test cases:
 print("=" * 30)
@@ -417,7 +428,7 @@ print(result == "cero")
 
 ---
 
-## 💻 Ejercicio 8: Comparador de Dos Números
+## 💻 o2.3: Comparador de Dos Números
 
 ### 🎯 Problema
 Comparar dos números y determinar cuál es mayor, menor, o si son iguales.
@@ -432,9 +443,9 @@ Tu programa debe recibir dos números y compararlos, indicando la relación entr
 - Mostrar el resultado de la comparación
 
 ### 🧪 Casos de Prueba
-1. Número1: 10, Número2: 5 → "mayor"
-2. Número1: 3, Número2: 8 → "menor"
-3. Número1: 7, Número2: 7 → "igual"
+1. number1 = 10; number2 = 5 → "mayor""
+2. number1 = 3; number2 = 8 → "menor""
+3. number1 = 7; number2 = 7 → "igual"
 
 ### 💻 Código Base
 ```python
@@ -445,6 +456,9 @@ print("=" * 28)
 # Your code here 👇
 result = ""
 
+# Example output:
+# El número 10 es mayor que el número 5 ⚖️
+
 # Test cases:
 print("=" * 28)
 print(result == "mayor")
@@ -453,8 +467,8 @@ print(result == "igual")
 ```
 
 ### 💡 Tips Útiles
-- Usa `if num1 > num2:` para mayor
-- Usa `elif num1 < num2:` para menor
+- Usa `if number1 > number2:` para mayor
+- Usa `elif number1 < number2:` para menor
 - Usa `else:` para igual
 
 ### 🎉 Motivación
@@ -462,7 +476,7 @@ print(result == "igual")
 
 ---
 
-## 💻 Ejercicio 9: Clasificador de Edades Simple
+## 💻 o2.4: Clasificador de Edades Simple
 
 ### 🎯 Problema
 Clasificar a una persona como "niño", "adulto" o "adulto mayor" según su edad.
@@ -476,9 +490,9 @@ Tu programa debe clasificar personas en tres categorías: niño (menor de 18), a
 - Mostrar la clasificación
 
 ### 🧪 Casos de Prueba
-1. Edad: 10 → "niño"
-2. Edad: 25 → "adulto" 
-3. Edad: 70 → "adulto mayor"
+1. age: 10 → "niño"
+2. age: 25 → "adulto"
+3. age: 70 → "adulto mayor"
 
 ### 💻 Código Base
 ```python
@@ -488,6 +502,9 @@ print("=" * 28)
 
 # Your code here 👇
 result = ""
+
+# Example output:
+# Es un niño con 10 años 👤
 
 # Test cases:
 print("=" * 28)
@@ -506,7 +523,7 @@ print(result == "adulto mayor")
 
 ---
 
-## 💻 Ejercicio 10: Calculadora con 4 Operaciones
+## 💻 2.5: Calculadora con 4 Operaciones
 
 ### 🎯 Problema
 
@@ -525,10 +542,10 @@ Tu programa debe pedir dos números y una operación (`+`, `-`, `*`, `/`), luego
 
 ### 🧪 Casos de Prueba
 
-1. Número 1: 10, Operación: "+" Número 2: 5, → 15
-2. Número 1: 10, Operación: "-" Número 2: 3, → 7
-3. Número 1: 8, Operación: "*" Número 2: 2, → 16
-4. Número 1: 9, Operación: "/" Número 2: 3, → 3
+1. number1 = 10; operator = "+"; number2 = 5, → 15.0
+2. number1 = 10; operator = "-"; number2 = 3, → 7.0
+3. number1 = 8; operator = "*"; number2 = 2, → 16.0
+4. number1 = 9; operator = "/"; number2 = 3, → 3.0
 
 ---
 
@@ -541,6 +558,9 @@ print("=" * 25)
 
 # Your code here 👇
 result = 0
+
+# Example output:
+# El resultado es: 15.0 🎉✅
 
 # Test cases:
 print("=" * 25)
@@ -566,15 +586,15 @@ print(result == 3.0)
 
 ---
 
-# 🔁 TEMA 3: Estructuras Repetitivas Básicas
+# 🔁 o3: Estructuras Repetitivas Básicas
 
-## 🎯 Descripción del Tema
+## 🎯 Descripción del tema
 
 Los bucles son el poder de la automatización en programación. Aprenderás a usar `for` y `while` para repetir acciones y procesar datos de manera eficiente.
 
 ---
 
-## 💻 Ejercicio 11: Contador del 1 al 10
+## 💻 o3.1: Contador del 1 al 10
 
 ### 🎯 Problema
 Mostrar los números del 1 al 10 usando un bucle for.
@@ -616,13 +636,13 @@ print(count == 10)
 
 ---
 
-## 💻 Ejercicio 12: Suma de Números del 1 al 5
+## 💻 o3.2: Suma de Números del 1 al 5
 
 ### 🎯 Problema
 Calcular la suma de los números del 1 al 5 usando un bucle.
 
 ### 📝 Descripción
-Tu programa debe usar un bucle para sumar todos los números desde 1 hasta 5. El resultado debe ser 1+2+3+4+5 = 15.
+Tu programa debe usar un bucle para sumar todos los números desde 1 hasta 5. El proceso podría ser ser 1 + 2 + 3 + 4 + 5 = 15.
 
 ### ⚙️ Funcionalidades
 - Usar bucle for del 1 al 5
@@ -630,7 +650,7 @@ Tu programa debe usar un bucle para sumar todos los números desde 1 hasta 5. El
 - Mostrar el resultado final
 
 ### 🧪 Casos de Prueba
-1. Suma del 1 al 5 → 15
+1. Suma del 1 al 5 → total
 2. Usando bucle for
 3. Resultado almacenado en variable
 
@@ -658,23 +678,23 @@ print(total == 15)
 
 ---
 
-## 💻 Ejercicio 13: Tabla de Multiplicar del 2
+## 💻 o3.3: Tabla de Multiplicar del 2
 
 ### 🎯 Problema
-Generar la tabla de multiplicar del 2 (del 2x1 al 2x10).
+Generar la tabla de multiplicar del 2 (del 2x1 al 2x12).
 
 ### 📝 Descripción
-Tu programa debe mostrar la tabla completa del 2, desde 2x1=2 hasta 2x10=20, usando un bucle for.
+Tu programa debe mostrar la tabla completa del 2, desde 2x1=2 hasta 2x12=24, usando un bucle for.
 
 ### ⚙️ Funcionalidades
-- Generar tabla del 2 del 1 al 10
+- Generar tabla del 2 del 1 al 12
 - Mostrar cada multiplicación
 - Calcular productos correctamente
 
 ### 🧪 Casos de Prueba
 1. 2 x 1 = 2
-2. 2 x 5 = 10  
-3. 2 x 10 = 20
+2. 2 x 6 = 12
+3. 2 x 12 = 24
 
 ### 💻 Código Base
 ```python
@@ -683,11 +703,11 @@ print("✖️ Tabla de Multiplicar del 2")
 print("=" * 30)
 
 # Your code here 👇
-last_result = 0
+iteration_result = 0
 
 # Test cases:
 print("=" * 30)
-print(last_result == 20)
+print(iteration_result == 24)
 ```
 
 ### 💡 Tips Útiles
@@ -700,13 +720,13 @@ print(last_result == 20)
 
 ---
 
-## 💻 Ejercicio 14: Contador de Números Pares
+## 💻 o3.4: Contador de Números Pares
 
 ### 🎯 Problema
 Contar cuántos números pares hay entre 1 y 10.
 
 ### 📝 Descripción
-Tu programa debe recorrer los números del 1 al 10, verificar cuáles son pares, y contar cuántos encuentra en total.
+Tu programa debe usar `while` para recorrer los números del 1 al 10, verificar cuáles son pares, y contar cuántos encuentra en total.
 
 ### ⚙️ Funcionalidades
 - Recorrer números del 1 al 10
@@ -733,7 +753,7 @@ print(even_count == 5)
 ```
 
 ### 💡 Tips Útiles
-- Usa `for i in range(1, 11):`
+- Usa `while i < 11:`
 - Verifica con `if i % 2 == 0:`
 - Incrementa contador con `even_count += 1`
 
@@ -742,7 +762,7 @@ print(even_count == 5)
 
 ---
 
-## 💻 Ejercicio 15: Suma de Números Impares del 1 al 9
+## 💻 o3.5: Suma de Números Impares del 1 al 9
 
 ### 🎯 Problema
 Calcular la suma de todos los números impares entre 1 y 9.
@@ -775,7 +795,7 @@ print(odd_sum == 25)
 ```
 
 ### 💡 Tips Útiles
-- Usa `for i in range(1, 10):`
+- Usa `for i in range(1, 10):` o `while i < 10:`
 - Verifica con `if i % 2 != 0:`
 - Acumula con `odd_sum += i`
 
@@ -784,15 +804,15 @@ print(odd_sum == 25)
 
 ---
 
-# 🚀 TEMA 4: Integración de Conocimientos
+# 🚀 o4: Integración de Conocimientos
 
-## 🎯 Descripción del Tema
+## 🎯 Descripción del tema
 
 En este tema final combinarás algoritmos básicos, condicionales y bucles para crear programas más completos que resuelven problemas reales.
 
 ---
 
-## 💻 Ejercicio 16: Calculadora de Promedio de Calificaciones
+## 💻 4.1: Calculadora de Promedio de Calificaciones
 
 ### 🎯 Problema
 Calcular el promedio de 5 calificaciones y determinar si el estudiante aprobó.
@@ -837,7 +857,7 @@ print(average == 70.0 and status == "aprobado")
 
 ---
 
-## 💻 Ejercicio 17: Contador de Números Positivos y Negativos
+## 💻 4.2: Contador de Números Positivos y Negativos
 
 ### 🎯 Problema
 Solicitar 5 números al usuario y contar cuántos son positivos y cuántos son negativos.
@@ -882,7 +902,7 @@ print(positive_count == 5 and negative_count == 0)
 
 ---
 
-## 💻 Ejercicio 18: Tabla de Multiplicar Elegida por Usuario
+## 💻 o4.3: Tabla de Multiplicar Elegida por Usuario
 
 ### 🎯 Problema
 Permitir al usuario elegir qué tabla de multiplicar generar (del 1 al 5).
@@ -926,7 +946,7 @@ print(last_result == 25)  # Table of 5: 5x5=25
 
 ---
 
-## 💻 Ejercicio 19: Calculadora de Factorial Simple
+## 💻 4.4: Calculadora de Factorial Simple
 
 ### 🎯 Problema
 Calcular el factorial de un número entre 1 y 5 ingresado por el usuario.
@@ -970,7 +990,7 @@ print(factorial == 120)  # 5! = 120
 
 ---
 
-## 💻 Ejercicio 20: Juego de Adivinanza Simple
+## 💻 4.5: Juego de Adivinanza Simple
 
 ### 🎯 Problema
 Crear un juego donde el usuario debe adivinar un número secreto entre 1 y 10.
@@ -1017,7 +1037,7 @@ print(result == "menor")
 
 ---
 
-# 🎯 PROYECTO INTEGRADOR: Sistema de Calificaciones Básico
+# 🎯 Proyecto integrador: Sistema de Calificaciones Básico
 
 ## 📋 Descripción del Proyecto
 
@@ -1090,7 +1110,7 @@ print(average == 70.0 and highest_grade == 70 and passed_count == 3)
 
 ---
 
-# 🏃‍♂️ RETO PERSONAL: Expansión del Sistema
+# 🏃‍♂️ Reto personal: Expansión del Sistema
 
 ## 🚀 Desafío Final
 
