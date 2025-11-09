@@ -3,7 +3,7 @@
 ```
     ╔════════════════════════════════════════════════════════╗
     ║                                                        ║
-    ║           🐍  PYTHON PROGRAMMING COURSE  🐍            ║
+    ║           🐍  PYTHON PROGRAMMING COURSE  🐍             ║
     ║                                                        ║
     ║              ∩＿＿＿∩                                   ║
     ║             /        \                                 ║
@@ -349,7 +349,7 @@ error = ""
 # Test cases:
 print("=" * 40)
 print(valid == True and user_code == "jua25")
-print(valid == False and error == "edad menor")
+print(valid == False and error == "nombre incompleto")
 print(valid == True and user_code == "car30")
 ```
 
