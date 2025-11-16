@@ -1,4 +1,12 @@
+# ====================================================================
+# 📝 o2.1: Strings y Condicionales Avanzadas
+# ====================================================================
+
+
+# --------------------------------------------------------------------
 # # o2.1.1 Text Case Converter 🔤
+# --------------------------------------------------------------------
+
 # print("🔤 Conversor de Mayúsculas/Minúsculas")
 # print("=" * 40)
 
@@ -22,9 +30,11 @@
 # print(upper_text == "APRENDER PYTHON" and lower_text ==
 #       "aprender python" and title_text == "Aprender Python")
 
-# ========
 
+# --------------------------------------------------------------------
 # # o2.1.2 Word Extractor ✂️
+# --------------------------------------------------------------------
+
 # print("✂️ Extractor de Palabras")
 # print("=" * 30)
 
@@ -50,9 +60,11 @@
 #       "Programar" and last_word == "Programar")
 # print(word_count == 7 and first_word == "Me" and last_word == "días")
 
-# ========
 
+# --------------------------------------------------------------------
 # # o2.1.3 Word Finder and Replacer 🔍
+# --------------------------------------------------------------------
+
 # print("🔍 Buscador y Reemplazador")
 # print("=" * 35)
 
@@ -71,9 +83,11 @@
 # print(result == "Aprender programación")
 # print(result == "Hola mundo")
 
-# ========
 
+# --------------------------------------------------------------------
 # # o2.1.4Credential Validator 🎫
+# --------------------------------------------------------------------
+
 # print("🎫 Validador de Credenciales")
 # print("=" * 35)
 
@@ -101,9 +115,11 @@
 # print(status == "usuario inválido")
 # print(status == "contraseña inválida")
 
-# ========
 
+# --------------------------------------------------------------------
 # # o2.1.P 📋 User Registration System
+# --------------------------------------------------------------------
+
 # print("📋 SISTEMA DE REGISTRO DE USUARIO")
 # print("=" * 40)
 
@@ -155,3 +171,166 @@
 # print(valid == True and user_code == "jua25")
 # print(valid == False and error == "edad menor")
 # print(valid == True and user_code == "car30")
+
+
+# ====================================================================
+# 🔄 o2.2: Bucles II - Control de Flujo Avanzado
+# ====================================================================
+
+
+# # --------------------------------------------------------------------
+# # 💻 o2.2.1: 🛑 Buscador con Break
+# # --------------------------------------------------------------------
+# # Number Finder with Break 🛑
+# print("🛑 Buscador de Números")
+# print("=" * 30)
+
+# # Your code here 👇
+# found = False
+# iterations = 0
+
+# target = int(input("🎮 Ingrese un número a buscar: "))
+
+# for i in range(1, 21):
+#   if i == target:
+#     found = True
+#     iterations = i
+#     break
+
+# print(f"✨ Número {target} {"encontrado" if found else "no encontrado"} en la iteración {iterations} 🎯")
+
+# # Test cases:
+# print("=" * 30)
+# print(found == True and iterations == 5)
+# print(found == True and iterations == 1)
+# print(found == True and iterations == 15)
+
+
+# # --------------------------------------------------------------------
+# # 💻 o2.2.2: ⏭️ Contador de Pares con Continue
+# # --------------------------------------------------------------------
+# # Even Counter with Continue ⏭️
+# print("⏭️ Contador de Pares (sin múltiplos de 10)")
+# print("=" * 45)
+
+# # Your code here 👇
+# even_count = 0
+
+# for i in range(1, 21):
+#     if i % 10 == 0:
+#         continue
+#     if i % 2 == 0:
+#         even_count += 1
+
+# print(f"✨ Números pares: {even_count} 🎉")
+
+# # Test cases:
+# print("=" * 45)
+# print(even_count == 8)
+
+
+# # --------------------------------------------------------------------
+# # 💻 o2.2.3: 🎨 Generador de Triángulo
+# # --------------------------------------------------------------------
+# # Triangle Generator 🎨
+# print("🎨 Generador de Triángulo")
+# print("=" * 30)
+
+# # Your code here 👇
+# pattern = ""
+
+# height = int(input("🎮 Ingrese la altura del triángulo: "))
+
+# for i in range(height):
+#   for j in range(i + 1):
+#     pattern += "*"
+#   if i == height - 1:
+#     break
+#   pattern += "\n"
+
+# print(pattern)
+
+# # Test cases:
+# print("=" * 30)
+# print(pattern == "*\n**\n***")
+# print(pattern == "*\n**\n***\n****")
+# print(pattern == "*\n**\n***\n****\n*****")
+
+
+# # --------------------------------------------------------------------
+# # 💻 o2.2.4: 🔢 Tabla de Multiplicar Completa
+# # --------------------------------------------------------------------
+# # Complete Multiplication Tables 🔢
+# print("🔢 Tablas de Multiplicar del 1 al 5")
+# print("=" * 40)
+
+# # Your code here 👇
+# total_operations = 0
+# table_5_sum = 0
+
+# for number in range(5):
+#     print(f"Tabla del {number + 1}:")
+#     for multi in range(10):
+#         multiplicand = number + 1
+#         multiplier = multi + 1
+#         product = multiplicand * multiplier
+#         print(f"{multiplicand} x {multiplier} = {multiplicand * multiplier}")
+#         total_operations += 1
+
+#         if multiplicand == 5:
+#             table_5_sum += multiplicand * multiplier
+
+# # Test cases:
+# print("=" * 40)
+# print(total_operations == 50)
+# print(table_5_sum == 275)
+
+
+# # --------------------------------------------------------------------
+# # 🎯 o2.2.P: 🎯 Proyecto Integrador - Juego de Adivina el Número Mejorado
+# # --------------------------------------------------------------------
+# import random
+
+# # 🎯 Advanced Number Guessing Game
+# print("🎯 JUEGO: ADIVINA EL NÚMERO")
+# print("=" * 35)
+# print("Adivina un número entre 1 y 50")
+# print("Tienes 7 intentos máximo")
+# print("=" * 35)
+
+# # Your code here 👇
+# secret_number = random.randint(1, 50)
+# max_attempts = 7
+# won = False
+# attempts = 0
+# score = 0
+
+# while attempts < max_attempts:
+#   attempts += 1
+#   guess = int(input(f"🎲 Intento {attempts}/{max_attempts}: "))
+
+#   if guess == secret_number:
+#     won = True
+#     score += 100 - (attempts * 10)
+#     if attempts <= 3:
+#       score += 50
+#     break
+
+#   if guess < secret_number:
+#     print("Muy bajo")
+#   elif guess > secret_number:
+#     print("Muy alto")
+
+# # Example output:
+# if won:
+#   print(f"🎉 ¡CORRECTO! Adivinaste en {attempts} intento el número {secret_number}")
+# else:
+#   print(f"💔 Game over! El número era {secret_number}")
+
+# print(f"🏆 Puntuación: {score} puntos")
+
+# # Test cases:
+# print("=" * 35)
+# print(won == True and attempts == 1 and score == 140)
+# print(won == True and attempts == 5 and score == 50)
+# print(won == False and attempts == 7 and score == 0)
