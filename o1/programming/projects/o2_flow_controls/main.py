@@ -334,3 +334,188 @@
 # print(won == True and attempts == 1 and score == 140)
 # print(won == True and attempts == 5 and score == 50)
 # print(won == False and attempts == 7 and score == 0)
+
+
+# ====================================================================
+# 🔁 o2.3: Bucles III - Iteración Avanzada
+# ====================================================================
+
+
+# # --------------------------------------------------------------------
+# # 💻 o2.3.1: 📇 Enumerador de Elementos
+# # --------------------------------------------------------------------
+# # List Enumerator 📇
+# print("📇 Enumerador de Lista")
+# print("=" * 25)
+
+# # Your code here 👇
+# fruits = ["manzana", "pera", "uva"]
+# count = 0
+# first = ""
+# last = ""
+
+# for i, element in enumerate(fruits):
+#     if i == 0:
+#         first = element
+#     else:
+#         last = element
+#     count += 1
+
+# print(f"0: {first}")
+# print(f"1: {last}")
+# print(f"2: {count}")
+
+# # Test cases:
+# print("=" * 25)
+# print(count == 3 and first == "manzana" and last == "uva")
+
+
+# # --------------------------------------------------------------------
+# # 💻 o2.3.2: ⏩ Contador con Saltos
+# # --------------------------------------------------------------------
+# # Counter with Steps ⏩
+# print("⏩ Contador con Saltos (Múltiplos de 3)")
+# print("=" * 45)
+
+# # Your code here 👇
+# sum_total = 0
+# count = 0
+
+# for i in range(0, 21, 3):
+#     sum_total += i
+#     count += 1
+
+# print(f"✨ Números: {sum_total}")
+# print(f"✨ Cantidad: {count}")
+
+
+# # Test cases:
+# print("=" * 45)
+# print(sum_total == 63 and count == 7)
+
+
+# # --------------------------------------------------------------------
+# # 💻 o2.3.3: 🔄 Acumulador de Números Pares e Impares
+# # --------------------------------------------------------------------
+# # Even/Odd Accumulator 🔄
+# print("🔄 Acumulador Pares/Impares")
+# print("=" * 32)
+
+# # Your code here 👇
+# numbers = [1, 2, 3, 4, 5, 6]
+# even_sum = 0
+# odd_sum = 0
+
+# for num in numbers:
+#     if num % 2 == 0:
+#         even_sum += num
+#     else:
+#         odd_sum += num
+
+# print(f"✨ Suma de pares: {even_sum}")
+# print(f"✨ Suma de impares: {odd_sum}")
+
+# # Test cases:
+# print("=" * 32)
+# print(even_sum == 12 and odd_sum == 9)
+
+
+# # --------------------------------------------------------------------
+# # 💻 o2.3.4: 🔍 Buscador con Else
+# # --------------------------------------------------------------------
+# # List Searcher with Else 🔍
+# print("🔍 Buscador con Else")
+# print("=" * 25)
+
+# # Your code here 👇
+# names = ["Ana", "Carlos", "María"]
+# search = "Elliot"
+# found = False
+
+# for item in names:
+#     if item == search:
+#         found = True
+#         print(f"✅ {item} encontrado en la lista")
+#         break
+# else:
+#     print(f"❌ {search} no encontrado en la lista")
+
+# # Test cases:
+# print("=" * 25)
+# print(found == True)
+# search = "Pedro"
+# found = False
+# # Your search code here
+# print(found == False)
+
+
+# # --------------------------------------------------------------------
+# # 🎯 o2.3.P: 🎲 Proyecto Integrador - Analizador de Calificaciones Avanzado
+# # --------------------------------------------------------------------
+# # 🎲 Advanced Grade Analyzer
+# print("🎲 ANALIZADOR DE CALIFICACIONES AVANZADO")
+# print("=" * 45)
+
+# # Your code here 👇
+
+# num_students = int(input("🎯 Ingrese el número de estudiantes 3-10: "))
+# total_avg = 0
+# group_avg = 0
+# best_avg = 0
+# worst_avg = 0
+# approved = 0
+# disapproved = 0
+
+# for i in range(num_students):
+#     name = input(f"📋 Ingrese el nombre de estudiante {i + 1}: ")
+#     sum_of_grades = 0
+#     highest_grade = 0
+#     lowest_grade = 0
+
+#     for j in range(4):
+#         grade = int(
+#             input(f"📋 Ingrese la calificación {j + 1} del estudiante {name}: "))
+#         if j == 0:
+#             highest_grade = grade
+#             lowest_grade = grade
+#         else:
+#             if grade > highest_grade:
+#                 highest_grade = grade
+#             if grade < lowest_grade:
+#                 lowest_grade = grade
+
+#         sum_of_grades += grade
+
+#     average = sum_of_grades / 4
+#     if average >= 70:
+#         approved += 1
+#         print(f"✅ Estudiante {name} aprobado")
+#     else:
+#         disapproved += 1
+#         print(f"❌ Estudiante {name} reprobado")
+
+#     print(f"✅ Promedio: {average}")
+#     print(f"✅ Calificación máxima: {highest_grade}")
+#     print(f"✅ Calificación mínima: {lowest_grade}")
+
+#     if i == 0:
+#         best_avg = average
+#         worst_avg = average
+#     else:
+#         if average > best_avg:
+#             best_avg = average
+#         if average < worst_avg:
+#             worst_avg = average
+
+
+#     total_avg += average
+
+# group_avg = total_avg / num_students
+
+# print("=" * 45)
+# print(f"✅ Promedio del grupo: {group_avg}")
+# print(f"✅ Mejor promedio: {best_avg}")
+# print(f"✅ Peor promedio: {worst_avg}")
+# print(f"✅ Aprobados: {approved}")
+# print(f"✅ Reprobados: {disapproved}")
+# print(f"✅ Porcentaje de aprobación: {approved / num_students * 100}%")
