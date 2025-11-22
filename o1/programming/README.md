@@ -29,17 +29,27 @@
 - 📚 **Aprende haciendo:** Resuelve problemas prácticos y aplica lo aprendido en cada unidad.
 - 🐙 **Crea un portafolio en GitHub** para documentar tu progreso y mostrar tus proyectos.
 
-## 🎯 Contenido del Curso 🎯
+## 🎯 Topics Covered 🎯
 
-1. Diagramas de flujo y pseudocódigo
-2. Control de flujo (bifurcaciones y bucles)
-3. Sintaxis básica y operadores
-4. Listas, tuplas y diccionarios
-5. Funciones y módulos
-6. Gestión de archivos
-7. Introducción a POO
-8. Gráficos con Python
-9. Sustentación de proyecto final
+| Topic                   | Focus                                   |
+| ----------------------- | --------------------------------------- |
+| **1️⃣ Algorithms & Code** | Variables, operations, input/output     |
+| **2️⃣ Conditionals**      | if/elif/else, decision making           |
+| **3️⃣ Loops I**           | for/while, basic iteration              |
+| **4️⃣ Integration**       | Combining all concepts                  |
+| **5️⃣ Conditionals II**   | Advanced logic, operators (and/or/not)  |
+| **6️⃣ Loops II**          | break, continue, nested loops           |
+| **7️⃣ Loops III**         | enumerate, range with steps, for-else   |
+| **8️⃣ Lists**             | Dynamic collections, methods, slicing   |
+| **9️⃣ Tuples**            | Immutable sequences                     |
+| **🔟 Dictionaries**      | Key-value pairs, data structures        |
+| **1️⃣1️⃣ Sets**             | Unique elements, set operations         |
+| **1️⃣2️⃣ Functions**        | Code reusability, parameters, return    |
+| **1️⃣3️⃣ Date & Time**      | datetime module, formatting             |
+| **1️⃣4️⃣ Modules**          | Import, create modules, packages        |
+| **1️⃣5️⃣ Files**            | Read/write, file handling               |
+| **1️⃣6️⃣ Graphics**         | Visualization with Python               |
+| **🏆 Final Projects**    | Complete systems integrating all topics |
 
 ## 🤗 Redes sociales 🤗
 - 📺 [YouTube](https://www.youtube.com/@elliotgaramendi)
