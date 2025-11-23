@@ -519,3 +519,141 @@
 # print(f"✅ Aprobados: {approved}")
 # print(f"✅ Reprobados: {disapproved}")
 # print(f"✅ Porcentaje de aprobación: {approved / num_students * 100}%")
+
+
+# ====================================================================
+# 🔁 o2.4: Listas - Colecciones Dinámicas
+# ====================================================================
+
+
+# # --------------------------------------------------------------------
+# # o2.4.1: ➕ Construir Lista Dinámica
+# # --------------------------------------------------------------------
+# # Dynamic List Builder ➕
+# languages = []  # your code here 💻
+# # append: Python, JavaScript, Java, C++, Ruby
+# print(languages)
+# languages.append('Python')
+# print(languages)
+# languages.append('JavaScript')
+# languages.append('Java')
+# languages.append('C++')
+# languages.append('Ruby')
+
+# # numbers = [1, 8, 5, 13, 16, 29, 31]
+# # print(numbers)
+# # print(numbers[0])
+# # print(numbers[-1])
+# # print(numbers[3])
+# # print(numbers[-4])
+# # print(len(numbers))
+
+# print(f"Lista: {languages}")
+# print(f"Primero: {languages[0]}")
+# print(f"Último: {languages[-1]}")
+# print(f"Total: {len(languages)}")
+
+# # Test cases
+# print(languages[0] == 'Python')
+# print(languages[-1] == 'Ruby')
+# print(len(languages) == 5)
+# print('Java' in languages)
+# print(type(languages) == list)
+
+
+# # --------------------------------------------------------------------
+# # o2.4.2: ✂️ Slicing Maestro
+# # --------------------------------------------------------------------
+# # List Slicer ✂️
+# numbers = [1,2,3,4,5,6,7,8,9,10]
+# first_3 = numbers[:3]
+# last_3 = numbers[-3:]
+# middle = numbers[3:8]
+
+# print(f"Primeros 3: {first_3}")
+# print(f"Últimos 3: {last_3}")
+# print(f"Medio (3-7): {middle}")
+
+# # Test cases
+# print(first_3 == [1, 2, 3])
+# print(last_3 == [8, 9, 10])
+# print(middle == [4, 5, 6, 7, 8])
+# print(len(middle) == 5)
+# print(type(first_3) == list)
+
+
+# # --------------------------------------------------------------------
+# # o2.4.3: 🔄 Ordenar y Revertir
+# # --------------------------------------------------------------------
+# # List Sorter 🔄
+# original = [5, 2, 8, 1, 9, 3]
+# ascending = original.copy()
+# ascending.sort()
+# descending = original[:]
+# descending.sort(reverse=True)
+
+# copy = [*original]
+
+# print(f"Original: {original}")
+# print(f"Copia: {copy}")
+# print(f"Ascendente: {ascending}")
+# print(f"Descendente: {descending}")
+
+# # Test cases
+# print(original == [5, 2, 8, 1, 9, 3])
+# print(ascending == [1, 2, 3, 5, 8, 9])
+# print(descending == [9, 8, 5, 3, 2, 1])
+# print(original[0] == 5)
+# print(type(ascending) == list)
+
+# # --------------------------------------------------------------------
+# # o2.4.4: 🗑️ Eliminar Duplicados
+# # --------------------------------------------------------------------
+# # Duplicate Remover 🗑️
+# original = [1, 2, 2, 3, 4, 3, 5, 1]
+# unique = []
+
+# print(original)
+
+# print(5 not in original)
+
+# for item in original:
+#     if item not in unique:
+#         unique.append(item)
+
+# print(f"Original: {original}")
+# print(f"Sin duplicados: {unique}")
+# print(f"Elementos únicos: {len(unique)}")
+
+# # Test cases
+# print(original == [1, 2, 2, 3, 4, 3, 5, 1])
+# print(unique == [1, 2, 3, 4, 5])
+# print(len(unique) == 5)
+# print(unique[0] == 1)
+# print(type(unique) == list)
+
+
+# # --------------------------------------------------------------------
+# # o2.4.5: 🔧 Métodos de Lista Completos
+# # --------------------------------------------------------------------
+# # List Methods Master 🔧
+# ingredients = ['sal', 'pimienta', 'azucar']
+# print(ingredients)
+# ingredients.append('aceite')
+# print(ingredients)
+# ingredients.remove('azucar')
+# print(ingredients)
+# ingredients.insert(1, 'vinagre')
+# print(ingredients)
+# ingredients.pop()
+# print(ingredients)
+
+# print(f"Lista final: {ingredients}")
+# print(f"Total elementos: {len(ingredients)}")
+
+# # Test cases
+# print('vinagre' in ingredients)
+# print('azucar' not in ingredients)
+# print(len(ingredients) == 3)
+# print(ingredients[1] == 'vinagre')
+# print(type(ingredients) == list)
