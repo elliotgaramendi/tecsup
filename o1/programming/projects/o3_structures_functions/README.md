@@ -224,7 +224,7 @@ print(type(red) == tuple)
 | `player[0]`    | `'Elliot'`                       |
 | `player[2]`    | `1500`                           |
 | `max_value`    | `92` (max de age, points, level) |
-| `average`      | `796.5` ((1500+93)/2)            |
+| `average`      | `796` ((1500+92)/2)            |
 | `type(player)` | `<class 'tuple'>`                |
 
 **💻 Código base:**
@@ -247,7 +247,7 @@ print(f"Valor máximo: {max_value}")
 print(player[0] == 'Elliot')
 print(player[2] == 1500)
 print(max_value == 1500)
-print(average == 796.5)
+print(average == 796)
 print(type(player) == tuple)
 ```
 
@@ -402,7 +402,7 @@ print(type(user) == dict)
 | ----------------------- | ---------------------------- |
 | `inventory['manzanas']` | `50`                         |
 | `inventory['peras']`    | `35` (después de actualizar) |
-| `total_items`           | `115`                        |
+| `total_items`           | `120`                        |
 | `len(inventory)`        | `4` (después de agregar)     |
 | `type(inventory)`       | `<class 'dict'>`             |
 
@@ -425,7 +425,7 @@ print(f"Productos: {products}")
 # Test cases
 print(inventory['manzanas'] == 50)
 print(inventory['peras'] == 35)
-print(total_items == 115)
+print(total_items == 120)
 print(len(inventory) == 4)
 print(type(inventory) == dict)
 ```
@@ -625,7 +625,7 @@ Los sets son colecciones de elementos únicos sin orden específico. Son perfect
 - Crear lista con elementos duplicados
 - Convertir lista a set
 - Verificar que no hay duplicados
-- Convertir set de vuelta a lista ordenada
+- Convertir set ordenado
 - Contar elementos únicos
 
 **✅ Casos de prueba:**
@@ -649,7 +649,7 @@ sorted_list = []  # your code here 💻 (convert set back to sorted list)
 
 print(f"Lista original: {numbers}")
 print(f"Set único: {unique_set}")
-print(f"Lista ordenada: {sorted_list}")
+print(f"Set ordenado: {sorted_list}")
 
 # Test cases
 print(unique_set == {1, 2, 3, 4, 5})
