@@ -42,8 +42,8 @@
 | **7️⃣ Loops III**         | enumerate, range with steps, for-else   |
 | **8️⃣ Lists**             | Dynamic collections, methods, slicing   |
 | **9️⃣ Tuples**            | Immutable sequences                     |
-| **🔟 Dictionaries**      | Key-value pairs, data structures        |
-| **1️⃣1️⃣ Sets**             | Unique elements, set operations         |
+| **🔟 Sets**              | Unique elements, set operations         |
+| **1️⃣1️⃣ Dictionaries**     | Key-value pairs, data structures        |
 | **1️⃣2️⃣ Functions**        | Code reusability, parameters, return    |
 | **1️⃣3️⃣ Date & Time**      | datetime module, formatting             |
 | **1️⃣4️⃣ Modules**          | Import, create modules, packages        |
