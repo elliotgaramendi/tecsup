@@ -93,13 +93,13 @@ run_tests()
 ```
 
 **💡 Tips:**
-* 🔹 Convierte ambas a sets: `set1 = set(list1)`, `set2 = set(list2)`
-* 🔹 Usa operador de intersección: `common = set1 & set2`
-* 🔹 Ordena y retorna lista: `return sorted(list(common))`
-* 🔹 Una línea: `return sorted(list(set(list1) & set(list2)))`
+* 🔹 Calcula: `propina = bill * (tip_percent / 100)`
+* 🔹 Suma: `total = bill + propina`
+* 🔹 Retorna el total como tipo `float`
+* 🔹 Puedes resolver en 1 línea: `return bill + (bill * tip_percent / 100)`
 
 **🚀 Motivación:**  
-¡Doky y Chocolate comparten juguetes! 🐕🐕🎾 La intersección de sets es pura magia matemática. ¡Aplícala! 🎩✨
+¡Fe necesita tu ayuda en el restaurante! 👨‍🍳 Este reto es tu calentamiento perfecto. ¡Tú puedes! 💪✨
 
 ---
 
@@ -1230,6 +1230,15 @@ def run_tests():
 run_tests()
 ```
 
+**💡 Tips:**
+* 🔹 Convierte ambas a sets: `set1 = set(list1)`, `set2 = set(list2)`
+* 🔹 Usa operador de intersección: `common = set1 & set2`
+* 🔹 Ordena y retorna lista: `return sorted(list(common))`
+* 🔹 Una línea: `return sorted(list(set(list1) & set(list2)))`
+
+**🚀 Motivación:**  
+¡Doky y Chocolate comparten juguetes! 🐕🐕🎾 La intersección de sets es pura magia matemática. ¡Aplícala! 🎩✨
+
 ---
 
 ## 1️⃣1️⃣ Dictionaries
@@ -1788,65 +1797,3 @@ run_tests()
 
 **🚀 Motivación:**  
 ¡Fe guarda recetas para siempre! 👨‍🍳📝 Los archivos son memoria persistente. ¡Escribe historia! 📜
-
----
-
-### 📖 Reto 15.2: Contar Líneas
-
-**Dificultad:** ⭐⭐ Medio  
-**Puntos:** 5 tests
-
-**📖 Historia:**
-Elliot ⚡ tiene un archivo de texto y quiere saber cuántas líneas contiene. Lee el archivo y retorna el número de líneas.
-
-**📝 Descripción:**
-Implementa la función `count_lines(filename)` que lee un archivo y retorna el número de líneas. Si el archivo no existe, retorna 0.
-
-**Ejemplos:**
-```python
-# Archivo con 3 líneas
-print(count_lines('file.txt'))      # 3
-# Archivo vacío
-print(count_lines('empty.txt'))     # 0
-```
-
-**🧪 Tests:**
-| Test | Input                                  | Expected |
-| ---- | -------------------------------------- | -------- |
-| 1    | `count_lines('test_3lines.txt')`       | `3`      |
-| 2    | `count_lines('test_empty.txt')`        | `0`      |
-| 3    | `count_lines('nonexistent.txt')`       | `0`      |
-| 4    | `count_lines('test_1line.txt')`        | `1`      |
-| 5    | `type(count_lines('test_3lines.txt'))` | `int`    |
-
-**💻 Playground:**
-```python
-def count_lines(filename):
-    # Tu código aquí
-    return 0
-
-# ✓ Test Runner (solo para verificación)
-def run_tests():
-    # Crear archivos de prueba
-    with open('test_3lines.txt', 'w') as f:
-        f.write('line1\nline2\nline3\n')
-    with open('test_empty.txt', 'w') as f:
-        f.write('')
-    with open('test_1line.txt', 'w') as f:
-        f.write('single line')
-    
-    tests = [
-        count_lines('test_3lines.txt')
-        print(f"Test {i}: {'✅' if result else '❌'}")
-
-run_tests()
-```
-
-**💡 Tips:**
-* 🔹 Calcula: `propina = bill * (tip_percent / 100)`
-* 🔹 Suma: `total = bill + propina`
-* 🔹 Retorna el total como tipo `float`
-* 🔹 Puedes resolver en 1 línea: `return bill + (bill * tip_percent / 100)`
-
-**🚀 Motivación:**  
-¡Fe necesita tu ayuda en el restaurante! 👨‍🍳 Este reto es tu calentamiento perfecto. ¡Tú puedes! 💪✨
