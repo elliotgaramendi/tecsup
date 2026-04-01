@@ -4,24 +4,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cinespoilers | Movies</title>
+  <title>Cinespoilers | Películas</title>
 </head>
 
 <body>
-  <h1>Listado de películas</h1>
+  <main>
+    <h1>Películas</h1>
 
-  {% if movies %}
-  <ul>
-    {% for movie in movies %}
-    <li>
-      <h2>{{ movie.title }} ({{ movie.release_year }})</h2>
-      <p>{{ movie.description }}</p>
-    </li>
-    {% endfor %}
-  </ul>
-  {% else %}
-  <p>No hay películas registradas todavía.</p>
-  {% endif %}
+    {% if movies %}
+    <ul>
+      {% for movie in movies %}
+      <li>
+        <h2>{{ movie.title }}</h2>
+        <p><strong>Fecha de estreno:</strong> {{ movie.release_date }}</p>
+        <p>{{ movie.synopsis }}</p>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>No hay películas registradas.</p>
+    {% endif %}
+  </main>
 </body>
 
 </html>
