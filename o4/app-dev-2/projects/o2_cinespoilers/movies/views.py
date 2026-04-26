@@ -1,9 +1,14 @@
-from rest_framework import viewsets
+from rest_framework.viewsets import ModelViewSet
 
-from .models import Movie
-from .serializers import MovieSerializer
+from .models import Movie, Genre
+from .serializers import MovieSerializer, GenreSerializer
 
 
-class MovieViewSet(viewsets.ModelViewSet):
-    queryset = Movie.objects.all()
+class GenreViewSet(ModelViewSet):
+    queryset = Genre.objects.all()
+    serializer_class = GenreSerializer
+
+
+class MovieViewSet(ModelViewSet):
+    queryset = Movie.objects.filter(is_active=True)
     serializer_class = MovieSerializer
